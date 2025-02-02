@@ -17,7 +17,7 @@ Add those to your layout's `<head>` section:
 <link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-page.css' | asset_url }}">
 ```
 
-There is an optional CSS reset available. It's not recommended to use in on an existing app probably, but you can safely use it on a fresh one. To use it just place the following CSS reference on top of every other one.
+There is an optional CSS reset available. It's not recommended to use in on an existing app probably, but you can safely use it on a fresh one. To use it just place the following CSS reference on top and use a `pos-app` class anywhere on your main content container.
 
 ```
 <link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-reset.css' | asset_url }}">
