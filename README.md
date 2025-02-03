@@ -12,6 +12,7 @@ Add those to your layout's `<head>` section:
 <link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-config.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-button.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-typography.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-toast.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-avatar.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-forms.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-page.css' | asset_url }}">
@@ -103,3 +104,27 @@ An example import map looks like this:
 ```
 
 The first line allows to use relative `import` statements inside your JS files, the last line resets it back to default.
+
+
+## Components
+
+### Toast notifications
+
+1. Render the partial in your application layout (preferably at the very bottom)
+```
+{% liquid
+  function flash = 'modules/core/commands/session/get', key: 'sflash'
+  if context.location.pathname != flash.from or flash.force_clear
+    function _ = 'modules/core/commands/session/clear', key: 'sflash'
+  endif
+  theme_render_rc 'modules/common-styling/toasts', params: flash
+%}
+```
+
+From JavaScript you can use:
+```
+new pos.modules.toast('[severity]', '[message]') to show new notification
+```
+
+On the server-side:
+[TO DO]
