@@ -359,14 +359,78 @@
 }
 
 
+/* typography
+============================================================================ */
+:root {
+  /* Default - 1440px */
+  --pos-hero-page-title: 56px;
+  --pos-hero-line-height: 64px;
+  --pos-headline-1: 40px;
+  --pos-headline-1-line-height: 40px;
+  --pos-headline-2: 30px;
+  --pos-headline-3: 24px;
+  --pos-headline-3-line-height: 32px;
+  --pos-headline-4: 20px;
+  --pos-headline-4-line-height: 28px;
+}
+
+/* Large screens (1920px) */
+@media (min-width: 1920px) {
+  :root {
+    --pos-hero-page-title: 72px;
+    --pos-hero-line-height: 80px;
+    --pos-headline-1: 48px;
+    --pos-headline-1-line-height: 48px;
+    --pos-headline-2: 30px;
+    --pos-headline-3: 24px;
+    --pos-headline-3-line-height: 32px;
+    --pos-headline-4: 20px;
+    --pos-headline-4-line-height: 28px;
+  }
+}
+
+/* Medium screens (1024px) */
+@media (max-width: 1024px) {
+  :root {
+    --pos-hero-page-title: 48px;
+    --pos-hero-line-height: 56px;
+    --pos-headline-1: 40px;
+    --pos-headline-1-line-height: 40px;
+    --pos-headline-2: 28px;
+    --pos-headline-3: 20px;
+    --pos-headline-3-line-height: 24px;
+    --pos-headline-4: 18px;
+    --pos-headline-4-line-height: 24px;
+  }
+}
+
+
 /* spacing
 ============================================================================ */
 :root {
+  /* paddings */
   --pos-padding-page: 2rem;
   --pos-padding-panel: 1rem;
 
+  /* gaps */
   --pos-gap-navigation: 1rem;
   --pos-gap-list: .2rem;
+
+  /* icon */
+    --pos-gap-navigation: 1rem;
+    --pos-gap-list: .2rem;
+}
+
+
+/* corners
+============================================================================ */
+:root {
+  --pos-corner-panel: 4px;
+  --pos-corner-popup: 4px;
+  --pos-corner-card: 4px;
+  --pos-corner-button: 4px;
+  --pos-corner-input: 0px;
+  --pos-corner-tag: 40px;
 }
 
 
