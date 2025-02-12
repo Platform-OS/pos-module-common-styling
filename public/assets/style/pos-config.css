@@ -1,17 +1,25 @@
 /*
   stores all configurable variables used for styling
 
-  [TO DO: THIS NEEDS TO BE ADJUSTED WITH FIGMA, BOTH WAYS PROBABLY SO WE CAN JUST COPY THE VAR NAME, 1:1 WOULD BE NICE]
-
+  
   colors
     light mode
     dark mode
     colors based on the choosen theme
     colors based on the system preference
   fonts
+  typography
+    default
+    large screens
+    medium screens
+    small screens
   spacing
+    default
+    large screens
+    medium screens
+    small screens
+  corners
   buttons and inputs shape
-  card and panel shape
 */
 
 
@@ -354,102 +362,236 @@
 /* fonts
 ============================================================================ */
 :root {
-  --pos-font-default: system-ui, sans-serif;
-  --pos-font-heading: 'Source Code Pro', 'Consolas', monospace;
+  --pos-font-default: system-ui, sans-serif; /* Default font for the whole page */
+  --pos-font-heading: 'Source Code Pro', 'Consolas', monospace; /* Font for headings */
 }
 
 
 /* typography
 ============================================================================ */
+
+/* Default (1440px) */
 :root {
-  /* Default - 1440px */
-  --pos-hero-page-title: 56px;
-  --pos-hero-line-height: 64px;
-  --pos-headline-1: 40px;
-  --pos-headline-1-line-height: 40px;
-  --pos-headline-2: 30px;
-  --pos-headline-3: 24px;
-  --pos-headline-3-line-height: 32px;
-  --pos-headline-4: 20px;
-  --pos-headline-4-line-height: 28px;
+  --pos-hero-page-title: 56px; /* Font size for the hero page title */
+  --pos-hero-line-height: 64px; /* Line height for the hero page title */
+  --pos-headline-1: 40px; /* Font size for headline 1 */
+  --pos-headline-1-line-height: 40px; /* Line height for headline 1 */
+  --pos-headline-2: 30px; /* Font size for headline 2 */
+  --pos-headline-3: 24px; /* Font size for headline 3 */
+  --pos-headline-3-line-height: 32px; /* Line height for headline 3 */
+  --pos-headline-4: 20px; /* Font size for headline 4 */
+  --pos-headline-4-line-height: 28px; /* Line height for headline 4 */
 }
 
 /* Large screens (1920px) */
 @media (min-width: 1920px) {
   :root {
-    --pos-hero-page-title: 72px;
-    --pos-hero-line-height: 80px;
-    --pos-headline-1: 48px;
-    --pos-headline-1-line-height: 48px;
-    --pos-headline-2: 30px;
-    --pos-headline-3: 24px;
-    --pos-headline-3-line-height: 32px;
-    --pos-headline-4: 20px;
-    --pos-headline-4-line-height: 28px;
+    --pos-hero-page-title: 72px; /* Font size for the hero page title */
+    --pos-hero-line-height: 80px; /* Line height for the hero page title */
+    --pos-headline-1: 48px; /* Font size for headline 1 */
+    --pos-headline-1-line-height: 48px; /* Line height for headline 1 */
+    --pos-headline-2: 30px; /* Font size for headline 2 */
+    --pos-headline-3: 24px; /* Font size for headline 3 */
+    --pos-headline-3-line-height: 32px; /* Line height for headline 3 */
+    --pos-headline-4: 20px; /* Font size for headline 4 */
+    --pos-headline-4-line-height: 28px; /* Line height for headline 4 */
   }
 }
 
 /* Medium screens (1024px) */
 @media (max-width: 1024px) {
   :root {
-    --pos-hero-page-title: 48px;
-    --pos-hero-line-height: 56px;
-    --pos-headline-1: 40px;
-    --pos-headline-1-line-height: 40px;
-    --pos-headline-2: 28px;
-    --pos-headline-3: 20px;
-    --pos-headline-3-line-height: 24px;
-    --pos-headline-4: 18px;
-    --pos-headline-4-line-height: 24px;
+    --pos-hero-page-title: 48px; /* Font size for the hero page title */
+    --pos-hero-line-height: 56px; /* Line height for the hero page title */
+    --pos-headline-1: 40px; /* Font size for headline 1 */
+    --pos-headline-1-line-height: 40px; /* Line height for headline 1 */
+    --pos-headline-2: 28px; /* Font size for headline 2 */
+    --pos-headline-3: 20px; /* Font size for headline 3 */
+    --pos-headline-3-line-height: 24px; /* Line height for headline 3 */
+    --pos-headline-4: 18px; /* Font size for headline 4 */
+    --pos-headline-4-line-height: 24px; /* Line height for headline 4 */
+  }
+}
+
+/* Small screens (393px) */
+@media (max-width: 393px) {
+  :root {
+    --pos-hero-page-title: 32px; /* Font size for the hero page title */
+    --pos-hero-line-height: 40px; /* Line height for the hero page title */
+    --pos-headline-1: 28px; /* Font size for headline 1 */
+    --pos-headline-1-line-height: 28px; /* Line height for headline 1 */
+    --pos-headline-2: 24px; /* Font size for headline 2 */
+    --pos-headline-3: 20px; /* Font size for headline 3 */
+    --pos-headline-3-line-height: 24px; /* Line height for headline 3 */
+    --pos-headline-4: 18px; /* Font size for headline 4 */
+    --pos-headline-4-line-height: 20px; /* Line height for headline 4 */
   }
 }
 
 
 /* spacing
 ============================================================================ */
+
+/* Default (1440px) */
 :root {
   /* paddings */
-  --pos-padding-page: 2rem;
-  --pos-padding-panel: 1rem;
+  --pos-padding-cards-boxes: 24px; /* Padding for cards and boxes */
+  --pos-padding-table-cells: 16px; /* Padding for table cells */
 
   /* gaps */
-  --pos-gap-navigation: 1rem;
-  --pos-gap-list: .2rem;
+  --pos-gap-section-elements: 40px; /* Gap between elements in a section */
+  --pos-gap-section-title-content: 40px; /* Gap between section title and content */
+  --pos-gap-section-section: 200px; /* Gap between sections */
+  --pos-gap-card-card: 24px; /* Gap between cards */
+  --pos-gap-text-content: 16px; /* Gap between text content */
+  --pos-gap-card-elements: 16px; /* Gap between elements in a card */
+  --pos-gap-content-footer: 40px; /* Gap between content and footer */
+  --pos-gap-input-button: -4px; /* Gap between input and button */
+  --pos-gap-n-button: 16px; /* Gap between n buttons */
+  --pos-gap-s-button: 8px; /* Gap between s buttons */
+  --pos-gap-tag-v: 8px; /* Gap between tags vertically */
+  --pos-gap-tag-h: 16px; /* Gap between tags horizontally */
+  --pos-gap-step-step: 24px; /* Gap between steps */
+  --pos-gap-step-button: 24px; /* Gap between step and button */
+  --pos-gap-from-field: 16px; /* Gap between form fields */
+  --pos-gap-question-card: 8px; /* Gap between question cards */
+  --pos-gap-page-content-x-margin: 200px; /* Margin for the page content */
 
   /* icon */
-    --pos-gap-navigation: 1rem;
-    --pos-gap-list: .2rem;
+  --pos-icon-xs: 12px; /* Icon size xs */
+  --pos-icon-s: 16px; /* Icon size s */
+  --pos-icon-m: 20px; /* Icon size m */
+  --pos-icon-l: 24px; /* Icon size l */
+  --pos-icon-xl: 32px; /* Icon size xl */
+  --pos-icon-xxl: 64px; /* Icon size xxl */
 }
 
+/* Large screens (1920px) */
+@media (min-width: 1920px) {
+  :root {
+    /* paddings */
+    --pos-padding-cards-boxes: 40px; /* Padding for cards and boxes */
+    --pos-padding-table-cells: 16px; /* Padding for table cells */
+
+    /* gaps */
+    --pos-gap-section-elements: 40px; /* Gap between elements in a section */
+    --pos-gap-section-title-content: 80px; /* Gap between section title and content */
+    --pos-gap-section-section: 240px; /* Gap between sections */
+    --pos-gap-card-card: 40px; /* Gap between cards */
+    --pos-gap-text-content: 16px; /* Gap between text content */
+    --pos-gap-card-elements: 24px; /* Gap between elements in a card */
+    --pos-gap-content-footer: 40px; /* Gap between content and footer */
+    --pos-gap-input-button: -4px; /* Gap between input and button */
+    --pos-gap-n-button: 16px; /* Gap between n buttons */
+    --pos-gap-s-button: 8px; /* Gap between s buttons */
+    --pos-gap-tag-v: 8px; /* Gap between tags vertically */
+    --pos-gap-tag-h: 16px; /* Gap between tags horizontally */
+    --pos-gap-step-step: 24px; /* Gap between steps */
+    --pos-gap-step-button: 24px; /* Gap between step and button */
+    --pos-gap-from-field: 16px; /* Gap between form fields */
+    --pos-gap-question-card: 8px; /* Gap between question cards */
+    --pos-gap-page-content-x-margin: 40px; /* Margin for the page content */
+
+    /* icon */
+    --pos-icon-xs: 12px; /* Icon size xs */
+    --pos-icon-s: 16px; /* Icon size s */
+    --pos-icon-m: 20px; /* Icon size m */
+    --pos-icon-l: 24px; /* Icon size l */
+    --pos-icon-xl: 32px; /* Icon size xl */
+    --pos-icon-xxl: 64px; /* Icon size xxl */
+  }
+}
+
+/* Medium screens (1024px) */
+@media (max-width: 1024px) {
+  :root {
+    /* paddings */
+    --pos-padding-cards-boxes: 24px; /* Padding for cards and boxes */
+    --pos-padding-table-cells: 16px; /* Padding for table cells */
+
+    /* gaps */
+    --pos-gap-section-elements: 40px; /* Gap between elements in a section */
+    --pos-gap-section-title-content: 40px; /* Gap between section title and content */
+    --pos-gap-section-section: 200px; /* Gap between sections */
+    --pos-gap-card-card: 24px; /* Gap between cards */
+    --pos-gap-text-content: 16px; /* Gap between text content */
+    --pos-gap-card-elements: 16px; /* Gap between elements in a card */
+    --pos-gap-content-footer: 40px; /* Gap between content and footer */
+    --pos-gap-input-button: -4px; /* Gap between input and button */
+    --pos-gap-n-button: 16px; /* Gap between n buttons */
+    --pos-gap-s-button: 8px; /* Gap between s buttons */
+    --pos-gap-tag-v: 8px; /* Gap between tags vertically */
+    --pos-gap-tag-h: 16px; /* Gap between tags horizontally */
+    --pos-gap-step-step: 24px; /* Gap between steps */
+    --pos-gap-step-button: 24px; /* Gap between step and button */
+    --pos-gap-from-field: 16px; /* Gap between form fields */
+    --pos-gap-question-card: 8px; /* Gap between question cards */
+    --pos-gap-page-content-x-margin: 80px; /* Margin for the page content */
+
+    /* icon */
+    --pos-icon-xs: 12px; /* Icon size xs */
+    --pos-icon-s: 16px; /* Icon size s */
+    --pos-icon-m: 20px; /* Icon size m */
+    --pos-icon-l: 24px; /* Icon size l */
+    --pos-icon-xl: 32px; /* Icon size xl */
+    --pos-icon-xxl: 64px; /* Icon size xxl */
+  }
+}
+
+/* Small screens (393px) */
+@media (max-width: 393px) {
+  :root {
+    /* paddings */
+    --pos-padding-cards-boxes: 24px; /* Padding for cards and boxes */
+    --pos-padding-table-cells: 16px; /* Padding for table cells */
+
+    /* gaps */
+    --pos-gap-section-elements: 16px; /* Gap between elements in a section */
+    --pos-gap-section-title-content: 32px; /* Gap between section title and content */
+    --pos-gap-section-section: 80px; /* Gap between sections */
+    --pos-gap-card-card: 16px; /* Gap between cards */
+    --pos-gap-text-content: 16px; /* Gap between text content */
+    --pos-gap-card-elements: 16px; /* Gap between elements in a card */
+    --pos-gap-content-footer: 40px; /* Gap between content and footer */
+    --pos-gap-input-button: -4px; /* Gap between input and button */
+    --pos-gap-n-button: 16px; /* Gap between n buttons */
+    --pos-gap-s-button: 8px; /* Gap between s buttons */
+    --pos-gap-tag-v: 8px; /* Gap between tags vertically */
+    --pos-gap-tag-h: 16px; /* Gap between tags horizontally */
+    --pos-gap-step-step: 24px; /* Gap between steps */
+    --pos-gap-step-button: 24px; /* Gap between step and button */
+    --pos-gap-from-field: 16px; /* Gap between form fields */
+    --pos-gap-question-card: 8px; /* Gap between question cards */
+    --pos-gap-page-content-x-margin: 24px; /* Margin for the page content */
+
+    /* icon */
+    --pos-icon-xs: 12px; /* Icon size xs */
+    --pos-icon-s: 16px; /* Icon size s */
+    --pos-icon-m: 20px; /* Icon size m */
+    --pos-icon-l: 24px; /* Icon size l */
+    --pos-icon-xl: 32px; /* Icon size xl */
+    --pos-icon-xxl: 64px; /* Icon size xxl */
+  }
+}
 
 /* corners
 ============================================================================ */
 :root {
-  --pos-corner-panel: 4px;
-  --pos-corner-popup: 4px;
-  --pos-corner-card: 4px;
-  --pos-corner-button: 4px;
-  --pos-corner-input: 0px;
-  --pos-corner-tag: 40px;
+  --pos-corner-panel: 4px; /* Corner radius for panels */
+  --pos-corner-popup: 4px; /* Corner radius for popups */
+  --pos-corner-card: 4px; /* Corner radius for cards */
+  --pos-corner-button: 4px; /* Corner radius for buttons */
+  --pos-corner-input: 0px; /* Corner radius for inputs */
+  --pos-corner-tag: 40px; /* Corner radius for tags */
 }
 
 
 /* buttons and inputs shape
 ============================================================================ */
 :root {
-  --pos-padding-input: 8px;
+  --pos-padding-input: 8px; /* Padding for inputs */
 
-  --pos-height-input: 44px;
+  --pos-height-input: 44px; /* Height of inputs */
 
-  --pos-border-input: 1px;
-
-  --pos-radius-input: 0;
-  --pos-radius-button: 4px;
-}
-
-
-/* card and panel shape
-============================================================================ */
-:root {
-  --pos-radius-panel: 1rem;
+  --pos-border-input: 1px; /* Border of inputs */
 }
