@@ -451,6 +451,12 @@
   --pos-gap-list: .2rem;
 }
 
+@media (max-width: 768px) {
+  :root {
+    --pos-padding-page: 1rem;
+  }
+}
+
 
 /* buttons and inputs shape
 ============================================================================ */
