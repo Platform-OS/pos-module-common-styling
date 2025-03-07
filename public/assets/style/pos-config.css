@@ -361,6 +361,8 @@
   --pos-color-content-inverted-background: var(--pos-color-light-content-inverted-background);
   --pos-color-content-inverted-foreground: var(--pos-color-light-content-inverted-foreground);
   --pos-color-frame: var(--pos-color-light-frame);
+  --pos-color-highlight-background: var(--pos-color-light-highlight-background);
+  --pos-color-highlight-foreground: var(--pos-color-light-content-foreground);
 
 
   /* interactive elements */
@@ -450,6 +452,8 @@
   --pos-color-content-inverted-background: var(--pos-color-dark-content-inverted-background);
   --pos-color-content-inverted-foreground: var(--pos-color-dark-content-inverted-foreground);
   --pos-color-frame: var(--pos-color-dark-frame);
+  --pos-color-highlight-background: var(--pos-color-dark-highlight-background);
+  --pos-color-highlight-foreground: var(--pos-color-dark-content-foreground);
 
 
   /* interactive elements */
