@@ -3,6 +3,7 @@
 
   links
   headings
+  sidenotes
 */
 
 
@@ -41,11 +42,19 @@
   }
 
   .pos-heading-2 {
+    margin-inline-start: -.1ex;
     display: block;
 
     font-family: var(--pos-font-heading);
     font-size: 2rem;
     font-weight: 500;
+  }
+
+
+  /* sidenotes
+  ============================================================================ */
+  .pos-supplementary {
+    color: var(--pos-color-light-content-foreground-supplementary);
   }
 
 }
