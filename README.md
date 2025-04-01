@@ -55,6 +55,11 @@ When using the `common-styling` module you can easiliy configure the looks of co
 When building CSS don't hardcode any (well... probably with some exeptions) color or size. Everything should use CSS variables that are in line with [Figma variables](https://documentation.platformos.com/kits/ui/platformos-design-kit#download). (Pro tip - you can use calc(), from-color() or color-mix() if needed).
 
 
+## Dark mode
+
+There are two base themes provided by default - a light and a dark one. If you don't want to use a dark variation, you can just use `.pos-theme-disableDark` on the root `html` tag of your layout.
+
+
 ## Scoping CSS
 
 When naming your module CSS files, please prefix them with `pos-` for coinsistency.
