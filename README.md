@@ -1,4 +1,4 @@
-vWIP
+WIP
 
 This module contains reusable CSS and JS, which is or will be leveraged by [platformOS modules](https://documentation.platformos.com/developer-guide/modules/platformos-modules#our-modules), and which you wil be able to use in your projects. The idea is to provide a consistent and documented way of providing modules which look good from a start and which you can easily customize to fit your needs.
 
@@ -57,7 +57,7 @@ When building CSS don't hardcode any (well... probably with some exeptions) colo
 
 ## Dark mode
 
-There are two base themes provided by default - a light and a dark one. If you don't want to use a dark variation, you can just use `.pos-theme-disableDark` on the root `html` tag of your layout.
+There are two base themes provided by default - a light and a dark one. To enable dark mode on your app, please use `.pos-theme-darkEnabled` class on the root `html` tag of your layout. It will switch to dark theme automatically based on the system settings or - if you need to switch manually - please use `.pos-theme-dark` class on the root `html` tag of your layout.
 
 
 ## Scoping CSS

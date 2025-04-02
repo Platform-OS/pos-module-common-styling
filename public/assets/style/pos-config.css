@@ -451,7 +451,7 @@
 }
 
 
-:root.pos-theme-dark:where(:not(.pos-theme-disableDark)) {
+:root.pos-theme-dark:where(.pos-theme-darkEnabled) {
 
   /* general content */
   /* ---------------------------------------- */
@@ -546,7 +546,7 @@
 
 
 @media (prefers-color-scheme: dark) {
-  :root:where(:not(.pos-theme-disableDark)) {
+  :root:where(.pos-theme-darkEnabled) {
 
     /* general content */
     /* ---------------------------------------- */
