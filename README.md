@@ -41,20 +41,6 @@ This command installs the Common Styling Module and updates or creates the `app/
 {% render 'modules/common-styling/init', reset: true %}
 ```
 
-4. Add the following to the `<head>` section of your application layout before any other `<script>` tag on the page. Or - if you already using an import map, just extend it with the following:
-
-```html
-<script type="importmap">
-  {
-    "imports": {
-      "/": "{{ 'modules/common-styling/js/' | asset_url }}",
-      "pos.js": "{{ 'modules/common-styling/js/pos.js' | asset_url }}",
-      "./": "./"
-    }
-  }
-</script>
-```
-
 ## Customizing CSS
 
 When using the `common-styling` module you can easiliy configure the looks of components by overwriting the CSS variables stored in `pos-config.css`. Just copy the variables you need to overwrite to the CSS of your app so they can be overwritten.
