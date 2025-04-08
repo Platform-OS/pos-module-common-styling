@@ -29,23 +29,16 @@ This command installs the Common Styling Module and updates or creates the `app/
 ### Setup
 
 1. **Install the module** using the [pos-cli](https://github.com/Platform-OS/pos-cli).
-2. **Import the following CSS files** into your layout's `<head>` section:
+2. **Include the following partial** into your layout's `<head>` section:
 
-```html
-<link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-config.css' | asset_url }}">
-<link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-button.css' | asset_url }}">
-<link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-typography.css' | asset_url }}">
-<link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-toast.css' | asset_url }}">
-<link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-avatar.css' | asset_url }}">
-<link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-forms.css' | asset_url }}">
-<link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-page.css' | asset_url }}">
-<link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-card.css' | asset_url }}">
+```liquid
+{% render 'modules/common-styling/init' %}
 ```
 
-3. **Optionally, import the following CSS reset**. It's not recommended to use in on an existing app probably, but you can safely use it on a fresh one. To use it just place the following CSS reference on top and use a `pos-app` class anywhere on your main content container.
+3. **Optionally, use the CSS reset**. It's not recommended to use it in an existing app probably, but you can safely use it on a fresh one. To use it just pass an parameter to the render tag mentioned above and use a `pos-app` class anywhere on your main content container.
 
-```html
-<link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-reset.css' | asset_url }}">
+```liquid
+{% render 'modules/common-styling/init', reset: true %}
 ```
 
 ## Customizing CSS
