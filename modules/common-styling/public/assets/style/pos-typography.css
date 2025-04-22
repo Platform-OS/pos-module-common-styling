@@ -38,7 +38,12 @@
   /* headings
   ============================================================================ */
   .pos-heading-1 {
+    margin-inline-start: -.2ex;
+    display: block;
 
+    font-family: var(--pos-font-heading);
+    font-size: 3rem;
+    font-weight: 500;
   }
 
   .pos-heading-2 {
@@ -56,6 +61,14 @@
 
     font-family: var(--pos-font-heading);
     font-size: 1.5rem;
+    font-weight: 400;
+  }
+
+  .pos-heading-4 {
+    display: block;
+
+    font-family: var(--pos-font-heading);
+    font-size: 1.25rem;
     font-weight: 400;
   }
 

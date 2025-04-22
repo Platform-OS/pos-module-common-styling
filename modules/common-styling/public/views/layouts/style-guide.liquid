@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+  <html class="pos-app">
+    <head>
+    
+      <meta charset="utf-8">
+  
+      {% comment %} default platformOS provided styles {% endcomment %}
+      {% render 'modules/common-styling/init', reset: true %}
+      <link rel="stylesheet" href="{{ 'modules/common-styling/style-guide/styleguide-layout.css' | asset_url }}" type="text/css">
+  
+      {% comment %} custom styles {% endcomment %}
+      {% render 'modules/common-styling/init', reset: false %}
+  
+      <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes">
+  
+    </head>
+    <body>
+      
+      {{ content_for_layout }}
+  
+    </body>
+</html>
