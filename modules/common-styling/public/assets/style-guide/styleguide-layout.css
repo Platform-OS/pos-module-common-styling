@@ -21,8 +21,12 @@
 }
 
 
+.styleguide-section#colors ul {
+  margin-block-start: var(--pos-gap-title-content);
+}
+
 .styleguide-section#colors li {
-  margin-block-end: var(--pos-gap-section-section);
+  margin-block-end: var(--pos-gap-title-content);
 }
 
 .styleguide-colors {
