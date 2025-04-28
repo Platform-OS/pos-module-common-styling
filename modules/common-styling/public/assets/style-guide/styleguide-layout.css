@@ -1,37 +1,92 @@
+/* global styling
+============================================================================ */
+body {
+  padding: 0;
+}
+
+.pos-heading-4 {
+  margin-block-end: .5em;
+}
+
+
+
+/* layout
+============================================================================ */
 .styleguide {
   display: grid;
   grid-template-columns: min-content 1fr;
 }
 
-.styleguide-navigation {
-  padding: var(--pos-padding-page);
-}
+.styleguide-content {
+  padding: calc(var(--pos-padding-page) * 2);
 
-.styleguide-container {
-  padding: var(--pos-padding-page);
+  background-color: var(--pos-color-page-background);
 }
 
 .styleguide-section {
   display: grid;
-  grid-template-columns: .3fr 1fr;
+  grid-template-columns: .2fr 1fr;
 }
 
-.styleguide-section header {
-  padding-inline: calc(var(--pos-padding-page) * 2);
+  .styleguide-section + .styleguide-section > * {
+    padding-block-start: var(--pos-gap-section-section) !important;
+  }
+
+
+
+/* section headings
+============================================================================ */
+.styleguide-section > .styleguide-section-heading {
+  padding: calc(var(--pos-padding-page) * 2);
+  position: sticky;
+  inset-block-start: 0;
+
+  background-color: var(--pos-color-content-background);
+
+  letter-spacing: .1em;
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: end;
+  color: var(--pos-color-content-text-supplementary);
 }
 
 
-.styleguide-section#colors ul {
-  margin-block-start: var(--pos-gap-title-content);
+
+/* navigation
+============================================================================ */
+.styleguide-navigation {
+  height: 100vh;
+  padding: calc(var(--pos-padding-page) * 2);
+  position: sticky;
+  inset-block-start: 0;
+  inset-block-end: 0;
+  overflow: auto;
 }
 
-.styleguide-section#colors li {
-  margin-block-end: var(--pos-gap-title-content);
+.styleguide-navigation a {
+  padding: .25em 0;
+  display: block;
+
+  text-transform: uppercase;
+  font-size: .9em;
+  font-weight: 500;
+  color: var(--pos-color-content-text);
+}
+
+  .styleguide-navigation a:hover {
+    color: var(--pos-color-interactive-hover);
+  }
+
+
+
+/* colors section
+============================================================================ */
+#colors li:has(.styleguide-color) + li {
+  margin-block-start: calc(var(--pos-gap-card-card) * 2);
 }
 
 .styleguide-colors {
   height: 70px;
-  margin-block-start: .5em;
   display: flex;
   overflow: hidden;
 
@@ -45,7 +100,11 @@
     }
   }
 
-.styleguide-colors > div {
+  .styleguide-colors + .styleguide-colors {
+    margin-block-start : var(--pos-gap-card-card);
+  }
+
+.styleguide-color {
   padding: var(--pos-padding-cell);
   display: flex;
   flex-grow: 1;
@@ -53,7 +112,12 @@
   justify-content: end;
 }
 
-.styleguide-colors small {
+  /* add a frame around color that matches the page background */
+  .styleguide-color[style*="--pos-color-page-background"] {
+    border: 1px solid var(--pos-color-frame);
+  }
+
+.styleguide-color-variable {
   padding: .3em .3em;
 
   background-color: var(--pos-color-content-text);
@@ -62,4 +126,57 @@
   font-size: .75rem;
   font-family: monospace;
   color: var(--pos-color-light-content-inverted-text);
+}
+
+
+/* typography
+============================================================================ */
+.styleguide-typography-fonts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--pos-gap-card-card);
+  align-items: start
+}
+
+.styleguide-typography-fonts p + p {
+  margin-block-start: 1em;
+}
+
+.styleguide-typography-example {
+  margin-block-start: var(--pos-gap-title-content);
+  display: inline-block;
+
+  text-box: trim-both text;
+  line-height: 0;
+  font-size: 5rem;
+}
+
+.styleguide-typography-detail dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: .5em var(--pos-gap-section-elements);
+}
+
+  .styleguide-typography-detail dt {
+    font-weight: 200;
+    color: var(--pos-color-content-text-supplementary);
+  }
+
+  .styleguide-typography-detail dt:after {
+    content: ':';
+  }
+
+  .styleguide-typography-detail code {
+    font-size: 1rem;
+    font-family: monospace;
+  }
+
+  /* headings */
+.styleguide-typography-heading {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.styleguide-typography-heading + .styleguide-typography-heading {
+  margin-block-start: var(--pos-gap-section-section);
 }
