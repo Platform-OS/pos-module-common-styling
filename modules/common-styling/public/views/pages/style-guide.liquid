@@ -8,6 +8,7 @@ layout: 'modules/common-styling/style-guide'
     <ul>
       <li><a href="#colors">Colors</a></li>
       <li><a href="#typography">Typography</a></li>
+      <li><a href="#interaction">Interactive elements</a></li>
     </ul>
   </nav>
 
@@ -337,6 +338,120 @@ layout: 'modules/common-styling/style-guide'
           <span class="pos-heading-4">The quick brown fox jumps over the lazy dog</span>
         </div>
       
+      </div>
+
+      <h2 class="styleguide-section-heading">Text styles</h2>
+
+      <div class="styleguide-content styleguide-typography-headings">
+
+        <div class="styleguide-typography-heading">
+          <div class="styleguide-typography-detail">
+            <h4 class="pos-heading-4">Sidenotes</h4>
+            <dl>
+              <dt>Class</dt><dd><code>pos-supplementary</code></dd>
+              <dt>Font family</dt><dd></dd>
+              <dt>Color</dt><dd></dd>
+              <dt>Size</dt><dd></dd>
+              <dt>Font Weight</dt><dd></dd>
+              <dt>Line height</dt><dd></dd>
+            </dl>
+          </div>
+          <span class="pos-supplementary">The quick brown fox jumps over the lazy dog</span>
+        </div>
+      
+      </div>
+
+    </article>
+
+
+    <article id="interaction" class="styleguide-section styleguide-links">
+    
+      <h2 class="styleguide-section-heading">Links</h2>
+
+      <div class="styleguide-content">
+        <a href="#">Example link</a>
+      </div>
+
+    </article>
+
+
+    <article id="buttons" class="styleguide-section">
+    
+      <h2 class="styleguide-section-heading">Buttons</h2>
+
+      <div class="styleguide-content styleguide-buttons">
+        <div class="styleguide-buttons-examples">
+          <div class="styleguide-buttons-example">
+            <h4 class="pos-heading-4">Default</h4>
+            <button class="pos-button">Button</button>
+            <dl>
+              <dt>Class</dt><dd><code>pos-button</code></dd>
+            </dl>
+          </div>
+          <div class="styleguide-buttons-example">
+            <h4 class="pos-heading-4">Primary</h4>
+            <button class="pos-button pos-button-primary">Button</button>
+            <dl>
+              <dt>Class</dt><dd><code>pos-button</code></dd>
+            </dl>
+          </div>
+
+        </div>
+
+        <div>
+          <table class="styleguide-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Default</th>
+                <th>Primary</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="styleguide-table-heading">Enabled</td>
+                <td><button class="pos-button">Button</button></td>
+                <td><button class="pos-button pos-button-primary">Button</button></td>
+              </tr>
+              <tr>
+                <td class="styleguide-table-heading">Hover</td>
+                <td><button class="pos-button pos-debug-button-hover">Button</button></td>
+                <td><button class="pos-button pos-button-primary pos-debug-button-hover">Button</button></td>
+              </tr>
+              <tr>
+                <td class="styleguide-table-heading">Active</td>
+                <td><button class="pos-button pos-debug-button-active">Button</button></td>
+                <td><button class="pos-button pos-button-primary pos-debug-button-active">Button</button></td>
+              </tr>
+              <tr>
+                <td class="styleguide-table-heading">Focused</td>
+                <td><button class="pos-button pos-debug-button-focus-visible">Button</button></td>
+                <td><button class="pos-button pos-button-primary pos-debug-button-focus-visible">Button</button></td>
+              </tr>
+              <tr>
+                <td class="styleguide-table-heading">Disabled</td>
+                <td><button disabled class="pos-button">Button</button></td>
+                <td><button disabled class="pos-button pos-button-primary">Button</button></td>
+              </tr>
+              <tr>
+                <td class="styleguide-table-heading">Icon</td>
+                <td>
+                  <button class="pos-button">
+                    <svg viewBox="0 0 24 24" fill="none" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M12.089 24a6.747 6.747 0 01-1.853-.26l-3.634-1.038A5.342 5.342 0 006 22.568v.682a.75.75 0 01-.75.75H.75a.75.75 0 01-.75-.75V9.75A.75.75 0 01.75 9h4.5a.75.75 0 01.75.75v1.512a6.747 6.747 0 006-6.708V3c0-1.654 1.346-3 3-3s3 1.346 3 3v3.382c0 .346.234.645.57.728l1.435.313c2.443.612 4.116 2.867 3.989 5.365l-.301 5.106C23.343 21.382 20.455 24 16.974 24h-4.885zM6 21.053c.342.043.682.112 1.014.207l3.634 1.038c.468.134.953.202 1.441.202h4.885a5.235 5.235 0 005.224-4.725l.298-5.069a3.758 3.758 0 00-2.834-3.823l-1.433-.313A2.253 2.253 0 0116.5 6.382V3c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v1.554A8.236 8.236 0 016 12.77v8.283zM4.5 22.5v-12h-3v12h3z"></path></svg>
+                    Button
+                  </button>
+                </td>
+                <td>
+                  <button class="pos-button pos-button-primary">
+                    <svg viewBox="0 0 24 24" fill="none" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M12.089 24a6.747 6.747 0 01-1.853-.26l-3.634-1.038A5.342 5.342 0 006 22.568v.682a.75.75 0 01-.75.75H.75a.75.75 0 01-.75-.75V9.75A.75.75 0 01.75 9h4.5a.75.75 0 01.75.75v1.512a6.747 6.747 0 006-6.708V3c0-1.654 1.346-3 3-3s3 1.346 3 3v3.382c0 .346.234.645.57.728l1.435.313c2.443.612 4.116 2.867 3.989 5.365l-.301 5.106C23.343 21.382 20.455 24 16.974 24h-4.885zM6 21.053c.342.043.682.112 1.014.207l3.634 1.038c.468.134.953.202 1.441.202h4.885a5.235 5.235 0 005.224-4.725l.298-5.069a3.758 3.758 0 00-2.834-3.823l-1.433-.313A2.253 2.253 0 0116.5 6.382V3c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v1.554A8.236 8.236 0 016 12.77v8.283zM4.5 22.5v-12h-3v12h3z"></path></svg>
+                    Button
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
       </div>
 
     </article>

@@ -8,6 +8,32 @@ body {
   margin-block-end: .5em;
 }
 
+.styleguide-table th,
+.styleguide-table td {
+  padding: var(--pos-padding-cell);
+}
+
+  .styleguide-table th:first-child,
+  .styleguide-table td:first-child {
+    padding-inline-start: 0;
+  }
+
+  .styleguide-table th:last-child,
+  .styleguide-table td:last-child {
+    padding-inline-end: 0;
+  }
+
+.styleguide-table th {
+  text-align: center;
+  font-weight: 500;
+  font-size: .9em;
+}
+
+.styleguide-table-heading {
+  font-size: .9em;
+  color: var(--pos-color-content-text-supplementary);
+}
+
 
 
 /* layout
@@ -180,3 +206,45 @@ body {
 .styleguide-typography-heading + .styleguide-typography-heading {
   margin-block-start: var(--pos-gap-section-section);
 }
+
+
+/* buttons
+============================================================================ */
+.styleguide-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.styleguide-buttons table td:not(:first-child) {
+  text-align: center;
+}
+
+.styleguide-buttons-examples {
+  display: flex;
+  align-items: start;
+  gap: calc(var(--pos-gap-card-card) * 2);
+}
+
+  .styleguide-buttons-example {
+    padding: var(--pos-padding-card);
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+
+    border: 1px solid var(--pos-color-frame);
+    border-radius: var(--pos-radius-panel);
+  }
+
+  .styleguide-buttons-example dl {
+    display: flex;
+    gap: .5em;
+  }
+
+    .styleguide-buttons-example code {
+      font-family: monospace;
+      font-size: 1rem;
+    }
+
+    .styleguide-buttons-example dt:after {
+      content: ':';
+    }
