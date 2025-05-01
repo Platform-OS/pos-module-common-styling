@@ -9,6 +9,9 @@ layout: 'modules/common-styling/style-guide'
       <li><a href="#colors">Colors</a></li>
       <li><a href="#typography">Typography</a></li>
       <li><a href="#interaction">Interactive elements</a></li>
+      <li><a href="#buttons">Buttons</a></li>
+      <li><a href="#forms">Forms</a></li>
+      <li><a href="#boxes">Boxes</a></li>
     </ul>
   </nav>
 
@@ -452,6 +455,102 @@ layout: 'modules/common-styling/style-guide'
           </table>
         </div>
 
+      </div>
+
+    </article>
+
+
+    <article id="forms" class="styleguide-section">
+    
+      <h2 class="styleguide-section-heading">Forms</h2>
+
+      <div class="styleguide-content styleguide-forms">
+
+        <dl>
+          <dt>Class</dt><dd><code>pos-form</code></dd>
+        </dl>
+
+        <h4 class="pos-heading-4">Checkboxes</h4>
+        <div class="pos-form">
+          <fieldset>
+            <input type="checkbox" id="styleguide-example-checkbox-default"><label for="styleguide-example-checkbox-default">Test checkbox</label>
+          </fieldset>
+          <fieldset>
+            <input type="checkbox" id="styleguide-example-checkbox-checked" checked><label for="styleguide-example-checkbox-checked">Test checkbox</label>
+          </fieldset>
+          <fieldset>
+            <input type="checkbox" id="styleguide-example-checkbox-disabled" disabled><label for="styleguide-example-checkbox-disabled">Disabled checkbox</label>
+          </fieldset>
+          <fieldset>
+            <input type="checkbox" id="styleguide-example-checkbox-checked-disabled" checked disabled><label for="styleguide-example-checkbox-checked-disabled">Checked & disabled checkbox</label>
+          </fieldset>
+        </div>
+
+        <h4 class="pos-heading-4">Radios</h4>
+        <div class="pos-form">
+          <fieldset>
+            <input type="radio" id="styleguide-example-radio-default"><label for="styleguide-example-radio-default">Test radio</label>
+          </fieldset>
+          <fieldset>
+            <input type="radio" id="styleguide-example-radio-checked" checked><label for="styleguide-example-radio-checked">Test radio</label>
+          </fieldset>
+          <fieldset>
+            <input type="radio" id="styleguide-example-radio-disabled" disabled><label for="styleguide-example-radio-disabled">Disabled radio</label>
+          </fieldset>
+          <fieldset>
+            <input type="radio" id="styleguide-example-radio-checked-disabled" checked disabled><label for="styleguide-example-radio-checked-disabled">Checked & disabled radio</label>
+          </fieldset>
+        </div>
+
+        <h4 class="pos-heading-4">Text</h4>
+        <div class="pos-form">
+          <fieldset>
+            <input type="text" placeholder="Input placeholder">
+          </fieldset>
+          <fieldset>
+            <input type="text" value="Prefilled value">
+          </fieldset>
+          <fieldset>
+            <input type="text" disabled placeholder="Disabled with placeholder">
+          </fieldset>
+          <fieldset>
+            <input type="text" disabled value="Disabled with prefilled value">
+          </fieldset>
+        </div>
+
+        <h4 class="pos-heading-4">Select</h4>
+        <div class="pos-form">
+          <fieldset>
+            <select>
+              <option>Option A</option>
+              <option>Option B</option>
+            </select>
+            <select disabled>
+              <option>Option A</option>
+              <option>Option B</option>
+            </select>
+          </fieldset>
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <article id="boxes" class="styleguide-section">
+    
+      <h2 class="styleguide-section-heading">Boxes</h2>
+
+      <div class="styleguide-content styleguide-boxes">
+        <dl>
+          <dt>Class</dt><dd><code>pos-card</code></dd>
+        </dl>
+        <div class="pos-card">This is a card</div>
+
+        <dl>
+          <dt>Class</dt><dd><code>pos-card pos-card-highlighted</code></dd>
+        </dl>
+        <div class="pos-card pos-card-highlighted">This is a highlighted card</div>
       </div>
 
     </article>
