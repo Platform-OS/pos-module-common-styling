@@ -120,6 +120,9 @@
   .pos-form-input[type="password"]:focus-visible,
   .pos-form [type="url"]:focus-visible,
   .pos-form-input[type="url"]:focus-visible {
+    position: relative;
+    z-index: 1;
+
     box-shadow: 0 0 0 2px var(--pos-color-focused);
   }
 

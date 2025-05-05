@@ -12,21 +12,21 @@
 
   /* links
   ============================================================================ */
-  .pos-app a {
+  :where(.pos-app) a {
     color: var(--pos-color-interactive);
 
     transition: color .1s linear;
   }
 
-  .pos-app a:hover {
+  :where(.pos-app) a:hover {
     color: var(--pos-color-interactive-hover);
   }
 
-  .pos-app a:active {
+  :where(.pos-app) a:active {
     color: var(--pos-color-interactive-active)
   }
 
-  .pos-app a:focus-visible {
+  :where(.pos-app) a:focus-visible {
     border-radius: var(--pos-radius-button);
     background-color: color-mix(in srgb, var(--pos-color-focused) 10%, transparent 90%);
     box-shadow: 0 0 6px 1px var(--pos-color-focused);
@@ -38,7 +38,12 @@
   /* headings
   ============================================================================ */
   .pos-heading-1 {
+    margin-inline-start: -.2ex;
+    display: block;
 
+    font-family: var(--pos-font-heading);
+    font-size: 3rem;
+    font-weight: 500;
   }
 
   .pos-heading-2 {
@@ -59,11 +64,19 @@
     font-weight: 400;
   }
 
+  .pos-heading-4 {
+    display: block;
+
+    font-family: var(--pos-font-heading);
+    font-size: 1.25rem;
+    font-weight: 400;
+  }
+
 
   /* sidenotes
   ============================================================================ */
   .pos-supplementary {
-    color: var(--pos-color-light-content-text-supplementary);
+    color: var(--pos-color-content-text-supplementary);
   }
 
 }
