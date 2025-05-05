@@ -34,6 +34,44 @@ body {
   color: var(--pos-color-content-text-supplementary);
 }
 
+/* defiinition list */
+.styleguide-details {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: .5em var(--pos-gap-section-elements);
+}
+
+  .styleguide-details dt {
+    font-weight: 200;
+    color: var(--pos-color-content-text-supplementary);
+  }
+
+  .styleguide-details dt:after {
+    content: ':';
+  }
+
+  .styleguide-details code {
+    font-size: 1rem;
+    font-family: monospace;
+  }
+
+/* columns */
+.styleguide-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--pos-gap-card-card);
+}
+
+  .styleguide-columns > * {
+    padding: var(--pos-padding-card);
+    border: 1px solid var(--pos-color-frame);
+    border-radius: var(--pos-radius-panel);
+  }
+
+  .styleguide-columns + .styleguide-columns {
+    margin-block-start: var(--pos-gap-card-card);
+  }
+
 
 
 /* layout
@@ -177,26 +215,6 @@ body {
   font-size: 5rem;
 }
 
-.styleguide-typography-detail dl {
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: .5em var(--pos-gap-section-elements);
-}
-
-  .styleguide-typography-detail dt {
-    font-weight: 200;
-    color: var(--pos-color-content-text-supplementary);
-  }
-
-  .styleguide-typography-detail dt:after {
-    content: ':';
-  }
-
-  .styleguide-typography-detail code {
-    font-size: 1rem;
-    font-family: monospace;
-  }
-
   /* headings */
 .styleguide-typography-heading {
   display: grid;
@@ -228,6 +246,7 @@ body {
   .styleguide-buttons-example {
     padding: var(--pos-padding-card);
     display: flex;
+    align-items: start;
     flex-direction: column;
     gap: .5em;
 

@@ -250,7 +250,7 @@ layout: 'modules/common-styling/style-guide'
 
           <div class="styleguide-typography-detail">
             <picture class="styleguide-typography-example" style="font-family: var(--pos-font-default);">Aa</picture>
-            <dl>
+            <dl class="styleguide-details">
               <dt>Property</dt><dd><code>--pos-font-default</code></dd>
               <dt>Font family</dt><dd id="styleguide-typography-content-family">Arial</dd>
               <dt>Default font size</dt><dd id="styleguide-typography-content-size">16px</dd>
@@ -265,7 +265,7 @@ layout: 'modules/common-styling/style-guide'
 
           <div class="styleguide-typography-detail">
             <picture class="styleguide-typography-example" style="font-family: var(--pos-font-heading);">Aa</picture>
-            <dl>
+            <dl class="styleguide-details">
               <dt>Property</dt><dd><code>--pos-font-heading</code></dd>
               <dt>Font family</dt><dd id="styleguide-typography-content-family">Arial</dd>
               <dt>Default font size</dt><dd id="styleguide-typography-content-size">16px</dd>
@@ -284,7 +284,7 @@ layout: 'modules/common-styling/style-guide'
         <div class="styleguide-typography-heading">
           <div class="styleguide-typography-detail">
             <h4 class="pos-heading-4">Heading 1</h4>
-            <dl>
+            <dl class="styleguide-details">
               <dt>Class</dt><dd><code>pos-heading-1</code></dd>
               <dt>Font family</dt><dd></dd>
               <dt>Color</dt><dd></dd>
@@ -299,7 +299,7 @@ layout: 'modules/common-styling/style-guide'
         <div class="styleguide-typography-heading">
           <div class="styleguide-typography-detail">
             <h4 class="pos-heading-4">Heading 2</h4>
-            <dl>
+            <dl class="styleguide-details">
               <dt>Class</dt><dd><code>pos-heading-2</code></dd>
               <dt>Font family</dt><dd></dd>
               <dt>Color</dt><dd></dd>
@@ -314,7 +314,7 @@ layout: 'modules/common-styling/style-guide'
         <div class="styleguide-typography-heading">
           <div class="styleguide-typography-detail">
             <h4 class="pos-heading-4">Heading 3</h4>
-            <dl>
+            <dl class="styleguide-details">
               <dt>Class</dt><dd><code>pos-heading-3</code></dd>
               <dt>Font family</dt><dd></dd>
               <dt>Color</dt><dd></dd>
@@ -329,7 +329,7 @@ layout: 'modules/common-styling/style-guide'
         <div class="styleguide-typography-heading">
           <div class="styleguide-typography-detail">
             <h4 class="pos-heading-4">Heading 4</h4>
-            <dl>
+            <dl class="styleguide-details">
               <dt>Class</dt><dd><code>pos-heading-4</code></dd>
               <dt>Font family</dt><dd></dd>
               <dt>Color</dt><dd></dd>
@@ -350,7 +350,7 @@ layout: 'modules/common-styling/style-guide'
         <div class="styleguide-typography-heading">
           <div class="styleguide-typography-detail">
             <h4 class="pos-heading-4">Sidenotes</h4>
-            <dl>
+            <dl class="styleguide-details">
               <dt>Class</dt><dd><code>pos-supplementary</code></dd>
               <dt>Font family</dt><dd></dd>
               <dt>Color</dt><dd></dd>
@@ -387,15 +387,15 @@ layout: 'modules/common-styling/style-guide'
           <div class="styleguide-buttons-example">
             <h4 class="pos-heading-4">Default</h4>
             <button class="pos-button">Button</button>
-            <dl>
+            <dl class="styleguide-details">
               <dt>Class</dt><dd><code>pos-button</code></dd>
             </dl>
           </div>
           <div class="styleguide-buttons-example">
             <h4 class="pos-heading-4">Primary</h4>
             <button class="pos-button pos-button-primary">Button</button>
-            <dl>
-              <dt>Class</dt><dd><code>pos-button</code></dd>
+            <dl class="styleguide-details">
+              <dt>Class</dt><dd><code>pos-button pos-button-primary</code></dd>
             </dl>
           </div>
 
@@ -451,6 +451,11 @@ layout: 'modules/common-styling/style-guide'
                   </button>
                 </td>
               </tr>
+              <tr>
+                <td class="styleguide-table-heading">Link</td>
+                <td><a href="#" class="pos-button">Link</a></td>
+                <td><a href="#" class="pos-button pos-button-primary">Link</a></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -466,70 +471,78 @@ layout: 'modules/common-styling/style-guide'
 
       <div class="styleguide-content styleguide-forms">
 
-        <dl>
+        <dl class="styleguide-details">
           <dt>Class</dt><dd><code>pos-form</code></dd>
         </dl>
 
-        <h4 class="pos-heading-4">Checkboxes</h4>
-        <div class="pos-form">
-          <fieldset>
-            <input type="checkbox" id="styleguide-example-checkbox-default"><label for="styleguide-example-checkbox-default">Test checkbox</label>
-          </fieldset>
-          <fieldset>
-            <input type="checkbox" id="styleguide-example-checkbox-checked" checked><label for="styleguide-example-checkbox-checked">Test checkbox</label>
-          </fieldset>
-          <fieldset>
-            <input type="checkbox" id="styleguide-example-checkbox-disabled" disabled><label for="styleguide-example-checkbox-disabled">Disabled checkbox</label>
-          </fieldset>
-          <fieldset>
-            <input type="checkbox" id="styleguide-example-checkbox-checked-disabled" checked disabled><label for="styleguide-example-checkbox-checked-disabled">Checked & disabled checkbox</label>
-          </fieldset>
+        <div class="styleguide-columns">
+
+          <div class="pos-form">
+            <h4 class="pos-heading-4">Checkboxes</h4>
+            <fieldset>
+              <input type="checkbox" id="styleguide-example-checkbox-default"><label for="styleguide-example-checkbox-default">Test checkbox</label>
+            </fieldset>
+            <fieldset>
+              <input type="checkbox" id="styleguide-example-checkbox-checked" checked><label for="styleguide-example-checkbox-checked">Test checkbox</label>
+            </fieldset>
+            <fieldset>
+              <input type="checkbox" id="styleguide-example-checkbox-disabled" disabled><label for="styleguide-example-checkbox-disabled">Disabled checkbox</label>
+            </fieldset>
+            <fieldset>
+              <input type="checkbox" id="styleguide-example-checkbox-checked-disabled" checked disabled><label for="styleguide-example-checkbox-checked-disabled">Checked & disabled checkbox</label>
+            </fieldset>
+          </div>
+
+          <div class="pos-form">
+            <h4 class="pos-heading-4">Radios</h4>
+            <fieldset>
+              <input type="radio" id="styleguide-example-radio-default"><label for="styleguide-example-radio-default">Test radio</label>
+            </fieldset>
+            <fieldset>
+              <input type="radio" id="styleguide-example-radio-checked" checked><label for="styleguide-example-radio-checked">Test radio</label>
+            </fieldset>
+            <fieldset>
+              <input type="radio" id="styleguide-example-radio-disabled" disabled><label for="styleguide-example-radio-disabled">Disabled radio</label>
+            </fieldset>
+            <fieldset>
+              <input type="radio" id="styleguide-example-radio-checked-disabled" checked disabled><label for="styleguide-example-radio-checked-disabled">Checked & disabled radio</label>
+            </fieldset>
+          </div>
+
         </div>
 
-        <h4 class="pos-heading-4">Radios</h4>
-        <div class="pos-form">
-          <fieldset>
-            <input type="radio" id="styleguide-example-radio-default"><label for="styleguide-example-radio-default">Test radio</label>
-          </fieldset>
-          <fieldset>
-            <input type="radio" id="styleguide-example-radio-checked" checked><label for="styleguide-example-radio-checked">Test radio</label>
-          </fieldset>
-          <fieldset>
-            <input type="radio" id="styleguide-example-radio-disabled" disabled><label for="styleguide-example-radio-disabled">Disabled radio</label>
-          </fieldset>
-          <fieldset>
-            <input type="radio" id="styleguide-example-radio-checked-disabled" checked disabled><label for="styleguide-example-radio-checked-disabled">Checked & disabled radio</label>
-          </fieldset>
-        </div>
+        <div class="styleguide-columns">
 
-        <h4 class="pos-heading-4">Text</h4>
-        <div class="pos-form">
-          <fieldset>
-            <input type="text" placeholder="Input placeholder">
-          </fieldset>
-          <fieldset>
-            <input type="text" value="Prefilled value">
-          </fieldset>
-          <fieldset>
-            <input type="text" disabled placeholder="Disabled with placeholder">
-          </fieldset>
-          <fieldset>
-            <input type="text" disabled value="Disabled with prefilled value">
-          </fieldset>
-        </div>
+          <div class="pos-form">
+            <h4 class="pos-heading-4">Text</h4>
+            <fieldset>
+              <input type="text" placeholder="Input placeholder">
+            </fieldset>
+            <fieldset>
+              <input type="text" value="Prefilled value">
+            </fieldset>
+            <fieldset>
+              <input type="text" disabled placeholder="Disabled with placeholder">
+            </fieldset>
+            <fieldset>
+              <input type="text" disabled value="Disabled with prefilled value">
+            </fieldset>
+          </div>
 
-        <h4 class="pos-heading-4">Select</h4>
-        <div class="pos-form">
-          <fieldset>
-            <select>
-              <option>Option A</option>
-              <option>Option B</option>
-            </select>
-            <select disabled>
-              <option>Option A</option>
-              <option>Option B</option>
-            </select>
-          </fieldset>
+          <div class="pos-form">
+            <h4 class="pos-heading-4">Select</h4>
+            <fieldset>
+              <select>
+                <option>Option A</option>
+                <option>Option B</option>
+              </select>
+              <select disabled>
+                <option>Option A</option>
+                <option>Option B</option>
+              </select>
+            </fieldset>
+          </div>
+
         </div>
 
       </div>
@@ -542,12 +555,12 @@ layout: 'modules/common-styling/style-guide'
       <h2 class="styleguide-section-heading">Boxes</h2>
 
       <div class="styleguide-content styleguide-boxes">
-        <dl>
+        <dl class="styleguide-details">
           <dt>Class</dt><dd><code>pos-card</code></dd>
         </dl>
         <div class="pos-card">This is a card</div>
 
-        <dl>
+        <dl class="styleguide-details">
           <dt>Class</dt><dd><code>pos-card pos-card-highlighted</code></dd>
         </dl>
         <div class="pos-card pos-card-highlighted">This is a highlighted card</div>
