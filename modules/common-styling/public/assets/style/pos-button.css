@@ -90,10 +90,6 @@
     transition: fill .2s ease-in-out;
   }
 
-  .pos-button:focus-visible svg {
-      fill: var(--color-page);
-  }
-
   /* label for screen readers */
   .pos-button .pos-label {
       position: absolute;
