@@ -2,7 +2,7 @@ WIP
 
 This module contains reusable CSS and JS, which is or will be leveraged by [platformOS modules](https://documentation.platformos.com/developer-guide/modules/platformos-modules#our-modules), and which you wil be able to use in your projects. The idea is to provide a consistent and documented way of providing modules which look good from a start and which you can easily customize to fit your needs.
 
-This module follows the [platformOS DevKit best practices](https://documentation.staging.oregon.platform-os.com/developer-guide/modules/platformos-modules).
+This module follows the [platformOS DevKit best practices](https://documentation.platformos.com/developer-guide/modules/platformos-modules).
 
 ## Installation
 
