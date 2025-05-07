@@ -6,6 +6,7 @@ layout: 'modules/common-styling/style-guide'
 
   <nav class="styleguide-navigation">
     <ul>
+      <li><a href="#initialization">Initialization</a></li>
       <li><a href="#colors">Colors</a></li>
       <li><a href="#typography">Typography</a></li>
       <li><a href="#interaction">Interactive elements</a></li>
@@ -16,6 +17,23 @@ layout: 'modules/common-styling/style-guide'
   </nav>
 
   <section class="styleguide-container">
+
+    <article id="initialization" class="styleguide-section">
+      <h2 class="styleguide-section-heading">Initialization</h2>
+
+      <div class="styleguide-content">
+
+        <p>All of the following CSS (except CSS custom properties) are scoped to container that uses <code>pos-app</code> class. You can use that class either on the root <code>html</code> tag of your app or just limit the scope to any container.</p>
+
+{% capture code %}{% raw %}
+<html class="pos-app">
+…
+{% endraw %}{% endcapture %}
+        <pre><code>{{ code | lstrip }}</code></pre>
+
+      </div>
+    </article>
+
   
     <article id="colors" class="styleguide-section">
     

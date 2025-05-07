@@ -43,6 +43,8 @@ This command installs the Common Styling Module and updates or creates the `app/
 
 4. If you want to use `common-styling` in the whole app, add the `pos-app` class to your application `<html>` tag. You can use the class on any container to scope `common-styling` just for that part of the app.
 
+5. All of the available CSS custom properties, styling previews and pre-made components are documented under `/style-guide`.
+
 ## Customizing CSS
 
 When using the `common-styling` module you can easiliy configure the looks of components by overwriting the CSS variables stored in `pos-config.css`. Just copy the variables you need to overwrite to the CSS of your app so they can be overwritten.

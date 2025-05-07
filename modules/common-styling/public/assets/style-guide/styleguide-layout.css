@@ -4,10 +4,25 @@ body {
   padding: 0;
 }
 
+code {
+  font-family: monospace;
+  font-size: 1rem;
+}
+
+pre:has(code) {
+  margin-block: var(--pos-gap-text-text);
+  padding: var(--pos-padding-card);
+  
+  background-color: var(--pos-color-content-background);
+  border: 1px solid var(--pos-color-frame);
+  border-radius: var(--pos-radius-panel);
+}
+
 .pos-heading-4 {
   margin-block-end: .5em;
 }
 
+/* tables */
 .styleguide-table th,
 .styleguide-table td {
   padding: var(--pos-padding-cell);
@@ -50,11 +65,6 @@ body {
     content: ':';
   }
 
-  .styleguide-details code {
-    font-size: 1rem;
-    font-family: monospace;
-  }
-
 /* columns */
 .styleguide-columns {
   display: grid;
@@ -79,12 +89,13 @@ body {
 .styleguide {
   display: grid;
   grid-template-columns: min-content 1fr;
+
+  background-color: var(--pos-color-page-background);
 }
 
 .styleguide-content {
+  max-width: 1100px;
   padding: calc(var(--pos-padding-page) * 2);
-
-  background-color: var(--pos-color-page-background);
 }
 
 .styleguide-section {
@@ -125,6 +136,8 @@ body {
   inset-block-start: 0;
   inset-block-end: 0;
   overflow: auto;
+
+  background-color: var(--pos-color-content-background);
 }
 
 .styleguide-navigation a {
@@ -258,11 +271,6 @@ body {
     display: flex;
     gap: .5em;
   }
-
-    .styleguide-buttons-example code {
-      font-family: monospace;
-      font-size: 1rem;
-    }
 
     .styleguide-buttons-example dt:after {
       content: ':';
