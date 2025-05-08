@@ -18,6 +18,7 @@
     negotiating colors based on the choosen theme
   fonts
   typography
+  sizes
   spacing
   button shape
   input shape
@@ -727,6 +728,15 @@
     --pos-text-headline-4: 1.25rem;
     --pos-text-headline-4-leading: 1.4em;
   }
+}
+
+
+
+/* sizes */
+/* ================================================================================ */
+:root {
+  /* max width of the page */
+  --pos-size-page: 1280px;
 }
 
 

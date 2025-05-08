@@ -1,0 +1,189 @@
+/* layout
+============================================================================ */
+.styleguide {
+  max-width: var(--pos-size-page);
+  margin: 0 auto;
+  padding: var(--pos-padding-page);
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  gap: calc(var(--pos-padding-page) * 5);
+}
+
+article + article {
+  margin-block-start: var(--pos-gap-section-section);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--pos-gap-card-card);
+  align-items: start;
+}
+
+
+/* common elements
+============================================================================ */
+code {
+  font-family: monospace;
+  font-size: 1rem;
+}
+
+p code {
+  padding-inline: .3em;
+
+  border-radius: 4px;
+  background-color: var(--pos-color-highlight-background);
+
+  color: var(--pos-color-highlight-text);
+}
+
+pre:has(code) {
+  margin-block: var(--pos-gap-text-text);
+  padding: var(--pos-padding-card);
+  
+  background-color: var(--pos-color-content-background);
+  border: 1px solid var(--pos-color-frame);
+  border-radius: var(--pos-radius-panel);
+}
+
+.pos-heading-2,
+.pos-heading-3,
+.pos-heading-4 {
+  margin-block-end: .2em;
+}
+
+.pos-heading-4 {
+  margin-block-start: 1.5em;
+}
+
+.styleguide-subheading {
+  margin-block-start: 1.5em;
+  margin-block-end: -1px;
+  padding: var(--pos-gap-tag-tag);
+  display: inline-block;
+
+  border-radius: var(--pos-radius-panel) var(--pos-radius-panel) 0 0;
+  background-color: var(--pos-color-highlight-background);
+
+  text-transform: uppercase;
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--pos-color-highlight-text);
+}
+
+/* defiinition list */
+.styleguide-details {
+  padding: var(--pos-padding-card);
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: .5em var(--pos-gap-section-elements);
+
+  border-radius: var(--pos-radius-panel);
+  background-color: var(--pos-color-highlight-background)
+}
+
+  .styleguide-details dt {
+    font-weight: 200;
+    color: var(--pos-color-content-text-supplementary);
+  }
+
+  .styleguide-details dt:after {
+    content: ':';
+  }
+
+
+/* navigation
+============================================================================ */
+.styleguide-navigation {
+  max-height: 90vh;
+  position: sticky;
+  inset-block-start: var(--pos-padding-page);;
+  overflow: auto;
+
+  white-space: nowrap;
+}
+
+.styleguide-navigation a {
+  padding: .25em 0;
+  display: block;
+
+  text-transform: uppercase;
+  font-size: .9em;
+  font-weight: 500;
+  color: var(--pos-color-content-text);
+}
+
+  .styleguide-navigation a:hover {
+    color: var(--pos-color-interactive-hover);
+  }
+
+
+
+/* colors
+============================================================================ */
+#colors ul {
+  padding: var(--pos-padding-card);
+
+  border: 1px dashed var(--pos-color-frame);
+  border-radius: 0 1rem 1rem;
+}
+
+#colors li:first-child .pos-heading-4 {
+  margin-block-start: 0;
+}
+
+.styleguide-colors {
+  display: flex;
+}
+
+  .styleguide-color-container {
+    flex-grow: 1;
+  }
+
+  .styleguide-color {
+    height: 70px;
+  }
+
+  .styleguide-color-container:first-child .styleguide-color {
+    border-radius: var(--pos-radius-panel) 0 0 var(--pos-radius-panel);
+  }
+
+  .styleguide-color-container:last-child .styleguide-color {
+    border-radius: 0 var(--pos-radius-panel) var(--pos-radius-panel) 0;
+  }
+
+  .styleguide-colors + .styleguide-colors {
+    margin-block-start : var(--pos-gap-card-card);
+  }
+
+.styleguide-color {
+  margin-block-end: .3em;
+  padding: var(--pos-padding-cell);
+  display: flex;
+  flex-grow: 1;
+  align-items: end;
+}
+
+  /* add a frame around color that matches the page background */
+  .styleguide-color[style*="--pos-color-page-background"] {
+    border: 1px dashed var(--pos-color-frame);
+  }
+
+.styleguide-color-variable {
+  padding: .3em .3em;
+
+  background-color: var(--pos-color-content-text);
+  border-radius: var(--pos-radius-panel);
+
+  font-size: .7rem;
+  font-family: monospace;
+  color: var(--pos-color-light-content-inverted-text);
+}
+
+.styleguide-color-hex {
+  padding-inline-start: var(--pos-padding-cell);
+
+  font-size: .9rem;
+  font-family: monospace;
+  color: var(--pos-color-content-text-supplementary)
+}

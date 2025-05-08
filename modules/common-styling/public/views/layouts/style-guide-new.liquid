@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+    <html class="pos-app">
+      <head>
+      
+        <meta charset="utf-8">
+    
+        {% render 'modules/common-styling/init', reset: true %}
+        <link rel="stylesheet" href="{{ 'modules/common-styling/style-guide/styleguide-new-layout.css' | asset_url }}" type="text/css">
+        <script src="{{ 'modules/common-styling/style-guide/styleguide.js' | asset_url }}" defer></script>
+    
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes">
+    
+      </head>
+      <body>
+        
+        {{ content_for_layout }}
+    
+      </body>
+  </html>
