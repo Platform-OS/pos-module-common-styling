@@ -39,18 +39,21 @@ posStyleGuide.colors = () => {
   // the list with the properties color (dom nodes)
   module.settings.propertiesList = module.settings.container.querySelectorAll('.styleguide-color-container');
 
+
   // purpose:   initializes module
   // ------------------------------------------------------------------------
   module.init = () => {
     module.showBackgroundColor();
+    module.showFontDetails();
+    module.showHeadingsDetails();
   };
+
 
   // purpose:		convert the color from rgb[a] to hex
   // arguments: color in rgb[a]
   // returns:   color in hex
   // ------------------------------------------------------------------------
   function rgbaToHex(color){
-    console.log(color.indexOf('rgb'));
     // skip if already in hex
     if(color.indexOf('#') != -1) return color;
     // skip for more advanced color functions using 
@@ -69,13 +72,39 @@ posStyleGuide.colors = () => {
             + ( '0' + parseInt(color[2], 10).toString(16) ).slice(-2);
   }
 
+
   // purpose:		finds the background color and shows it in corresponding place
   // ------------------------------------------------------------------------
   module.showBackgroundColor = () => {
     module.settings.propertiesList.forEach(element => {
-      let colorNames = '';
-
       element.querySelector('.styleguide-color-hex').textContent = rgbaToHex(window.getComputedStyle(element.querySelector('.styleguide-color')).getPropertyValue('background-color')) || '';
+    });
+  };
+
+
+  // purpose:		prints the fonts details
+  // ------------------------------------------------------------------------
+  module.showFontDetails = () => {
+    document.querySelectorAll('#fonts .styleguide-typography-content-family').forEach(element => {
+      element.textContent = window.getComputedStyle(element.closest('div').querySelector('.styleguide-fonts-example strong')).getPropertyValue('font-family');
+    });
+    document.querySelectorAll('#fonts .styleguide-typography-content-size').forEach(element => {
+      element.textContent = window.getComputedStyle(element.closest('div').querySelector('p')).getPropertyValue('font-size');
+    });
+  };
+
+
+  // purpose:		prints the headings details
+  // ------------------------------------------------------------------------
+  module.showHeadingsDetails = () => {
+    document.querySelectorAll('#headings .styleguide-details').forEach(element => {
+      const headingComputedStyle = window.getComputedStyle(element.closest('.styleguide-heading').querySelector('.styleguide-heading-example'));
+      
+      element.querySelector('.styleguide-typography-content-family').textContent = headingComputedStyle.getPropertyValue('font-family');
+      element.querySelector('.styleguide-typography-content-color').textContent = headingComputedStyle.getPropertyValue('color') + ' ' + rgbaToHex(headingComputedStyle.getPropertyValue('color'));
+      element.querySelector('.styleguide-typography-content-size').textContent = headingComputedStyle.getPropertyValue('font-size'); + '(' +  + ')';
+      element.querySelector('.styleguide-typography-content-weight').textContent = headingComputedStyle.getPropertyValue('font-weight');
+      element.querySelector('.styleguide-typography-content-lineheight').textContent = headingComputedStyle.getPropertyValue('line-height');
     });
   };
 

@@ -332,7 +332,7 @@
   /* text and icon of disabled input field */
   --pos-color-dark-input-disabled-text: color-mix(in srgb, var(--pos-color-dark-input-text) 40%, transparent 60%);
   /* border around input field when it is disabled */
-  --pos-color-dark-input-disabled-background: color-mix(in srgb, var(--pos-color-dark-input-frame) 40%, transparent 60%);
+  --pos-color-dark-input-disabled-frame: color-mix(in srgb, var(--pos-color-dark-input-frame) 40%, transparent 60%);
 
 
   /* utility */
@@ -434,7 +434,7 @@
   --pos-color-input-active-frame: var(--pos-color-light-input-active-frame);
   --pos-color-input-disabled-background: var(--pos-color-light-input-disabled-background);
   --pos-color-input-disabled-text: var(--pos-color-light-input-disabled-text);
-  --pos-color-input-disabled-background: var(--pos-color-light-input-disabled-background);
+  --pos-color-input-disabled-frame: var(--pos-color-light-input-disabled-frame);
 
 
   /* utility */
@@ -528,7 +528,7 @@
   --pos-color-input-active-frame: var(--pos-color-dark-input-active-frame);
   --pos-color-input-disabled-background: var(--pos-color-dark-input-disabled-background);
   --pos-color-input-disabled-text: var(--pos-color-dark-input-disabled-text);
-  --pos-color-input-disabled-background: var(--pos-color-dark-input-disabled-background);
+  --pos-color-input-disabled-frame: var(--pos-color-dark-input-disabled-frame);
 
 
   /* utility */
@@ -618,7 +618,7 @@
     --pos-color-input-active-frame: var(--pos-color-dark-input-active-frame);
     --pos-color-input-disabled-background: var(--pos-color-dark-input-disabled-background);
     --pos-color-input-disabled-text: var(--pos-color-dark-input-disabled-text);
-    --pos-color-input-disabled-background: var(--pos-color-dark-input-disabled-background);
+    --pos-color-input-disabled-frame: var(--pos-color-dark-input-disabled-frame);
 
 
     /* utility */

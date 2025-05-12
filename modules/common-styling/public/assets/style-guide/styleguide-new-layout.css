@@ -20,6 +20,12 @@ article + article {
   align-items: start;
 }
 
+  @media (max-width: 1000px) {
+    .columns {
+      grid-template-columns: 1fr;
+    }
+  }
+
 
 /* common elements
 ============================================================================ */
@@ -40,6 +46,7 @@ p code {
 pre:has(code) {
   margin-block: var(--pos-gap-text-text);
   padding: var(--pos-padding-card);
+  position: relative;
   
   background-color: var(--pos-color-content-background);
   border: 1px solid var(--pos-color-frame);
@@ -73,14 +80,17 @@ pre:has(code) {
 
 /* defiinition list */
 .styleguide-details {
-  padding: var(--pos-padding-card);
   display: grid;
   grid-template-columns: max-content 1fr;
   gap: .5em var(--pos-gap-section-elements);
-
-  border-radius: var(--pos-radius-panel);
-  background-color: var(--pos-color-highlight-background)
 }
+
+  .styleguide-details-highlighted {
+    padding: var(--pos-padding-card);
+
+    border-radius: var(--pos-radius-panel);
+    background-color: var(--pos-color-highlight-background)
+  }
 
   .styleguide-details dt {
     font-weight: 200;
@@ -186,4 +196,73 @@ pre:has(code) {
   font-size: .9rem;
   font-family: monospace;
   color: var(--pos-color-content-text-supplementary)
+}
+
+
+
+/* fonts
+============================================================================ */
+#fonts p {
+  margin-block-start: var(--pos-gap-text-text);
+
+  line-height: 1.3em;
+}
+
+.styleguide-fonts-example {
+  margin-block: 2rem .5rem;
+  display: flex;
+  gap: calc(var(--pos-gap-text-text) * 2);
+  align-items: center;
+}
+
+  .styleguide-fonts-example strong {
+    line-height: 1em;
+    font-size: 7rem;
+  }
+
+  .styleguide-fonts-example ul {
+    white-space: nowrap;
+    font-size: .9rem;
+  }
+
+  .styleguide-fonts-example aside {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--pos-color-content-text-supplementary);
+  }
+
+  .styleguide-fonts-example em {
+    font-size: 2rem;
+  }
+
+
+  
+/* headings
+============================================================================ */
+.styleguide-heading {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: var(--pos-gap-section-section);
+}
+
+.styleguide-heading .pos-heading-1,
+.styleguide-heading .pos-heading-2,
+.styleguide-heading .pos-heading-3,
+.styleguide-heading .pos-heading-4 {
+  margin: 0;
+}
+
+.styleguide-heading-example {
+  padding: var(--pos-padding-card);
+
+  border: 1px dashed var(--pos-color-frame);
+  border-radius: 1rem 1rem 0 0;
+}
+
+.styleguide-heading pre:has(code) {
+  margin-block-start: -1px;
+
+  border-start-start-radius: 0;
+  border-start-end-radius: 0;
 }
