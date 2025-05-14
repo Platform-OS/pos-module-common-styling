@@ -146,6 +146,41 @@ p code {
     content: ':';
   }
 
+/* table with examples */
+.styleguide-examples-table th,
+.styleguide-examples-table td {
+  padding: var(--pos-padding-cell);
+}
+
+.styleguide-examples-table thead th {
+  padding-block-start: 0;
+
+  text-align: center;
+}
+
+.styleguide-examples-table td {
+  text-align: center;
+}
+
+.styleguide-examples-table thead th {
+  font-weight: 500;
+}
+
+.styleguide-examples-table tbody th {
+  font-weight: 300;
+  color: var(--pos-color-content-text-supplementary);
+}
+
+.styleguide-examples-table td:first-child,
+.styleguide-examples-table th:first-child {
+  padding-inline-start: 0;
+}
+
+.styleguide-examples-table td:last-child,
+.styleguide-examples-table th:last-child {
+  padding-inline-end: 0;
+}
+
 
 /* navigation
 ============================================================================ */
@@ -331,4 +366,20 @@ p code {
   display: flex;
   align-items: center;
   gap: .5em;
+}
+
+
+
+/* links
+============================================================================ */
+#interactive-elements .columns {
+  gap: var(--pos-gap-section-section);
+}
+
+.pos-links-example {
+  padding: var(--pos-padding-card);
+  display: block;
+
+  border: 1px dashed var(--pos-color-frame);
+  border-radius: 1rem;
 }
