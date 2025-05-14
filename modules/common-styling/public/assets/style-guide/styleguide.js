@@ -46,6 +46,7 @@ posStyleGuide.colors = () => {
     module.showBackgroundColor();
     module.showFontDetails();
     module.showHeadingsDetails();
+    module.copyCode();
   };
 
 
@@ -106,6 +107,54 @@ posStyleGuide.colors = () => {
       element.querySelector('.styleguide-typography-content-weight').textContent = headingComputedStyle.getPropertyValue('font-weight');
       element.querySelector('.styleguide-typography-content-lineheight').textContent = headingComputedStyle.getPropertyValue('line-height');
     });
+  };
+
+
+  // purpose:		prints the headings details
+  // ------------------------------------------------------------------------
+  module.showHeadingsDetails = () => {
+    document.querySelectorAll('#headings .styleguide-details, #text-styles .styleguide-details').forEach(element => {
+      const headingComputedStyle = window.getComputedStyle(element.closest('.styleguide-heading').querySelector('.styleguide-heading-example'));
+      
+      element.querySelector('.styleguide-typography-content-family').textContent = headingComputedStyle.getPropertyValue('font-family');
+      element.querySelector('.styleguide-typography-content-color').innerHTML = `<span class="styleguide-typography-swatch"></span><span class="styleguide-typography-color">${headingComputedStyle.getPropertyValue('color')}</span> <span class="styleguide-typography-color">${rgbaToHex(headingComputedStyle.getPropertyValue('color'))}</span>`;
+      element.querySelector('.styleguide-typography-swatch').style.backgroundColor = headingComputedStyle.getPropertyValue('color');
+      element.querySelector('.styleguide-typography-content-size').textContent = headingComputedStyle.getPropertyValue('font-size'); + '(' +  + ')';
+      element.querySelector('.styleguide-typography-content-weight').textContent = headingComputedStyle.getPropertyValue('font-weight');
+      element.querySelector('.styleguide-typography-content-lineheight').textContent = headingComputedStyle.getPropertyValue('line-height');
+    });
+  };
+
+
+  // purpose:		adds 'copy code' button to the code examples
+  // ------------------------------------------------------------------------
+  module.copyCode = () => {
+    // copy button template to be appened to each code examples (dom node)
+    const copyButton = document.querySelector('#styleguide-copy');
+    // class name to toggle when the code is copied (string)
+    const doneButtonClass = 'styleguide-copy-done';
+
+
+    document.querySelectorAll('.styleguide-code').forEach(element => {
+      element.appendChild(copyButton.content.cloneNode(true));
+
+      element.addEventListener('click', event => {
+        // text to copy to the clipboard (string)
+        const text = element.parentElement.querySelector('pre code').textContent.trim();
+
+        // copy code to clipboard
+        navigator.clipboard.writeText(text).then(() => {
+          event.target.classList.add(doneButtonClass);
+
+          // remove the class after some time
+          setTimeout(() => {
+            event.target.classList.remove(doneButtonClass);
+          }, 800);
+        });
+      });
+    });
+
+    
   };
 
 

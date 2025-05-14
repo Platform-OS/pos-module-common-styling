@@ -43,7 +43,11 @@ p code {
   color: var(--pos-color-highlight-text);
 }
 
-pre:has(code) {
+.styleguide-code {
+  position: relative;
+}
+
+.styleguide-code pre {
   margin-block: var(--pos-gap-text-text);
   padding: var(--pos-padding-card);
   position: relative;
@@ -52,6 +56,47 @@ pre:has(code) {
   border: 1px solid var(--pos-color-frame);
   border-radius: var(--pos-radius-panel);
 }
+
+.styleguide-copy {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  inset-block-start: calc(var(--pos-padding-card) / 3);
+  inset-inline-end: calc(var(--pos-padding-card) / 3);
+
+  cursor: pointer;
+
+  color: var(--pos-color-content-text-supplementary);
+}
+
+  .styleguide-copy:hover {
+    color: var(--pos-color-interactive-hover);
+  }
+
+  .styleguide-copy svg {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+    
+    fill: currentColor;
+
+    transition: scale .2s ease-in-out;
+  }
+
+  .styleguide-copy-icon-done {
+    scale: 0;
+  }
+
+  .styleguide-copy-done .styleguide-copy-icon-default {
+    scale: 0;
+  }
+
+  .styleguide-copy-done .styleguide-copy-icon-done {
+    scale: 1;
+
+    color: var(--pos-color-confirmation);
+  }
 
 .pos-heading-2,
 .pos-heading-3,
@@ -237,7 +282,7 @@ pre:has(code) {
 
 
   
-/* headings
+/* headings and text styles
 ============================================================================ */
 .styleguide-heading {
   display: grid;
@@ -255,6 +300,7 @@ pre:has(code) {
 
 .styleguide-heading-example {
   padding: var(--pos-padding-card);
+  display: block;
 
   border: 1px dashed var(--pos-color-frame);
   border-radius: 1rem 1rem 0 0;
@@ -265,4 +311,24 @@ pre:has(code) {
 
   border-start-start-radius: 0;
   border-start-end-radius: 0;
+}
+
+.styleguide-typography-swatch {
+  width: 1.3em;
+  height: 1.3em;
+
+  border-radius: 50%;
+}
+
+.styleguide-typography-color {
+  padding: .1em .5em;
+
+  border-radius: var(--pos-radius-panel);
+  background-color: var(--pos-color-content-background);
+}
+
+.styleguide-typography-content-color {
+  display: flex;
+  align-items: center;
+  gap: .5em;
 }
