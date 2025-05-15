@@ -98,11 +98,12 @@ posStyleGuide.colors = () => {
   // purpose:		prints the headings details
   // ------------------------------------------------------------------------
   module.showHeadingsDetails = () => {
-    document.querySelectorAll('#headings .styleguide-details').forEach(element => {
+    document.querySelectorAll('#headings .styleguide-details, #text-styles .styleguide-details').forEach(element => {
       const headingComputedStyle = window.getComputedStyle(element.closest('.styleguide-heading').querySelector('.styleguide-example'));
       
       element.querySelector('.styleguide-typography-content-family').textContent = headingComputedStyle.getPropertyValue('font-family');
-      element.querySelector('.styleguide-typography-content-color').textContent = headingComputedStyle.getPropertyValue('color') + ' ' + rgbaToHex(headingComputedStyle.getPropertyValue('color'));
+      element.querySelector('.styleguide-typography-content-color').innerHTML = `<span class="styleguide-typography-swatch"></span><span class="styleguide-typography-color">${headingComputedStyle.getPropertyValue('color')}</span> <span class="styleguide-typography-color">${rgbaToHex(headingComputedStyle.getPropertyValue('color'))}</span>`;
+      element.querySelector('.styleguide-typography-swatch').style.backgroundColor = headingComputedStyle.getPropertyValue('color');
       element.querySelector('.styleguide-typography-content-size').textContent = headingComputedStyle.getPropertyValue('font-size'); + '(' +  + ')';
       element.querySelector('.styleguide-typography-content-weight').textContent = headingComputedStyle.getPropertyValue('font-weight');
       element.querySelector('.styleguide-typography-content-lineheight').textContent = headingComputedStyle.getPropertyValue('line-height');
