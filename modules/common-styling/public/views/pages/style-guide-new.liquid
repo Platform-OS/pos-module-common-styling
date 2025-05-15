@@ -21,7 +21,7 @@ layout: 'modules/common-styling/style-guide-new'
     <!---------------------------------------------------------------------------------------- initialization -->
     <article id="initialization">
       <h2 class="pos-heading-2">Initlialization</h2>
-      <div class="columns">
+      <div class="styleguide-columns">
         <div>
           <p>All of the following CSS (except CSS custom properties) are scoped to container that uses <code>pos-app</code> class. You can use that class either on the root <code>html</code> tag of your app or just limit the scope to any container.</p>
 {% capture code %}{% raw %}
@@ -441,7 +441,7 @@ layout: 'modules/common-styling/style-guide-new'
     <article id="fonts">
       <h2 class="pos-heading-2">Fonts</h2>
 
-      <div class="columns">
+      <div class="styleguide-columns">
         <div>
           <p style="font-family: var(--pos-font-default);">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod aliquet nisi euismod eleifend. Phasellus justo tellus, aliquet ac aliquam ut, dictum eu augue.</p>
           <p style="font-family: var(--pos-font-default);">Nullam vitae ex sed ligula convallis suscipit. Maecenas et neque facilisis.</p>
@@ -519,7 +519,7 @@ layout: 'modules/common-styling/style-guide-new'
           <dt>Line height</dt><dd class="styleguide-typography-content-lineheight"></dd>
         </dl>
         <div>
-          <picture class="styleguide-heading-example pos-heading-1">
+          <picture class="styleguide-example pos-heading-1">
             The quick brown fox jumps over the lazy dog
           </picture>
 {% capture code %}{% raw %}
@@ -542,7 +542,7 @@ layout: 'modules/common-styling/style-guide-new'
           <dt>Line height</dt><dd class="styleguide-typography-content-lineheight"></dd>
         </dl>
         <div>
-          <picture class="styleguide-heading-example pos-heading-2">
+          <picture class="styleguide-example pos-heading-2">
             The quick brown fox jumps over the lazy dog
           </picture>
 {% capture code %}{% raw %}
@@ -565,7 +565,7 @@ layout: 'modules/common-styling/style-guide-new'
           <dt>Line height</dt><dd class="styleguide-typography-content-lineheight"></dd>
         </dl>
         <div>
-          <picture class="styleguide-heading-example pos-heading-3">
+          <picture class="styleguide-example pos-heading-3">
             The quick brown fox jumps over the lazy dog
           </picture>
 {% capture code %}{% raw %}
@@ -588,7 +588,7 @@ layout: 'modules/common-styling/style-guide-new'
           <dt>Line height</dt><dd class="styleguide-typography-content-lineheight"></dd>
         </dl>
         <div>
-          <picture class="styleguide-heading-example pos-heading-4">
+          <picture class="styleguide-example pos-heading-4">
             The quick brown fox jumps over the lazy dog
           </picture>
 {% capture code %}{% raw %}
@@ -617,7 +617,7 @@ layout: 'modules/common-styling/style-guide-new'
           <dt>Line height</dt><dd class="styleguide-typography-content-lineheight"></dd>
         </dl>
         <div>
-          <picture class="styleguide-heading-example pos-supplementary">
+          <picture class="styleguide-example pos-supplementary">
             The quick brown fox jumps over the lazy dog
           </picture>
 {% capture code %}{% raw %}
@@ -634,7 +634,7 @@ layout: 'modules/common-styling/style-guide-new'
     <article id="interactive-elements">
       <h2 class="pos-heading-2">Links</h2>
 
-      <div class="columns">
+      <div class="styleguide-columns">
 
         <div>
           <div class="pos-links-example">Lorem ipsum dolor sit amet <a href="#">consectetur</a> adipisicing elit. Aut quisquam nemo ipsam <a href="#"><svg viewBox="0 0 24 24" fill="none" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M12 15.75c-3.308 0-6-2.692-6-6s2.692-6 6-6 6 2.692 6 6-2.692 6-6 6zm0-10.5c-2.481 0-4.5 2.019-4.5 4.5s2.019 4.5 4.5 4.5 4.5-2.019 4.5-4.5-2.019-4.5-4.5-4.5z"></path><path d="M12 24c-2.677 0-5.211-.868-7.332-2.51a.507.507 0 01-.126-.099C1.655 19.094 0 15.674 0 12 0 5.383 5.383 0 12 0s12 5.383 12 12c0 3.674-1.655 7.094-4.543 9.391l-.015.016c-.043.043-.087.069-.112.084A11.868 11.868 0 0112 24zm-5.716-3.199A10.408 10.408 0 0012 22.5a10.41 10.41 0 005.717-1.699 8.966 8.966 0 00-5.716-2.045 8.965 8.965 0 00-5.717 2.045zM12 1.5C6.21 1.5 1.5 6.21 1.5 12c0 3.023 1.294 5.875 3.562 7.874A10.449 10.449 0 0112 17.257c2.573 0 5.023.927 6.938 2.616 2.268-2 3.562-4.851 3.562-7.874C22.5 6.21 17.79 1.5 12 1.5z"></path></svg> quo placeat</a> voluptate voluptates doloribus magnam error dolorum vero corrupti <a href="#">aliquam nobis nesciunt</a>, qui debitis cumque perferendis provident?</div>
@@ -677,6 +677,104 @@ layout: 'modules/common-styling/style-guide-new'
             </tr>
           </tbody>
         </table>
+    </article>
+
+
+
+    <!---------------------------------------------------------------------------------------- buttons -->
+    <article id="buttons">
+      <h2 class="pos-heading-2">Buttons</h2>
+
+      <div class="styleguide-columns">
+        <div>
+          <div class="styleguide-example">
+            <h3 class="pos-heading-4">Default</h3>
+            <picture>
+              <button class="pos-button">Button</button>
+            </picture>
+            <dl class="styleguide-details">
+              <dt>Class</dt><dd><code>pos-button</code></dd>
+            </dl>
+          </div>
+{% capture code %}{% raw %}
+<button class="pos-button">Button</button>
+{% endraw %}{% endcapture %}
+          <div class="styleguide-code">
+            <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+          </div>
+          <div class="styleguide-example">
+            <h3 class="pos-heading-4">Primary</h3>
+            <picture>
+              <button class="pos-button pos-button-primary">Button</button>
+            </picture>
+          </div>
+{% capture code %}{% raw %}
+<button class="pos-button pos-button-primary">Button</button>
+{% endraw %}{% endcapture %}
+          <div class="styleguide-code">
+            <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+          </div>
+
+          {% render 'modules/common-styling/tip', content: 'When overwriting the <code>&lt;button&gt;</code> classes, please remember to also overwrite the debug classes used in the style guide: <code>pos-debug-button-hover</code>, <code>pos-debug-button-active</code>, <code>pos-debug-button-focus-visible</code>.' %}
+        </div>
+
+        <table class="styleguide-examples-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Default</th>
+              <th>Primary</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Enabled</th>
+              <td><button class="pos-button">Button</button></td>
+              <td><button class="pos-button pos-button-primary">Button</button></td>
+            </tr>
+            <tr>
+              <th class="styleguide-table-heading">Hover</th>
+              <td><button class="pos-button pos-debug-button-hover">Button</button></td>
+              <td><button class="pos-button pos-button-primary pos-debug-button-hover">Button</button></td>
+            </tr>
+            <tr>
+              <th scope="row">Active</th>
+              <td><button class="pos-button pos-debug-button-active">Button</button></td>
+              <td><button class="pos-button pos-button-primary pos-debug-button-active">Button</button></td>
+            </tr>
+            <tr>
+              <th scope="row">Focused</th>
+              <td><button class="pos-button pos-debug-button-focus-visible">Button</button></td>
+              <td><button class="pos-button pos-button-primary pos-debug-button-focus-visible">Button</button></td>
+            </tr>
+            <tr>
+              <th scope="row">Disabled</th>
+              <td><button disabled class="pos-button">Button</button></td>
+              <td><button disabled class="pos-button pos-button-primary">Button</button></td>
+            </tr>
+            <tr>
+              <th scope="row">Icon</th>
+              <td>
+                <button class="pos-button">
+                  <svg viewBox="0 0 24 24" fill="none" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M12.089 24a6.747 6.747 0 01-1.853-.26l-3.634-1.038A5.342 5.342 0 006 22.568v.682a.75.75 0 01-.75.75H.75a.75.75 0 01-.75-.75V9.75A.75.75 0 01.75 9h4.5a.75.75 0 01.75.75v1.512a6.747 6.747 0 006-6.708V3c0-1.654 1.346-3 3-3s3 1.346 3 3v3.382c0 .346.234.645.57.728l1.435.313c2.443.612 4.116 2.867 3.989 5.365l-.301 5.106C23.343 21.382 20.455 24 16.974 24h-4.885zM6 21.053c.342.043.682.112 1.014.207l3.634 1.038c.468.134.953.202 1.441.202h4.885a5.235 5.235 0 005.224-4.725l.298-5.069a3.758 3.758 0 00-2.834-3.823l-1.433-.313A2.253 2.253 0 0116.5 6.382V3c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v1.554A8.236 8.236 0 016 12.77v8.283zM4.5 22.5v-12h-3v12h3z"></path></svg>
+                  Button
+                </button>
+              </td>
+              <td>
+                <button class="pos-button pos-button-primary">
+                  <svg viewBox="0 0 24 24" fill="none" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M12.089 24a6.747 6.747 0 01-1.853-.26l-3.634-1.038A5.342 5.342 0 006 22.568v.682a.75.75 0 01-.75.75H.75a.75.75 0 01-.75-.75V9.75A.75.75 0 01.75 9h4.5a.75.75 0 01.75.75v1.512a6.747 6.747 0 006-6.708V3c0-1.654 1.346-3 3-3s3 1.346 3 3v3.382c0 .346.234.645.57.728l1.435.313c2.443.612 4.116 2.867 3.989 5.365l-.301 5.106C23.343 21.382 20.455 24 16.974 24h-4.885zM6 21.053c.342.043.682.112 1.014.207l3.634 1.038c.468.134.953.202 1.441.202h4.885a5.235 5.235 0 005.224-4.725l.298-5.069a3.758 3.758 0 00-2.834-3.823l-1.433-.313A2.253 2.253 0 0116.5 6.382V3c0-.827-.673-1.5-1.5-1.5s-1.5.673-1.5 1.5v1.554A8.236 8.236 0 016 12.77v8.283zM4.5 22.5v-12h-3v12h3z"></path></svg>
+                  Button
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Link</th>
+              <td><a href="#" class="pos-button">Link</a></td>
+              <td><a href="#" class="pos-button pos-button-primary">Link</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </article>
 
   </section>

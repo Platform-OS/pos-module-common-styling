@@ -13,7 +13,7 @@ article + article {
   margin-block-start: var(--pos-gap-section-section);
 }
 
-.columns {
+.styleguide-columns {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--pos-gap-card-card);
@@ -21,7 +21,7 @@ article + article {
 }
 
   @media (max-width: 1000px) {
-    .columns {
+    .styleguide-columns {
       grid-template-columns: 1fr;
     }
   }
@@ -29,6 +29,7 @@ article + article {
 
 /* common elements
 ============================================================================ */
+/* code samples */
 code {
   font-family: monospace;
   font-size: 1rem;
@@ -57,6 +58,23 @@ p code {
   border-radius: var(--pos-radius-panel);
 }
 
+/* rendered output examples */
+.styleguide-example {
+  padding: var(--pos-padding-card);
+  display: block;
+
+  border: 1px dashed var(--pos-color-frame);
+  border-radius: 1rem 1rem 0 0;
+}
+
+.styleguide-example + .styleguide-code pre {
+  margin-block: -1px;
+
+  border-start-start-radius: 0;
+  border-start-end-radius: 0;
+}
+
+/* copy button */
 .styleguide-copy {
   width: 16px;
   height: 16px;
@@ -98,6 +116,7 @@ p code {
     color: var(--pos-color-confirmation);
   }
 
+/* headings */
 .pos-heading-2,
 .pos-heading-3,
 .pos-heading-4 {
@@ -333,21 +352,6 @@ p code {
   margin: 0;
 }
 
-.styleguide-heading-example {
-  padding: var(--pos-padding-card);
-  display: block;
-
-  border: 1px dashed var(--pos-color-frame);
-  border-radius: 1rem 1rem 0 0;
-}
-
-.styleguide-heading pre:has(code) {
-  margin-block-start: -1px;
-
-  border-start-start-radius: 0;
-  border-start-end-radius: 0;
-}
-
 .styleguide-typography-swatch {
   width: 1.3em;
   height: 1.3em;
@@ -372,7 +376,7 @@ p code {
 
 /* links
 ============================================================================ */
-#interactive-elements .columns {
+#interactive-elements .styleguide-columns {
   gap: var(--pos-gap-section-section);
 }
 
@@ -382,4 +386,31 @@ p code {
 
   border: 1px dashed var(--pos-color-frame);
   border-radius: 1rem;
+}
+
+
+
+/* buttons
+============================================================================ */
+#buttons .styleguide-columns {
+  gap: var(--pos-gap-section-section);
+}
+
+#buttons .styleguide-example {
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}
+
+#buttons .styleguide-code + .styleguide-example {
+  margin-block-start: var(--pos-gap-card-card);
+}
+
+#buttons .styleguide-example .pos-heading-4 {
+  margin-block-start: 0;
+}
+
+#buttons .styleguide-example picture {
+  display: flex;
+  flex-direction: column;
 }
