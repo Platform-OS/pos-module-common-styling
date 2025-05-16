@@ -777,6 +777,44 @@ layout: 'modules/common-styling/style-guide-new'
       </div>
     </article>
 
+
+    <!---------------------------------------------------------------------------------------- forms -->
+    <article id="forms">
+      <h2 class="pos-heading-2">Forms</h2>
+      <p>There are two ways for styling form controlls. You can add a <code>pos-form</code> class to a container and make all the child inputs styled automatically or you can add one of the following classes to any single input to style it separately.</p>
+
+      <h3 class="pos-heading-4">Containers</h3>
+
+      <div class="styleguide-columns">
+
+        <div>
+          <form action="" class="pos-form styleguide-forms-placeholder-container">
+            <div class="styleguide-forms-placeholder-input"></div>
+            <div class="styleguide-forms-placeholder-radio"></div>
+            <div class="styleguide-forms-placeholder-radio"></div>
+            <div class="styleguide-forms-placeholder-button styleguide-forms-placeholder-button-next"></div>
+          </form>
+          <dl class="styleguide-details">
+            <dt>Class</dt><dd><code>pos-form</code></dd>
+          </dl>
+          <p>Used for complex forms that needs more manual customized styling. No automatic labels styling, no automatic spacing between elements.</p>
+        </div>
+
+        <div>
+          <form action="" class="pos-form pos-form-simple styleguide-forms-placeholder-container">
+            <div class="styleguide-forms-placeholder-input"></div>
+            <div class="styleguide-forms-placeholder-input"></div>
+            <div class="styleguide-forms-placeholder-button"></div>
+          </form>
+          <dl class="styleguide-details">
+            <dt>Class</dt><dd><code>pos-form pos-form-simple</code></dd>
+          </dl>
+          <p>Used for simple forms that can be styled automatically. Styles the labels and spacing between items as well.</p>
+        </div>
+
+      </div>
+    </article>
+
   </section>
 
 </main>
