@@ -628,6 +628,28 @@ layout: 'modules/common-styling/style-guide-new'
           </div>
         </div>
       </div>
+
+      <h3 class="pos-heading-4">Tip</h3>
+      <div class="styleguide-heading">
+        <dl class="styleguide-details">
+          <dt>Class</dt><dd><code>pos-tip</code></dd>
+          <dt>Font family</dt><dd class="styleguide-typography-content-family"></dd>
+          <dt>Color</dt><dd class="styleguide-typography-content-color"></dd>
+          <dt>Size</dt><dd class="styleguide-typography-content-size"></dd>
+          <dt>Weight</dt><dd class="styleguide-typography-content-weight"></dd>
+          <dt>Line height</dt><dd class="styleguide-typography-content-lineheight"></dd>
+        </dl>
+        <div>
+          <picture class="styleguide-example pos-supplementary">
+            {% render 'modules/common-styling/tip', content: 'The quick brown fox jumps over the lazy dog' %}
+          </picture>
+          {% capture code %}{% raw %}
+            {% render 'modules/common-styling/tip', content: 'The quick brown fox jumps over the lazy dog' %}
+          {% endraw %}{% endcapture %}
+          <div class="styleguide-code">
+            <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+          </div>
+        </div>
     </article>
 
     <!---------------------------------------------------------------------------------------- Links -->
@@ -809,10 +831,56 @@ layout: 'modules/common-styling/style-guide-new'
           <dl class="styleguide-details">
             <dt>Class</dt><dd><code>pos-form pos-form-simple</code></dd>
           </dl>
-          <p>Used for simple forms that can be styled automatically. Styles the labels and spacing between items as well.</p>
+          <p>Used for simple forms that can be styled automatically. Styles the labels and spacing between items as well. You can just throw this class onto the container and forget about styling each separate control.</p>
         </div>
 
       </div>
+
+      <h3 class="pos-heading-4">Rows</h3>
+
+      <div class="styleguide-columns">
+        <div>
+          <dl class="styleguide-details">
+            <dt>Class</dt><dd><code>pos-form-fieldset</code></dd>
+            <dt>Properties</dt><dd><code>--pos-gap-text-text</code></dd>
+          </dl>
+{% capture code %}{% raw %}
+<fieldset class="pos-form-fieldset">
+  
+</fieldset>
+{% endraw %}{% endcapture %}
+          <div class="styleguide-code">
+            <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+          </div>
+        </div>
+        <form action="" class="pos-form styleguide-forms-placeholder-container">
+          <fieldset class="styleguide-forms-placeholder-fieldset"></fieldset>
+          <fieldset class="styleguide-forms-placeholder-fieldset"></fieldset>
+        </form>
+      </div>
+
+      <h3 class="pos-heading-4">Labels</h3>
+
+      <div class="styleguide-columns">
+        {% render 'modules/common-styling/tip', content: 'Labels that are placed in a <code>fieldset</code> that has a <code>reqired</code> input will automatically be marked with an asterisk.' %}
+        <div>
+          <div class="styleguide-example">
+            <form action="" class="pos-form pos-form-simple">
+              <fieldset>
+                <label for="input-id">My label</label>
+                <input type="text" id="input-id" placeholder="Placeholder text" required>
+              </fieldset>
+            </form>
+          </div>
+          {% capture code %}{% raw %}
+          <label for="input-id">My label</label>
+          {% endraw %}{% endcapture %}
+          <div class="styleguide-code">
+            <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+          </div>
+        </div>
+      </div>
+
     </article>
 
   </section>

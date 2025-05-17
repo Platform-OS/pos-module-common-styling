@@ -30,7 +30,7 @@
 
   .pos-form fieldset + fieldset,
   .pos-form-fieldset + .pos-form-fieldset {
-    margin-top: var(--pos-gap-navigation);
+    margin-top: var(--pos-gap-text-text);
   }
 
   .pos-form-simple fieldset {
