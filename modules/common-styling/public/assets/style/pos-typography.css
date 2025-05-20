@@ -31,8 +31,8 @@
   :where(.pos-app) a:not(.pos-button):focus-visible,
   .pos-debug-link-focus {
     border-radius: var(--pos-radius-button);
-    background-color: color-mix(in srgb, var(--pos-color-focused) 10%, transparent 90%);
-    box-shadow: 0 0 6px 1px var(--pos-color-focused);
+    outline: 2px solid var(--pos-color-focused);
+    outline-offset: 2px;
 
     color: var(--pos-color-interactive-hover);
   }

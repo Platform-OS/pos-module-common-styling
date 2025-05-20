@@ -69,7 +69,8 @@
   .pos-button:focus-visible,
   .pos-debug-button-focus-visible {
     border-color: var(--pos-color-focused);
-    box-shadow: 0 0 6px 1px var(--pos-color-focused);
+    outline: 2px solid var(--pos-color-focused);
+    outline-offset: 2px;
   }
 
   .pos-button:disabled {
