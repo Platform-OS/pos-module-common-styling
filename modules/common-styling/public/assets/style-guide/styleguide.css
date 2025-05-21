@@ -118,13 +118,13 @@ p code {
 
 /* headings */
 .pos-heading-2,
-.pos-heading-3,
-.pos-heading-4 {
+.pos-heading-3 {
   margin-block-end: .2em;
 }
 
 .pos-heading-4 {
   margin-block-start: 1.5em;
+  margin-block-end: .4em;
 }
 
 .styleguide-subheading {
@@ -509,4 +509,12 @@ p code {
 
 #forms .styleguide-details + p {
   margin-block-start: calc(var(--pos-gap-text-text) / 2);
+}
+
+#text-inputs > :last-child {
+  padding-inline-start: calc(var(--pos-gap-section-section) / 2);
+}
+
+#text-inputs table input {
+  width: 150px;
 }

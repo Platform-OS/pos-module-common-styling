@@ -962,6 +962,70 @@ layout: 'modules/common-styling/style-guide'
             </fieldset>
           </form>
         </div>
+
+      </div>
+
+
+      <h3 class="pos-heading-4">Text inputs</h3>
+
+      <div id="text-inputs" class="styleguide-columns">
+
+        <div>
+          <div class="styleguide-example">
+            <input type="text" class="pos-form-input" placeholder="Text input">
+            <dl class="styleguide-details">
+              <dt>Class</dt><dd><code>pos-form-input</code></dd>
+            </dl>
+          </div>
+{% capture code %}{% raw %}
+<input type="text" class="pos-form-input" placeholder="Text input">
+{% endraw %}{% endcapture %}
+          <div class="styleguide-code">
+            <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+          </div>
+
+          {% render 'modules/common-styling/tip', content: 'When overwriting the <code>&lt;input&gt;</code> classes, please remember to also overwrite the debug classes used in the style guide: <code>pos-debug-form-input-hover</code>, <code>pos-debug-form-input-focus-visible</code>.' %}
+        </div>
+
+        <div>
+          <table class="styleguide-examples-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Placeholder</th>
+                <th>Filled</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Default</th>
+                <td><input type="text" class="pos-form-input" placeholder="Text input"></td>
+                <td><input type="text" class="pos-form-input" value="Lorem ipsum"></td>
+              </tr>
+              <tr>
+                <th class="styleguide-table-heading">Hover</th>
+                <td><input type="text" class="pos-form-input pos-debug-form-input-hover" placeholder="Text input"></td>
+                <td><input type="text" class="pos-form-input pos-debug-form-input-hover" value="Lorem ipsum"></td>
+              </tr>
+              <tr>
+                <th scope="row">Focused</th>
+                <td><input type="text" class="pos-form-input pos-debug-form-input-focus-visible" placeholder="Text input"></td>
+                <td><input type="text" class="pos-form-input pos-debug-form-input-focus-visible" value="Lorem ipsum"></td>
+              </tr>
+              <tr>
+                <th scope="row">Disabled</th>
+                <td><input type="text" disabled class="pos-form-input" placeholder="Text input"></td>
+                <td><input type="text" disabled class="pos-form-input" value="Lorem ipsum"></td>
+              </tr>
+              <tr>
+                <th scope="row">Error</th>
+                <td><input type="text" aria-invalid="true" class="pos-form-input" placeholder="Text input"></td>
+                <td><input type="text" aria-invalid="true" class="pos-form-input" value="Lorem ipsum"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
       </div>
 
     </article>

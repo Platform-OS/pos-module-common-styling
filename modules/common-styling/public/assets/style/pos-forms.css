@@ -44,7 +44,7 @@
   .pos-form-simple fieldset:has([type="checkbox"] + label),
   .pos-form-simple fieldset:has([type="radio"] + label) {
     display: flex;
-    gap: .2em;
+    gap: .5em;
     align-items: center;
   }
 
@@ -65,6 +65,10 @@
 
   /* checkbox
   ============================================================================ */
+  .pos-form [type="checkbox"] {
+    margin: 0;
+  }
+
   .pos-form [type="checkbox"]:focus-visible,
   .pos-form-checkbox:focus-visible,
   .pos-debug-checkbox-focus-visible {
@@ -108,37 +112,25 @@
     outline: none;
     background-color: var(--pos-color-input-background);
     
+    text-align: start;
     color: var(--pos-color-input-text);
 
     transition: all .1s linear;
   }
 
-  .pos-form [type="text"]:hover:not(:focus),
-  .pos-form-input[type="text"]:hover:not(:focus),
-  .pos-form [type="email"]:hover:not(:focus),
-  .pos-form-input[type="email"]:hover:not(:focus),
-  .pos-form [type="password"]:hover:not(:focus),
-  .pos-form-input[type="password"]:hover:not(:focus),
-  .pos-form [type="url"]:hover:not(:focus),
-  .pos-form-input[type="url"]:hover:not(:focus) {
+  .pos-form [type="text"]:hover,
+  .pos-form-input[type="text"]:hover,
+  .pos-form [type="email"]:hover,
+  .pos-form-input[type="email"]:hover,
+  .pos-form [type="password"]:hover,
+  .pos-form-input[type="password"]:hover,
+  .pos-form [type="url"]:hover,
+  .pos-form-input[type="url"]:hover,
+  .pos-debug-form-input-hover {
     border-color: var(--pos-color-input-hover-frame);
     background-color: var(--pos-color-input-hover-background);
 
     color: var(--pos-color-input-hover-text);
-  }
-
-  .pos-form [type="text"]:focus,
-  .pos-form-input[type="text"]:focus,
-  .pos-form [type="email"]:focus,
-  .pos-form-input[type="email"]:focus,
-  .pos-form [type="password"]:focus,
-  .pos-form-input[type="password"]:focus,
-  .pos-form [type="url"]:focus,
-  .pos-form-input[type="url"]:focus {
-    border-color: var(--pos-color-input-active-frame);
-    background-color: var(--pos-color-input-active-background);
-
-    color: var(--pos-color-input-focus-text);
   }
 
   .pos-form [type="text"]:focus-visible,
@@ -148,11 +140,30 @@
   .pos-form [type="password"]:focus-visible,
   .pos-form-input[type="password"]:focus-visible,
   .pos-form [type="url"]:focus-visible,
-  .pos-form-input[type="url"]:focus-visible {
+  .pos-form-input[type="url"]:focus-visible,
+  .pos-debug-form-input-focus-visible {
     position: relative;
     z-index: 1;
 
+    border-color: var(--pos-color-input-active-frame);
+    background-color: var(--pos-color-input-active-background);
     box-shadow: 0 0 0 2px var(--pos-color-focused);
+
+    color: var(--pos-color-input-focus-text);
+  }
+
+  .pos-form [type="text"]:disabled,
+  .pos-form-input[type="text"]:disabled,
+  .pos-form [type="email"]:disabled,
+  .pos-form-input[type="email"]:disabled,
+  .pos-form [type="password"]:disabled,
+  .pos-form-input[type="password"]:disabled,
+  .pos-form [type="url"]:disabled,
+  .pos-form-input[type="url"]:disabled {
+    border-color: var(--pos-color-input-disabled-frame);
+    background-color: var(--pos-color-input-disabled-background);
+
+    color: var(--pos-color-input-disabled-text);
   }
 
   .pos-form [type="text"]::placeholder,
