@@ -1028,6 +1028,37 @@ layout: 'modules/common-styling/style-guide'
 
       </div>
 
+
+      <h3 class="pos-heading-4">Password input</h3>
+
+      <div class="styleguide-columns">
+        <div>
+          <dl class="styleguide-details">
+            <dt>name</dt><dd>Input <code>name</code> attribute</dd>
+            <dt>id</dt><dd>Input <code>id</code> attribute</dd>
+            <dt>value</dt><dd>Current input value</dd>
+            <dt>class</dt><dd>Class list added to input container</dd>
+            <dt>meter</dt><dd>If you want to show the password strength meter</dd>
+          </dl>
+          {% render 'modules/common-styling/tip', content: 'Strong passwords consists of small and capitalized letters, numbers, special signs and is at least 6 characters long. Remember to provide clear instructios for your users.' %}
+        </div>
+        <div>
+          <div class="styleguide-example" style="text-align: center;">
+            {% render 'modules/common-styling/forms/password', name: 'styleguide-form-password-test', id: 'styleguide-form-password-test', value: '123456', meter: true %}
+          </div>
+{% capture code %}{% raw %}
+{% render 'modules/common-styling/forms/password',
+          name: 'styleguide-form-password-test',
+          value: '123',
+          id: 'styleguide-form-password-test',
+          meter: true
+%}
+{% endraw %}{% endcapture %}
+          <div class="styleguide-code">
+            <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+        </div>
+      </div>
+
     </article>
 
   </section>

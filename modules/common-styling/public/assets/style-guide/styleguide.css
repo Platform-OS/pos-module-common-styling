@@ -165,6 +165,10 @@ p code {
     content: ':';
   }
 
+  .styleguide-details + .pos-tip {
+    margin-block-start: 1em;
+  }
+
 /* table with examples */
 .styleguide-examples-table th,
 .styleguide-examples-table td {
@@ -509,6 +513,12 @@ p code {
 
 #forms .styleguide-details + p {
   margin-block-start: calc(var(--pos-gap-text-text) / 2);
+}
+
+#text-inputs .styleguide-example {
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
 }
 
 #text-inputs > :last-child {

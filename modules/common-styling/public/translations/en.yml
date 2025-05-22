@@ -1,3 +1,8 @@
 en:
   toast:
     close: Dismiss notification
+  password:
+    weak: Weak password
+    medium: Fair password
+    strong: Strong password
+    toggle_visibility: Toggle password visibility

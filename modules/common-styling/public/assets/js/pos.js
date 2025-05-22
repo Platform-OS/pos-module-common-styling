@@ -8,5 +8,6 @@
 if(typeof window.pos !== 'object'){
   window.pos = {};
   window.pos.modules = {};
+  window.pos.modules.active = {};
   window.pos.translations = {};
 }

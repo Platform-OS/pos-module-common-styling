@@ -80,6 +80,7 @@ There are several basic objects used across the modules that could be extended f
 
 | window.pos | Global namespace for all modules-related data. |
 | window.pos.modules | If your module provides a public API then you should attach it to this object namespacing your module accordingly `window.pos.module.myModule = {}` |
+| window.pos.modules.active | If your module creates a separate class instance and it provides a public API then it can be attached to this object. |
 | window.pos.profile | Stores all the profile-related data for currently logged in user. |
 | window.pos.translations | If your JavaScript code needs access to any translations you should append them to this object. |
 

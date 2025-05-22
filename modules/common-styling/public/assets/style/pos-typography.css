@@ -1,6 +1,7 @@
 /*
   defines fonts, paragraphs and headings
 
+  icons
   links
   headings
   sidenotes
@@ -9,6 +10,13 @@
 
 
 @layer common-styling {
+
+  /* icons
+  ============================================================================ */
+  .pos-icon {
+    fill: currentColor;
+  }
+
 
   /* links
   ============================================================================ */

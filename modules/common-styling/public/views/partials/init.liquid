@@ -15,8 +15,21 @@
 
 <script>
 
-if(typeof window.pos.csrfToken !== 'string'){
-  window.pos.csrfToken = '{{ context.authenticity_token }}';
-}
+  if(typeof window.pos.csrfToken !== 'string'){
+    window.pos.csrfToken = '{{ context.authenticity_token }}';
+  }
+
+  /* selectively load modules */
+  document.addEventListener('DOMContentLoaded', () => {
+
+    if(document.querySelector('.pos-form-password')){
+      import('{{ 'modules/common-styling/js/pos-forms-password.js' | asset_url }}').then(module => {
+        document.querySelectorAll('.pos-form-password').forEach((element, index) => {
+          window.pos.modules.active[element.id || `password-${index}`] = new window.pos.modules.password(element, { password: element.value });
+        });
+      });
+    }
+
+  });
 
 </script>

@@ -9,6 +9,7 @@
   textareas
   selects
   errors
+  password input
 */
 
 
@@ -220,5 +221,130 @@
     text-wrap: pretty;
     color: var(--pos-color-important);
   }
+
+
+  /* password input
+  ============================================================================ */
+  .pos-form-password {
+    display: inline-block;
+  }
+
+  .pos-form-password-input-container {
+    display: flex;
+    align-items: center;
+  }
+
+  /* input */
+  .pos-form-password input[type] {
+    width: 100%;
+    padding-inline-end: 48px;
+  }
+
+  /* toggle visibility button */
+  .pos-form-password-toggle {
+    width: var(--pos-height-input);
+    height: var(--pos-height-input);
+    margin-inline-start: calc(-1 * var(--pos-height-input));
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    color: var(--pos-color-content-secondary);
+  }
+
+    .pos-form-password-toggle:hover {
+      color: var(--pos-color-interactive-hover);
+    }
+
+    .pos-form-password-toggle:focus-visible {
+      outline: 3px solid var(--pos-color-focused);
+    }
+
+    .pos-form-password-toggle .pos-label {
+      position: absolute;
+      left: -100vw;
+    }
+
+    .pos-form-password-toggle svg {
+      width: clamp(6px, calc(var(--pos-height-input) - var(--pos-padding-input)), 24px);
+
+      transition: fill .1s linear;
+    }
+
+    .pos-form-password-toggle-hide {
+      display: none;
+    }
+
+    .pos-form-password-shown .pos-form-password-toggle-hide {
+      display: block;
+    }
+
+    .pos-form-password-shown .pos-form-password-toggle-show {
+      display: none;
+    }
+
+  /* strength meter */
+  .pos-form-password .pos-form-password-strength-meter {
+    height: 4px;
+    margin-block-start: 5px;
+    display: flex;
+    align-items: stretch;
+    gap: 5px;
+  }
+
+  .pos-form-password .pos-form-password-strength-meter > * {
+    flex-grow: 1;
+
+    background-color: var(--pos-color-frame);
+
+    transition: background-color .1s linear;
+  }
+
+    .pos-form-password-strength-1 .pos-form-password-strength-meter > :first-child {
+      background-color: var(--pos-color-important);
+    }
+
+    .pos-form-password-strength-2 .pos-form-password-strength-meter > :nth-child(-n+2) {
+      background-color: var(--pos-color-warning);
+    }
+
+    .pos-form-password-strength-3 .pos-form-password-strength-meter > * {
+      background-color: var(--pos-color-confirmation);
+    }
+
+    /* strength meter description */
+    .pos-form-password-strength-description {
+      margin-block-start: .5em;
+
+      text-align: start;
+      font-size: .9em;
+    }
+
+    .pos-form-password-strength-description span {
+      display: none;
+    }
+
+    .pos-form-password-strength-1 .pos-form-password-strength-description-weak {
+      display: block;
+
+      color: var(--pos-color-important);
+    }
+
+    .pos-form-password-strength-2 .pos-form-password-strength-description-medium {
+      display: block;
+
+      color: var(--pos-color-warning);
+    }
+
+    .pos-form-password-strength-3 .pos-form-password-strength-description-strong {
+      display: block;
+
+      color: var(--pos-color-confirmation);
+    }
 
 }
