@@ -6,3 +6,5 @@ en:
     medium: Fair password
     strong: Strong password
     toggle_visibility: Toggle password visibility
+  form:
+    select: Select

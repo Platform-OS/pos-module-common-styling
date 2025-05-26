@@ -30,6 +30,14 @@
       });
     }
 
+    if(document.querySelector('.pos-form-multiselect')){
+      import('{{ 'modules/common-styling/js/pos-forms-multiselect.js' | asset_url }}').then(module => {
+        document.querySelectorAll('.pos-form-multiselect').forEach((element, index) => {
+          window.pos.modules.active[element.querySelector('input').id || `multiselect-${index}`] = new window.pos.modules.multiselect(element, {});
+        });
+      });
+    }
+
   });
 
 </script>

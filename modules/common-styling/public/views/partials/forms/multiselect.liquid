@@ -1,0 +1,80 @@
+{% comment %}
+  Multiselect input component
+
+  Arguments:
+    - list                  (array, required) an array of objects with items to show, must include 'value' and 'label'
+                            [ { value: 'item1value', label: 'Item 1 label' }, { value: 'item2value', label: 'Item 2 label' } ]
+    - selected              (array) array with selected values (the same as in the 'list')
+                            [ 'item2value' ]
+
+    - form                  (string) the <form> element that the multiselect corresponds to
+    - name                  (string) the name="" property for the multiselect checkboxes (no need for adding [] at the end)
+    - onclick               (string) one can pass alpine.js x-on:click directive to run some JS when the select changes it state
+    - onChange              (string) javascript code that will execute when the selected items list changes
+
+    - combineSelected       (bool, false) if you want to combine selected items into a single element ('2 selected' instead of displaying names)
+    - multiline             (bool, false) if you want the list to extend vertically if there are more items than fit the single line
+    - showFilter            (bool, false) allow to filter the list of options with a text input
+    - view                  (string, 'list') the type of the list to show in the dropdown, choose between: 'list' and 'tiles'
+
+    - placeholder           (string, default) translation key for the main select input placeholder
+    - placeholder_filter    (string, default) translation key for the filter input placeholder
+    - placeholder_empty     (string, default) translation key shown when the filter brings no results
+    - required              (bool, false) at least one option is required
+{% endcomment %}
+
+
+
+{% unless list %}
+  <script>
+    console.warn('Multiselect: No list of items given');
+  </script>
+{% endunless %}
+
+
+
+{% liquid
+  assign list = list | default: '[]'
+
+  if selected[0]
+    assign selected = selected | default: '[]'
+  endif
+
+  assign view = view | default: 'list'
+
+  assign placeholder = placeholder | default: 'form.select'
+  assign placeholder_filter = placeholder_filter | default: 'app.filter_list'
+  assign placeholder_empty = placeholder_empty | default: 'app.filter_empty'
+%}
+
+<div class="pos-form-multiselect">
+
+  <div class="pos-form-multiselect-input pos-form-input">
+    <span class="pos-form-multiselect-placeholder">
+      {{ 'modules/common-styling/form.select' | t }}
+      {% render 'modules/common-styling/icon', icon: 'dashDown' %}
+    </span>
+    <ul class="pos-form-multiselect-selected-list">
+      <template class="pos-form-multiselect-selected-template">
+        <li>
+          <label class="pos-form-multiselect-selected-item" for=""></label>
+        </li>
+      </template>
+    </ul>
+  </div>
+
+  <div class="pos-form-multiselect-list-container">
+    <ul class="pos-form-multiselect-list">
+      <li>
+        <input type="checkbox" name="styleguide-form-multiselect-example-1[]" value="styleguide-form-multiselect-option-1" id="styleguide-form-multiselect-option-1"> <label for="styleguide-form-multiselect-option-1">Option 1</label>
+      </li>
+      <li>
+        <input type="checkbox" name="styleguide-form-multiselect-example-1[]" value="styleguide-form-multiselect-option-2" id="styleguide-form-multiselect-option-2"> <label for="styleguide-form-multiselect-option-2">Option 2</label>
+      </li>
+      <li>
+        <input type="checkbox" name="styleguide-form-multiselect-example-1[]" value="styleguide-form-multiselect-option-3" id="styleguide-form-multiselect-option-3"> <label for="styleguide-form-multiselect-option-3">Option 3</label>
+      </li>
+    </ul>
+  </div>
+
+</div>

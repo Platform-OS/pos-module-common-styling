@@ -1056,6 +1056,71 @@ layout: 'modules/common-styling/style-guide'
 {% endraw %}{% endcapture %}
           <div class="styleguide-code">
             <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+          </div>
+        </div>
+      </div>
+
+
+      <h3 class="pos-heading-4">Select</h3>
+
+      <div class="styleguide-columns">
+        <div>
+          <dl class="styleguide-details">
+            <dt>class</dt><dd><code>pos-form-select</code></dd>
+          </dl>
+        </div>
+        <div class="styleguide-example" style="text-align: center;">
+          <select class="pos-form-select">
+            <option>Default 1</option>
+            <option>Default 2</option>
+            <option>Default 3</option>
+          </select>
+
+          <select disabled class="pos-form-select">
+            <option>Disabled 1</option>
+            <option>Disabled 2</option>
+            <option>Disabled 3</option>
+          </select>
+        </div>
+      </div>
+
+
+      <h3 class="pos-heading-4">Multiselect</h3>
+
+      <div class="styleguide-columns">
+        <div>
+          <dl class="styleguide-details">
+            <dt>name</dt><dd>Input <code>name</code> attribute</dd>
+            <dt>id</dt><dd>Input <code>id</code> attribute</dd>
+            <dt>value</dt><dd>Current input value</dd>
+            <dt>class</dt><dd>Class list added to input container</dd>
+            <dt>meter</dt><dd>If you want to show the password strength meter</dd>
+          </dl>
+          {% render 'modules/common-styling/tip', content: 'Strong passwords consists of small and capitalized letters, numbers, special signs and is at least 6 characters long. Remember to provide clear instructios for your users.' %}
+        </div>
+        <div>
+          <div class="styleguide-example" style="text-align: center;">
+            {% liquid
+              assign example_list = '' | split: ''
+
+              for i in (i..10)
+                assign value = 'value' | append: i
+                assign label = 'Label for value ' | append: i
+                assign example_item = '{}' | parse_json | hash_merge: value: value, label: label
+                assign example_list = example_list | add_to_array: example_item
+              endfor
+            %}
+            {% render 'modules/common-styling/forms/multiselect', name: 'styleguide-form-multiselect-test', id: 'styleguide-form-multiselect-test', list: example_list %}
+          </div>
+{% capture code %}{% raw %}
+{% render 'modules/common-styling/forms/multiselect',
+          name: 'styleguide-form-multiselect-test',
+          id: 'styleguide-form-multiselect-test'
+%}
+{% endraw %}{% endcapture %}
+          <div class="styleguide-code">
+            <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+          </div>
         </div>
       </div>
 

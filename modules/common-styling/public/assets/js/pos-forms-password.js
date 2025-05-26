@@ -1,16 +1,8 @@
 /*
-  handles showing the floating notifications
+  handles the password input and its strength meter
 
   usage:
-    new window.pos.modules.toast('type', 'message');
-    or
-    let notification = new window.pos.modules.toast('type', 'message')
-    notification.remove();
-
-  types:
-    error
-    success
-    info
+    new window.pos.modules.password(container, settings);
 */
 
 
