@@ -1034,11 +1034,11 @@ layout: 'modules/common-styling/style-guide'
       <div class="styleguide-columns">
         <div>
           <dl class="styleguide-details">
-            <dt>name</dt><dd>Input <code>name</code> attribute</dd>
-            <dt>id</dt><dd>Input <code>id</code> attribute</dd>
-            <dt>value</dt><dd>Current input value</dd>
-            <dt>class</dt><dd>Class list added to input container</dd>
-            <dt>meter</dt><dd>If you want to show the password strength meter</dd>
+            <dt>name</dt><dd>Input <code>name</code> attribute <i>string</i></dd>
+            <dt>id</dt><dd>Input <code>id</code> attribute <i>string</i></dd>
+            <dt>value</dt><dd>Current input value <i>string</i></dd>
+            <dt>class</dt><dd>Class list added to input container <i>string</i></dd>
+            <dt>meter</dt><dd>If you want to show the password strength meter <i>bool</i></dd>
           </dl>
           {% render 'modules/common-styling/tip', content: 'Strong passwords consists of small and capitalized letters, numbers, special signs and is at least 6 characters long. Remember to provide clear instructios for your users.' %}
         </div>
@@ -1110,7 +1110,7 @@ layout: 'modules/common-styling/style-guide'
                 assign example_list = example_list | add_to_array: example_item
               endfor
             %}
-            {% render 'modules/common-styling/forms/multiselect', name: 'styleguide-form-multiselect-test', id: 'styleguide-form-multiselect-test', list: example_list %}
+            {% render 'modules/common-styling/forms/multiselect', name: 'styleguide-form-multiselect-test', id: 'styleguide-form-multiselect-test', list: example_list, showFilter: true %}
           </div>
 {% capture code %}{% raw %}
 {% render 'modules/common-styling/forms/multiselect',

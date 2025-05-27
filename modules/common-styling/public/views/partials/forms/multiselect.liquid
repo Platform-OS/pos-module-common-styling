@@ -49,32 +49,35 @@
 
 <div class="pos-form-multiselect">
 
-  <div class="pos-form-multiselect-input pos-form-input">
+  <div class="pos-form-multiselect-input pos-form-input" tabindex="0">
     <span class="pos-form-multiselect-placeholder">
       {{ 'modules/common-styling/form.select' | t }}
-      {% render 'modules/common-styling/icon', icon: 'dashDown' %}
     </span>
     <ul class="pos-form-multiselect-selected-list">
       <template class="pos-form-multiselect-selected-template">
-        <li>
-          <label class="pos-form-multiselect-selected-item" for=""></label>
+        <li class="pos-form-multiselect-selected-item">
+          <span class="pos-form-multiselect-selected-item-label"></span>
+          <label class="pos-form-multiselect-selected-item-remove" for="">{% render 'modules/common-styling/icon', icon: 'x' %}</label>
         </li>
       </template>
     </ul>
+    {% render 'modules/common-styling/icon', icon: 'dashDown', class: 'pos-form-multiselect-input-arrow' %}
   </div>
 
   <div class="pos-form-multiselect-list-container">
+    {% if showFilter %}
+      <input type="text" placeholder="{{ 'modules/common-styling/form.type_to_filter' | t }}" class="pos-form-multiselect-filter pos-form-input">
+    {% endif %}
     <ul class="pos-form-multiselect-list">
-      <li>
-        <input type="checkbox" name="styleguide-form-multiselect-example-1[]" value="styleguide-form-multiselect-option-1" id="styleguide-form-multiselect-option-1"> <label for="styleguide-form-multiselect-option-1">Option 1</label>
-      </li>
-      <li>
-        <input type="checkbox" name="styleguide-form-multiselect-example-1[]" value="styleguide-form-multiselect-option-2" id="styleguide-form-multiselect-option-2"> <label for="styleguide-form-multiselect-option-2">Option 2</label>
-      </li>
-      <li>
-        <input type="checkbox" name="styleguide-form-multiselect-example-1[]" value="styleguide-form-multiselect-option-3" id="styleguide-form-multiselect-option-3"> <label for="styleguide-form-multiselect-option-3">Option 3</label>
-      </li>
+      {% for item in list %}
+        <li>
+          <input type="checkbox" name="{{ name }}[]" value="{{ item.value }}" id="pos-multiselect-{{ item.value }}"> <label for="pos-multiselect-{{ item.value }}">{{ item.label }}</label>
+        </li>
+      {% endfor %}
     </ul>
+    {% if showFilter %}
+      <span class="pos-form-multiselect-filter-noresults">{{ 'modules/common-styling/form.no_filter_results' | t }}</span>
+    {% endif %}
   </div>
 
 </div>

@@ -169,6 +169,19 @@ p code {
     margin-block-start: 1em;
   }
 
+  .styleguide-details i {
+    font-style: italic;
+    color: var(--pos-color-content-text-supplementary);
+  }
+
+  .styleguide-details i:before {
+    content: '(';
+  }
+
+  .styleguide-details i:after {
+    content: ')';
+  }
+
 /* table with examples */
 .styleguide-examples-table th,
 .styleguide-examples-table td {

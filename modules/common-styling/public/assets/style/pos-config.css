@@ -772,7 +772,7 @@
   /* gap between buttons of small size */
   --pos-gap-button-button-small: 8px;
   /* gap between tags */
-  --pos-gap-tag-tag: 8px 16px;
+  --pos-gap-tag-tag: .5em .5em;
   /* gap between form inputs */
   --pos-gap-input-input: 16px;
 

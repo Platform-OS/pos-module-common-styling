@@ -140,7 +140,7 @@
 
     border-color: var(--pos-color-input-active-frame);
     background-color: var(--pos-color-input-active-background);
-    box-shadow: 0 0 0 2px var(--pos-color-focused);
+    outline: 2px solid var(--pos-color-focused);
 
     color: var(--pos-color-input-focus-text);
   }
@@ -245,7 +245,7 @@
     }
 
     .pos-form-password-toggle:focus-visible {
-      outline: 3px solid var(--pos-color-focused);
+      outline: 2px solid var(--pos-color-focused);
     }
 
     .pos-form-password-toggle .pos-label {
@@ -333,38 +333,95 @@
 
   /* multiselect
   ============================================================================ */
+  .pos-form-multiselect {
+    position: relative;
+
+    user-select: none;
+  }
+
   .pos-form-multiselect-input {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: .5em;
   }
 
-  .pos-form-multiselect-placeholder {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    .pos-form-multiselect-input:focus-visible {
+      position: relative;
+      z-index: 2;
 
+      outline: 2px solid var(--pos-color-focused);
+    }
+
+  .pos-form-multiselect-placeholder {
     cursor: default;
 
     color: var(--pos-color-input-placeholder);
   }
 
-    .pos-form-multiselect-placeholder .pos-icon {
-      width: 1em;
-      height: 1em;
+    .pos-form-multiselect-input:has(li) .pos-form-multiselect-placeholder {
+      display: none;
     }
 
+  /* dropdown arrow */
+  .pos-form-multiselect-input-arrow {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+  }
+
   /* selected items */
+  .pos-form-multiselect-selected-list {
+    display: flex;
+    gap: var(--pos-gap-tag-tag);
+    overflow: hidden;
+  }
+
   .pos-form-multiselect-selected-item {
+    flex-grow: 0;
     padding-inline: .3em;
     padding-block: .2em;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    gap: .2em;
 
     background-color: var(--pos-color-page-background);
     border-radius: var(--pos-radius-tag);
+
+    white-space: nowrap;
   }
+
+    .pos-form-multiselect-selected-item-label {
+      overflow: hidden;
+      leading-trim: both;
+      text-overflow: ellipsis;
+      line-height: 1em;
+    }
+
+    .pos-form-multiselect-selected-item-remove {
+      width: 1.1em;
+      padding: .25em;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      line-height: 0;
+
+      color: var(--pos-color-content-text-supplementary);
+    }
+
+      .pos-form-multiselect-selected-item-remove:hover {
+        color: var(--pos-color-interactive-hover);
+      }
 
   /* list popup */
   .pos-form-multiselect-list-container {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    inset: 100% 0 auto 0;
+    z-index: 1;
+
     border: 1px solid var(--pos-color-input-frame);
     border-block-start-width: 0;
     background-color: var(--pos-color-input-background);
@@ -372,12 +429,47 @@
     text-align: start;
   }
 
-  .pos-form-multiselect-list-container li {
+    .pos-form-multiselect-opened .pos-form-multiselect-list-container {
+      display: flex;
+    }
+
+  .pos-form-multiselect-list {
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  .pos-form-multiselect-list li {
     min-height: calc(var(--pos-height-input) * 0.75);
     padding: var(--pos-padding-input);
     display: flex;
     align-items: center;
     gap: .3em;
+  }
+
+  /* filter input */
+  .pos-form-multiselect-filter {
+    border: 0;
+  }
+
+  .pos-form-multiselect-filter + .pos-form-multiselect-list {
+    border-block-start: 1px solid var(--pos-color-input-frame);
+  }
+
+  .pos-form-multiselect-filter-noresults {
+    display: none;
+  }
+
+    .pos-form-multiselect-filtered-empty .pos-form-multiselect-filter-noresults {
+      min-height: calc(var(--pos-height-input) * 0.75);
+      padding: var(--pos-padding-input);
+      display: block;
+
+      font-style: italic;
+      color: var(--pos-color-content-text-supplementary);
+    }
+
+  .pos-form-multiselect-list .pos-form-multiselect-list-item-filtered {
+    display: none;
   }
 
 
