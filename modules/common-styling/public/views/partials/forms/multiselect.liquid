@@ -9,10 +9,8 @@
 
     - form                  (string) the <form> element that the multiselect corresponds to
     - name                  (string) the name="" property for the multiselect checkboxes (no need for adding [] at the end)
-    - onclick               (string) one can pass alpine.js x-on:click directive to run some JS when the select changes it state
-    - onChange              (string) javascript code that will execute when the selected items list changes
 
-    - combineSelected       (bool, false) if you want to combine selected items into a single element ('2 selected' instead of displaying names)
+    - combine_selected       (bool, false) if you want to combine selected items into a single element ('2 selected' instead of displaying names)
     - multiline             (bool, false) if you want the list to extend vertically if there are more items than fit the single line
     - showFilter            (bool, false) allow to filter the list of options with a text input
     - view                  (string, 'list') the type of the list to show in the dropdown, choose between: 'list' and 'tiles'
@@ -47,19 +45,25 @@
   assign placeholder_empty = placeholder_empty | default: 'app.filter_empty'
 %}
 
-<div class="pos-form-multiselect">
+<div class="pos-form-multiselect {% if multiline %} pos-form-multiselect-multiline {% endif %} {% if combine_selected %} pos-form-multiselect-combine {% endif %}" id="{{ id }}">
 
   <div class="pos-form-multiselect-input pos-form-input" tabindex="0">
     <span class="pos-form-multiselect-placeholder">
       {{ 'modules/common-styling/form.select' | t }}
     </span>
+    {% if combine_selected %}
+      <div class="pos-form-multiselect-selected-item pos-form-multiselect-selected-item-combined">
+        <span class="pos-form-multiselect-selected-item-label"><i>0</i> selected</span>
+        <button class="pos-form-multiselect-selected-item-remove pos-form-multiselect-clear">{% render 'modules/common-styling/icon', icon: 'x' %}</button>
+      </div>
+    {% endif %}
+    <template class="pos-form-multiselect-selected-template">
+      <li class="pos-form-multiselect-selected-item">
+        <span class="pos-form-multiselect-selected-item-label"></span>
+        <label class="pos-form-multiselect-selected-item-remove" for="">{% render 'modules/common-styling/icon', icon: 'x' %}</label>
+      </li>
+    </template>
     <ul class="pos-form-multiselect-selected-list">
-      <template class="pos-form-multiselect-selected-template">
-        <li class="pos-form-multiselect-selected-item">
-          <span class="pos-form-multiselect-selected-item-label"></span>
-          <label class="pos-form-multiselect-selected-item-remove" for="">{% render 'modules/common-styling/icon', icon: 'x' %}</label>
-        </li>
-      </template>
     </ul>
     {% render 'modules/common-styling/icon', icon: 'dashDown', class: 'pos-form-multiselect-input-arrow' %}
   </div>
@@ -71,7 +75,7 @@
     <ul class="pos-form-multiselect-list">
       {% for item in list %}
         <li>
-          <input type="checkbox" name="{{ name }}[]" value="{{ item.value }}" id="pos-multiselect-{{ item.value }}" class="pos-form-checkbox"> <label for="pos-multiselect-{{ item.value }}">{{ item.label }}</label>
+          <input type="checkbox" name="{{ name }}[]" value="{{ item.value }}" {% if selected contains item.value %} checked {% endif %} id="pos-multiselect-{{ id }}-{{ item.value }}" class="pos-form-checkbox"> <label for="pos-multiselect-{{ id }}-{{ item.value }}">{{ item.label }}</label>
         </li>
       {% endfor %}
     </ul>

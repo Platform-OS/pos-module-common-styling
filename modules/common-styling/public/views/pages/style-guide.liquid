@@ -1108,9 +1108,21 @@ layout: 'modules/common-styling/style-guide'
                 assign label = 'Label for value ' | append: i
                 assign example_item = '{}' | parse_json | hash_merge: value: value, label: label
                 assign example_list = example_list | add_to_array: example_item
+                assign selected = '["value0", "value5", "value6"]' | parse_json
               endfor
             %}
-            {% render 'modules/common-styling/forms/multiselect', name: 'styleguide-form-multiselect-test', id: 'styleguide-form-multiselect-test', list: example_list, showFilter: true %}
+            <fieldset class="pos-form-fieldset">
+              {% render 'modules/common-styling/forms/multiselect', name: 'styleguide-form-multiselect-test-1', id: 'styleguide-form-multiselect-test-1', list: example_list, showFilter: true, combine_selected: true %}
+            </fieldset>
+            <fieldset class="pos-form-fieldset">
+              {% render 'modules/common-styling/forms/multiselect', name: 'styleguide-form-multiselect-test-2', id: 'styleguide-form-multiselect-test-2', list: example_list, showFilter: true %}
+            </fieldset>
+            <fieldset class="pos-form-fieldset">
+              {% render 'modules/common-styling/forms/multiselect', name: 'styleguide-form-multiselect-test-3', id: 'styleguide-form-multiselect-test-3', list: example_list, showFilter: false, multiline: true %}
+            </fieldset>
+            <fieldset class="pos-form-fieldset">
+              {% render 'modules/common-styling/forms/multiselect', name: 'styleguide-form-multiselect-test-4', id: 'styleguide-form-multiselect-test-4', list: example_list, selected: selected, showFilter: true, combine_selected: true %}
+            </fieldset>
           </div>
 {% capture code %}{% raw %}
 {% render 'modules/common-styling/forms/multiselect',

@@ -25,6 +25,8 @@ window.pos.modules.password = function(container, settings){
   module.settings.classPrefix = 'pos-form-password-strength-'
   // password input element (dom node)
   module.settings.input = container.querySelector('input[type="password"]');
+  // id of the input (string)
+  module.settings.id = module.settings.input.id;
   // current input type switched between 'password' and 'text' (string)
   module.settings.type = 'password';
   // value of the input (string)
@@ -35,12 +37,16 @@ window.pos.modules.password = function(container, settings){
   module.settings.toggle = container.querySelector('.pos-form-password-toggle');
   // class name to add when the password is shown (string)
   module.settings.showClass = 'pos-form-password-shown';
+  // if you want to enable debug mode (bool)
+  module.settings.debug = false;
 
 
 
   // purpose:		initializes the module
   // ------------------------------------------------------------------------
   module.init = () => {
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Initializing', module.settings.container);
+
     module.calculateStrength(module.settings.input.value);
     module.updateStrengthMeter(module.settings.strength);
 
@@ -53,9 +59,11 @@ window.pos.modules.password = function(container, settings){
       if(module.settings.type === 'password'){
         module.settings.type = 'text';
         module.settings.input.setAttribute('type', 'text');
+        pos.modules.debug(module.settings.debug, module.settings.id, 'Showing password in plain text');
       } else {
         module.settings.type = 'password';
         module.settings.input.setAttribute('type', 'password');
+        pos.modules.debug(module.settings.debug, module.settings.id, 'Masking password');
       }
 
       module.settings.container.classList.toggle(module.settings.showClass);
@@ -83,6 +91,8 @@ window.pos.modules.password = function(container, settings){
       module.settings.strength++;
     }
 
+    pos.modules.debug(module.settings.debug, module.settings.id, `Recalculated password strength to ${module.settings.strength}`);
+
     return module.settings.strength;
   };
 
@@ -92,7 +102,9 @@ window.pos.modules.password = function(container, settings){
   // ------------------------------------------------------------------------
   module.updateStrengthMeter = (strength) => {
     module.settings.container.classList.remove(`${module.settings.classPrefix}0`, `${module.settings.classPrefix}1`, `${module.settings.classPrefix}2`, `${module.settings.classPrefix}3`);
-    module.settings.container.classList.add(`${module.settings.classPrefix}${strength}`)
+    module.settings.container.classList.add(`${module.settings.classPrefix}${strength}`);
+
+    pos.modules.debug(module.settings.debug, module.settings.id, `Updated strength meter class to ${module.settings.classPrefix}${strength}`);
   };
 
 

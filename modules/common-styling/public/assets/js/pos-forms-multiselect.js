@@ -20,6 +20,8 @@ window.pos.modules.multiselect = function(container, settings){
   module.settings = {};
   // container for the component (dom node)
   module.settings.container = container;
+  // id of the input (string)
+  module.settings.id = container.id;
   // if the popup is opened (bool)
   module.settings.opened = false;
   // class name to add to container when the popup is opened (string)
@@ -42,14 +44,20 @@ window.pos.modules.multiselect = function(container, settings){
   module.settings.filteredClass = 'pos-form-multiselect-list-item-filtered';
   // class name to add to the container if filtering outputs no results
   module.settings.noResultsClass = 'pos-form-multiselect-filtered-empty';
-
-  module.settings.debug = true;
+  // element that counts the combined number of selected options (dom node)
+  module.settings.combinedNode = container.querySelector('.pos-form-multiselect-selected-item-combined');
+  // button that clears all of the selected options (dom node)
+  module.settings.clearNode = container.querySelector('.pos-form-multiselect-clear');
+  // if you want to enable debug mode (bool)
+  module.settings.debug = false;
 
 
 
   // purpose:		initializes the module
   // ------------------------------------------------------------------------
   module.init = () => {
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Initializing', module.settings.container);
+
     // toggle opened class on the container when clicking the input (but not the selected items)
     module.settings.toggleButton.addEventListener('keydown', event => {
       if(event.key === 'Enter' || event.key === ' '){
@@ -74,16 +82,12 @@ window.pos.modules.multiselect = function(container, settings){
 
       // update the selected items with items that are preselected from BE
       if(selected){
-        module.settings.selected.push(value);
-        if(module.settings.debug){
-          console.log('Preselected items updated', module.settings.selected);
-        }
+        module.add(value);
       }
     });
-
-    if(module.settings.debug){
-      console.log(`Available options prepared`, module.settings.availableOptions);
-    }
+    
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Available options prepared', module.settings.availableOptions);
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Preselected items updated', module.settings.selected);
 
     // react to chagnes in the options list
     module.settings.optionsNode.addEventListener('change', event => {
@@ -94,16 +98,23 @@ window.pos.modules.multiselect = function(container, settings){
           module.add(event.target.value);
         }
 
-        if(module.settings.debug){
-          console.log(`Currently selected items`, module.settings.selected);
-        }
+        pos.modules.debug(module.settings.debug, module.settings.id, 'Currently selected items', module.settings.selected);
       }
     });
 
     // react to filtering the list
-    module.settings.filterInput.addEventListener('input', event => {
-      module.filter(event.target.value);
-    });
+    if(module.settings.filterInput){
+      module.settings.filterInput?.addEventListener('input', event => {
+        module.filter(event.target.value);
+      });
+    }
+
+    // clearing all the options
+    if(module.settings.clearNode){
+      module.settings.clearNode.addEventListener('click', () => {
+        module.clear();
+      });
+    }
   };
 
 
@@ -118,9 +129,7 @@ window.pos.modules.multiselect = function(container, settings){
     document.addEventListener('click', module.reactToClickOutside);
     document.addEventListener('focusin', module.reactToFocusOutside);
 
-    if(module.settings.debug){
-      console.log(`Popup opened`);
-    }
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Popup opened');
   };
 
 
@@ -136,12 +145,12 @@ window.pos.modules.multiselect = function(container, settings){
     document.removeEventListener('focusin', module.reactToFocusOutside);
 
     // clean the filter input
-    module.settings.filterInput.value = '';
-    module.filter('');
-
-    if(module.settings.debug){
-      console.log(`Popup closed`);
+    if(module.settings.filterInput){
+      module.settings.filterInput.value = '';
+      module.filter('');
     }
+
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Popup closed');
   };
 
 
@@ -150,9 +159,7 @@ window.pos.modules.multiselect = function(container, settings){
 // ------------------------------------------------------------------------
   module.reactToEscape = event => {
     if(event.key === 'Escape'){
-      if(module.settings.debug){
-        console.log('Escape key pressed, closing the multiselect popup');
-      }
+      pos.modules.debug(module.settings.debug, module.settings.id, 'Escape key pressed, closing the multiselect popup');
 
       module.close();
       module.settings.toggleButton.focus();
@@ -165,9 +172,7 @@ window.pos.modules.multiselect = function(container, settings){
 // ------------------------------------------------------------------------  
   module.reactToClickOutside = event => {
     if(!event.composedPath().includes(module.settings.container)){
-      if(module.settings.debug){
-        console.log('Clicked outside the multiselect, closing the popup');
-      }
+      pos.modules.debug(module.settings.debug, module.settings.id, 'Clicked outside the multiselect, closing the popup');
 
       module.close();
     }
@@ -179,9 +184,7 @@ window.pos.modules.multiselect = function(container, settings){
 // ------------------------------------------------------------------------  
   module.reactToFocusOutside = event => {
     if(!container.contains(event.target)){
-      if(module.settings.debug){
-        console.log('Focused outside the multiselect, closing the popup');
-      }
+      pos.modules.debug(module.settings.debug, module.settings.id, 'Focused outside the multiselect, closing the popup');
 
       module.close();
     }
@@ -206,21 +209,17 @@ window.pos.modules.multiselect = function(container, settings){
   // ------------------------------------------------------------------------
   module.add = (value) => {
     module.settings.selected.push(value);
-
-    if(module.settings.debug){
-      console.log(`Added to selected items: ${value}`);
-    }
+    pos.modules.debug(module.settings.debug, module.settings.id, `Added to selected items: ${value}`);
 
     const item = module.settings.selectedTemplate.content.cloneNode(true);
 
-    item.querySelector('.pos-form-multiselect-selected-item-remove').htmlFor = `pos-multiselect-${value}`;
+    item.querySelector('.pos-form-multiselect-selected-item-remove').htmlFor = `pos-multiselect-${module.settings.id}-${value}`;
     item.querySelector('.pos-form-multiselect-selected-item-label').textContent = module.settings.availableOptions[value].label;
 
+    module.updateCounter();
     module.settings.selectedListNode.append(item);
 
-    if(module.settings.debug){
-      console.log(`Showed in the input: ${module.settings.availableOptions[value].label}`);
-    }
+    pos.modules.debug(module.settings.debug, module.settings.id, `Showed in the input: ${module.settings.availableOptions[value].label}`);
   };
 
 
@@ -230,16 +229,39 @@ window.pos.modules.multiselect = function(container, settings){
   // ------------------------------------------------------------------------
   module.remove = (value) => {
     module.settings.selected = module.settings.selected.filter(item => item !== value);
+    pos.modules.debug(module.settings.debug, module.settings.id, `Removed from selected items: ${value}`);
 
-    if(module.settings.debug){
-      console.log(`Removed from selected items: ${value}`);
+    module.settings.selectedListNode.querySelector(`.pos-form-multiselect-selected-item-remove[for="pos-multiselect-${module.settings.id}-${value}"]`).closest('.pos-form-multiselect-selected-item').remove();
+    pos.modules.debug(module.settings.debug, module.settings.id, `Removed from the input: ${module.settings.availableOptions[value].label}`);
+
+    module.updateCounter(); 
+  };
+
+
+  // purpose:		updates the selected number counter (used with combine_selected option)
+  // output:    updates the UI
+  // ------------------------------------------------------------------------
+  module.updateCounter = () => {
+    if(module.settings.combinedNode){
+      module.settings.combinedNode.querySelector('i').textContent = module.settings.selected.length;
     }
 
-    module.settings.selectedListNode.querySelector(`.pos-form-multiselect-selected-item-remove[for="pos-multiselect-${value}"]`).closest('.pos-form-multiselect-selected-item').remove();
+    pos.modules.debug(module.settings.debug, module.settings.id, `Updated the counter of selected items to ${module.settings.selected.length}`);
+  };
 
-    if(module.settings.debug){
-      console.log(`Showed in the input: ${value}`);
-    }
+
+  // purpose:		clears all selected items
+  // output:    updates the UI and unchecks all the checkboxes
+  // ------------------------------------------------------------------------
+  module.clear = () => {
+    module.settings.optionsNode.querySelectorAll('[type="checkbox"]').forEach(element => {
+      element.checked = false;
+    });
+    module.settings.selected = [];
+    module.settings.selectedListNode.replaceChildren();
+    module.updateCounter();
+
+    pos.modules.debug(module.settings.debug, module.settings.id, `Cleared all of the selected items`);
   };
 
 
@@ -268,9 +290,7 @@ window.pos.modules.multiselect = function(container, settings){
       module.settings.container.classList.remove(module.settings.noResultsClass);
     }
 
-    if(module.settings.debug){
-      console.log(`Filtered options by phrase: ${phrase}`);
-    }
+    pos.modules.debug(module.settings.debug, module.settings.id, `Filtered options by phrase: ${phrase}`);
   };
 
 
