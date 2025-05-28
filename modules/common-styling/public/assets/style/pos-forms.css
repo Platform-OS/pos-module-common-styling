@@ -189,6 +189,34 @@
     border-radius: var(--pos-radius-input);
   }
 
+  .pos-form select:hover,
+  .pos-form-select:hover {
+    border-color: var(--pos-color-input-hover-frame);
+    background-color: var(--pos-color-input-hover-background);
+
+    color: var(--pos-color-input-hover-text);
+  }
+
+  .pos-form select:focus-visible,
+  .pos-form-select:focus-visible {
+    position: relative;
+    z-index: 1;
+
+    border-color: var(--pos-color-input-active-frame);
+    background-color: var(--pos-color-input-active-background);
+    outline: 2px solid var(--pos-color-focused);
+
+    color: var(--pos-color-input-focus-text);
+  }
+
+  .pos-form select:disabled,
+  .pos-form-select:disabled {
+    border-color: var(--pos-color-input-disabled-frame);
+    background-color: var(--pos-color-input-disabled-background);
+
+    color: var(--pos-color-input-disabled-text);
+  }
+
 
   /* errors
   ============================================================================ */

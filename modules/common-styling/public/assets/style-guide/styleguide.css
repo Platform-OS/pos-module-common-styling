@@ -91,6 +91,11 @@ p code {
     color: var(--pos-color-interactive-hover);
   }
 
+  .styleguide-copy:focus-visible {
+    outline: 2px solid var(--pos-color-focused);
+    outline-offset: 4px;
+  }
+
   .styleguide-copy svg {
     position: absolute;
     inset: 0;

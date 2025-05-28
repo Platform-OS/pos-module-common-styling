@@ -115,8 +115,8 @@ window.pos.modules.multiselect = function(container, settings){
     module.settings.opened = true;
 
     document.addEventListener('keydown', module.reactToEscape);
-
     document.addEventListener('click', module.reactToClickOutside);
+    document.addEventListener('focusin', module.reactToFocusOutside);
 
     if(module.settings.debug){
       console.log(`Popup opened`);
@@ -133,6 +133,11 @@ window.pos.modules.multiselect = function(container, settings){
 
     document.removeEventListener('keydown', module.reactToEscape);
     document.removeEventListener('click', module.reactToClickOutside);
+    document.removeEventListener('focusin', module.reactToFocusOutside);
+
+    // clean the filter input
+    module.settings.filterInput.value = '';
+    module.filter('');
 
     if(module.settings.debug){
       console.log(`Popup closed`);
@@ -150,6 +155,7 @@ window.pos.modules.multiselect = function(container, settings){
       }
 
       module.close();
+      module.settings.toggleButton.focus();
     }
   };
 
@@ -161,6 +167,20 @@ window.pos.modules.multiselect = function(container, settings){
     if(!event.composedPath().includes(module.settings.container)){
       if(module.settings.debug){
         console.log('Clicked outside the multiselect, closing the popup');
+      }
+
+      module.close();
+    }
+  };
+
+
+// purpose:		event handler that closes the popup when clicked outside of it
+// arguments: event object (dom event)
+// ------------------------------------------------------------------------  
+  module.reactToFocusOutside = event => {
+    if(!container.contains(event.target)){
+      if(module.settings.debug){
+        console.log('Focused outside the multiselect, closing the popup');
       }
 
       module.close();

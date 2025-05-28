@@ -71,7 +71,7 @@
     <ul class="pos-form-multiselect-list">
       {% for item in list %}
         <li>
-          <input type="checkbox" name="{{ name }}[]" value="{{ item.value }}" id="pos-multiselect-{{ item.value }}"> <label for="pos-multiselect-{{ item.value }}">{{ item.label }}</label>
+          <input type="checkbox" name="{{ name }}[]" value="{{ item.value }}" id="pos-multiselect-{{ item.value }}" class="pos-form-checkbox"> <label for="pos-multiselect-{{ item.value }}">{{ item.label }}</label>
         </li>
       {% endfor %}
     </ul>
