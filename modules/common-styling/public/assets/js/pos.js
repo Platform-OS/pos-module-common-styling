@@ -16,7 +16,7 @@ if(typeof window.pos !== 'object'){
   // translations that needs to be used in JS can be outputted here from liquid
   window.pos.translations = {};
   // enables debug mode on all the modules
-  window.pos.debug = true;
+  window.pos.debug = false;
 }
 
 
