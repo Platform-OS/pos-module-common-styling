@@ -2,6 +2,7 @@
   handles the multiselect input
 
   usage:
+    new pos.modules.multiselect(container);
 */
 
 
@@ -214,6 +215,7 @@ window.pos.modules.multiselect = function(container, settings){
     const item = module.settings.selectedTemplate.content.cloneNode(true);
 
     item.querySelector('.pos-form-multiselect-selected-item-remove').htmlFor = `pos-multiselect-${module.settings.id}-${value}`;
+    item.querySelector('.pos-form-multiselect-selected-item-remove .pos-button-label').textContent += ` '${module.settings.availableOptions[value].label}'`;
     item.querySelector('.pos-form-multiselect-selected-item-label').textContent = module.settings.availableOptions[value].label;
 
     module.updateCounter();

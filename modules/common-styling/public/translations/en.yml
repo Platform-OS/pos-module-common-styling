@@ -10,3 +10,5 @@ en:
     select: Select
     type_to_filter: Type to filter the list
     no_filter_results: Nothing matches your search
+    clear_selection: Clear selection
+    deselect: Deselect

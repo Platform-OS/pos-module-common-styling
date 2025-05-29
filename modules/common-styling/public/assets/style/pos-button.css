@@ -92,7 +92,8 @@
   }
 
   /* label for screen readers */
-  .pos-button .pos-label {
+  .pos-button .pos-label,
+  .pos-button-label {
       position: absolute;
       left: -200vw;
       top: -100vh;

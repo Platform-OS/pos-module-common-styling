@@ -470,6 +470,10 @@
         color: var(--pos-color-interactive-hover);
       }
 
+      .pos-form-multiselect-selected-item-remove:focus-visible {
+        outline: 2px solid var(--pos-color-focused);
+      }
+
     /* multiline version */
     .pos-form-multiselect-multiline .pos-form-multiselect-input {
       height: auto;

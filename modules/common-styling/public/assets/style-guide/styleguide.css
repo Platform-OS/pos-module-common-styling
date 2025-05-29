@@ -96,6 +96,11 @@ p code {
     outline-offset: 4px;
   }
 
+  .styleguide-copy .styleguide-button-label {
+    position: absolute;
+    inset-inline-start: -100vw;
+  }
+
   .styleguide-copy svg {
     position: absolute;
     inset: 0;
@@ -158,12 +163,13 @@ p code {
     padding: var(--pos-padding-card);
 
     border-radius: var(--pos-radius-panel);
-    background-color: var(--pos-color-highlight-background)
+    background-color: var(--pos-color-highlight-background);
+    
+    color: var(--pos-color-light-highlight-text);
   }
 
   .styleguide-details dt {
     font-weight: 200;
-    color: var(--pos-color-content-text-supplementary);
   }
 
   .styleguide-details dt:after {
@@ -176,7 +182,6 @@ p code {
 
   .styleguide-details i {
     font-style: italic;
-    color: var(--pos-color-content-text-supplementary);
   }
 
   .styleguide-details i:before {

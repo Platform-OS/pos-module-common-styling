@@ -54,13 +54,19 @@
     {% if combine_selected %}
       <div class="pos-form-multiselect-selected-item pos-form-multiselect-selected-item-combined">
         <span class="pos-form-multiselect-selected-item-label"><i>0</i> selected</span>
-        <button class="pos-form-multiselect-selected-item-remove pos-form-multiselect-clear">{% render 'modules/common-styling/icon', icon: 'x' %}</button>
+        <button class="pos-form-multiselect-selected-item-remove pos-form-multiselect-clear">
+          <span class="pos-button-label">{{ 'modules/common-styling/form.clear_selection' | t }}</span>
+          {% render 'modules/common-styling/icon', icon: 'x' %}
+        </button>
       </div>
     {% endif %}
     <template class="pos-form-multiselect-selected-template">
       <li class="pos-form-multiselect-selected-item">
         <span class="pos-form-multiselect-selected-item-label"></span>
-        <label class="pos-form-multiselect-selected-item-remove" for="">{% render 'modules/common-styling/icon', icon: 'x' %}</label>
+        <label class="pos-form-multiselect-selected-item-remove" for="">
+          <span class="pos-button-label">{{ 'modules/common-styling/form.deselect' | t }}</span>
+          {% render 'modules/common-styling/icon', icon: 'x' %}
+        </label>
       </li>
     </template>
     <ul class="pos-form-multiselect-selected-list">
