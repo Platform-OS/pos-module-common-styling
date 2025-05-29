@@ -1090,16 +1090,30 @@ layout: 'modules/common-styling/style-guide'
       <div class="styleguide-columns">
         <div>
           <dl class="styleguide-details">
-            <dt>name</dt><dd>Input <code>name</code> attribute</dd>
-            <dt>id</dt><dd>Input <code>id</code> attribute</dd>
-            <dt>value</dt><dd>Current input value</dd>
-            <dt>class</dt><dd>Class list added to input container</dd>
-            <dt>meter</dt><dd>If you want to show the password strength meter</dd>
+            <dt>id</dt><dd>Unique ID for the input <i>string</i></dd>
+            <dt>list</dt>
+            <dd>
+              an array of objects with items to show, must include 'value' and 'label' <i>array</i><br>
+              <code>[ { value: 'item1value', label: 'Item 1 label' }, { value: 'item2value', label: 'Item 2 label' } ]</code>
+            </dd>
+            <dt>selected</dt>
+            <dd>
+              array with selected values (the same as in the 'list') <i>array</i><br>
+              <code>[ 'item2value' ]</code>
+            </dd>
+            <dt>form</dt><dd>the <code>&lt;form&gt;</code> element that the multiselect corresponds to <i>string</i></dd>
+            <dt>name</dt><dd>the <code>name=""</code> property for the multiselect checkboxes <i>string</i></dd>
+            <dt>required</dt><dd>at least one option is required <i>bool</i></dd>
+            <dt>combine_selected</dt><dd>if you want to combine selected items into a single element ('2 selected' instead of displaying names) <i>bool</i></dd>
+            <dt>multiline</dt><dd>if you want the list to extend vertically if there are more items than fit the single line <i>bool</i></dd>
+            <dt>showFilter</dt><dd>allow to filter the list of options with a text input <i>bool</i></dd>
+            <dt>placeholder</dt><dd>translation key for the main select input placeholder <i>string</i></dd>
+            <dt>placeholder_filter</dt><dd>translation key for the filter input placeholder <i>string</i></dd>
+            <dt>placeholder_empty</dt><dd>translation key shown when the filter brings no results <i>string</i></dd>
           </dl>
-          {% render 'modules/common-styling/tip', content: 'Strong passwords consists of small and capitalized letters, numbers, special signs and is at least 6 characters long. Remember to provide clear instructios for your users.' %}
         </div>
         <div>
-          <div class="styleguide-example" style="text-align: center;">
+          <div class="styleguide-example" style="display: flex; flex-direction: column; gap: var(--pos-gap-text-text);">
             {% liquid
               assign example_list = '' | split: ''
 
@@ -1111,18 +1125,10 @@ layout: 'modules/common-styling/style-guide'
                 assign selected = '["value0", "value5", "value6"]' | parse_json
               endfor
             %}
-            <fieldset class="pos-form-fieldset">
-              {% render 'modules/common-styling/forms/multiselect', name: 'styleguide-form-multiselect-test-1', id: 'styleguide-form-multiselect-test-1', list: example_list, showFilter: true, combine_selected: true %}
-            </fieldset>
-            <fieldset class="pos-form-fieldset">
-              {% render 'modules/common-styling/forms/multiselect', name: 'styleguide-form-multiselect-test-2', id: 'styleguide-form-multiselect-test-2', list: example_list, showFilter: true %}
-            </fieldset>
-            <fieldset class="pos-form-fieldset">
-              {% render 'modules/common-styling/forms/multiselect', name: 'styleguide-form-multiselect-test-3', id: 'styleguide-form-multiselect-test-3', list: example_list, showFilter: false, multiline: true %}
-            </fieldset>
-            <fieldset class="pos-form-fieldset">
-              {% render 'modules/common-styling/forms/multiselect', name: 'styleguide-form-multiselect-test-4', id: 'styleguide-form-multiselect-test-4', list: example_list, selected: selected, showFilter: true, combine_selected: true %}
-            </fieldset>
+            {% render 'modules/common-styling/forms/multiselect', name: 'styleguide-form-multiselect-test-1', id: 'styleguide-form-multiselect-test-1', list: example_list, showFilter: true, combine_selected: true %}
+            {% render 'modules/common-styling/forms/multiselect', name: 'styleguide-form-multiselect-test-2', id: 'styleguide-form-multiselect-test-2', list: example_list, showFilter: true %}
+            {% render 'modules/common-styling/forms/multiselect', name: 'styleguide-form-multiselect-test-3', id: 'styleguide-form-multiselect-test-3', list: example_list, showFilter: false, multiline: true %}
+            {% render 'modules/common-styling/forms/multiselect', name: 'styleguide-form-multiselect-test-4', id: 'styleguide-form-multiselect-test-4', list: example_list, selected: selected, showFilter: true, combine_selected: true %}
           </div>
 {% capture code %}{% raw %}
 {% render 'modules/common-styling/forms/multiselect',

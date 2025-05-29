@@ -51,6 +51,8 @@ window.pos.modules.multiselect = function(container, settings){
   module.settings.clearNode = container.querySelector('.pos-form-multiselect-clear');
   // if you want to enable debug mode (bool)
   module.settings.debug = false;
+  // if at least one option is required to be selected (bool)
+  module.settings.required = container.hasAttribute('required');
 
 
 
@@ -62,8 +64,14 @@ window.pos.modules.multiselect = function(container, settings){
     // toggle opened class on the container when clicking the input (but not the selected items)
     module.settings.toggleButton.addEventListener('keydown', event => {
       if(event.key === 'Enter' || event.key === ' '){
-        event.preventDefault();
-        module.toggle();
+        if(event.target.matches('.pos-form-multiselect-clear')){
+          event.preventDefault();
+          module.clear();
+          module.settings.toggleButton.focus();
+        } else {
+          event.preventDefault();
+          module.toggle();
+        }
       }
     });
 
@@ -114,6 +122,23 @@ window.pos.modules.multiselect = function(container, settings){
     if(module.settings.clearNode){
       module.settings.clearNode.addEventListener('click', () => {
         module.clear();
+      });
+    }
+
+    // report validity
+    if(module.settings.optionsNode.querySelector('[type="checkbox"]').form && module.settings.required){
+      module.settings.optionsNode.querySelector('[type="checkbox"]').form.addEventListener('submit', event => {
+        const options = module.settings.optionsNode.querySelectorAll('[type="checkbox"]');
+
+        if(module.settings.optionsNode.querySelectorAll(':checked').length === 0){
+          event.preventDefault();
+          module.open();
+          module.settings.toggleButton.setAttribute('aria-invalid', true);
+          options[0].setCustomValidity('At least one option must be choosen');
+          options[0].reportValidity();
+        } else {
+          module.settings.toggleButton.removeAttribute('aria-invalid');
+        }
       });
     }
   };
@@ -293,6 +318,16 @@ window.pos.modules.multiselect = function(container, settings){
     }
 
     pos.modules.debug(module.settings.debug, module.settings.id, `Filtered options by phrase: ${phrase}`);
+  };
+
+
+  // purpose:		checks if at least one option is selected when required
+  // output:    triggers default browser form validation
+  // ------------------------------------------------------------------------
+  module.validate = () => {
+    const checkboxes = module.settings.optionsNode.querySelectorAll('[type="checkbox"]');
+
+    checkboxes.setCustomValidity(checkboxes.querySelector('input:checked').length === 0 ? 'Choose one' : '');
   };
 
 

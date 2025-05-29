@@ -384,6 +384,8 @@
   /* multiselect
   ============================================================================ */
   .pos-form-multiselect {
+    min-width: 300px;
+    display: inline-block;
     position: relative;
 
     user-select: none;
