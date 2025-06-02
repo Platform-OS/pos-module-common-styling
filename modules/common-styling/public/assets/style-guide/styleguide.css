@@ -5,7 +5,7 @@
   margin: 0 auto;
   padding: var(--pos-padding-page);
   display: grid;
-  grid-template-columns: min-content 1fr;
+  grid-template-columns: min-content minmax(600px, 1fr);
   gap: calc(var(--pos-padding-page) * 5);
 }
 
@@ -46,7 +46,6 @@ p code {
 
 .styleguide-code {
   margin-block: var(--pos-gap-text-text);
-  padding: var(--pos-padding-card);
   position: relative;
   
   background-color: var(--pos-color-content-background);
@@ -56,6 +55,13 @@ p code {
 
   .styleguide-code:last-child {
     margin-block-end: 0;
+  }
+
+  .styleguide-code pre {
+    padding: var(--pos-padding-card);
+    overflow-x: auto;
+
+    white-space: pre;
   }
 
 /* rendered output examples */
@@ -79,8 +85,8 @@ p code {
   width: 16px;
   height: 16px;
   position: absolute;
-  inset-block-start: calc(var(--pos-padding-card) / 3);
-  inset-inline-end: calc(var(--pos-padding-card) / 3);
+  inset-block-start: calc(var(--pos-padding-card) / 4);
+  inset-inline-end: calc(var(--pos-padding-card) / 4);
 
   cursor: pointer;
 
@@ -365,17 +371,10 @@ p code {
   
 /* headings and text styles
 ============================================================================ */
-.styleguide-heading {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: start;
-  gap: var(--pos-gap-section-section);
-}
-
-.styleguide-heading .pos-heading-1,
-.styleguide-heading .pos-heading-2,
-.styleguide-heading .pos-heading-3,
-.styleguide-heading .pos-heading-4 {
+#headings .pos-heading-1,
+#headings .pos-heading-2,
+#headings .pos-heading-3,
+#headings .pos-heading-4 {
   margin: 0;
 }
 

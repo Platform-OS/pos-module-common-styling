@@ -99,7 +99,7 @@ posStyleGuide.colors = () => {
   // ------------------------------------------------------------------------
   module.showHeadingsDetails = () => {
     document.querySelectorAll('#headings .styleguide-details, #text-styles .styleguide-details').forEach(element => {
-      const headingComputedStyle = window.getComputedStyle(element.closest('.styleguide-heading').querySelector('.styleguide-example'));
+      const headingComputedStyle = window.getComputedStyle(element.closest('.styleguide-columns').querySelector('.styleguide-example'));
       
       element.querySelector('.styleguide-typography-content-family').textContent = headingComputedStyle.getPropertyValue('font-family');
       element.querySelector('.styleguide-typography-content-color').innerHTML = `<span class="styleguide-typography-swatch"></span><span class="styleguide-typography-color">${headingComputedStyle.getPropertyValue('color')}</span> <span class="styleguide-typography-color">${rgbaToHex(headingComputedStyle.getPropertyValue('color'))}</span>`;

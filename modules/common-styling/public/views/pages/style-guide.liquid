@@ -509,7 +509,7 @@ layout: 'modules/common-styling/style-guide'
       <h2 class="pos-heading-2">Headings</h2>
       
       <h3 class="pos-heading-4">Heading 1</h3>
-      <div class="styleguide-heading">
+      <div class="styleguide-columns">
         <dl class="styleguide-details">
           <dt>Class</dt><dd><code>pos-heading-1</code></dd>
           <dt>Font family</dt><dd class="styleguide-typography-content-family"></dd>
@@ -532,7 +532,7 @@ layout: 'modules/common-styling/style-guide'
       </div>
       
       <h3 class="pos-heading-4">Heading 2</h3>
-      <div class="styleguide-heading">
+      <div class="styleguide-columns">
         <dl class="styleguide-details">
           <dt>Class</dt><dd><code>pos-heading-2</code></dd>
           <dt>Font family</dt><dd class="styleguide-typography-content-family"></dd>
@@ -555,7 +555,7 @@ layout: 'modules/common-styling/style-guide'
       </div>
 
       <h3 class="pos-heading-4">Heading 3</h3>
-      <div class="styleguide-heading">
+      <div class="styleguide-columns">
         <dl class="styleguide-details">
           <dt>Class</dt><dd><code>pos-heading-3</code></dd>
           <dt>Font family</dt><dd class="styleguide-typography-content-family"></dd>
@@ -578,7 +578,7 @@ layout: 'modules/common-styling/style-guide'
       </div>
 
       <h3 class="pos-heading-4">Heading 4</h3>
-      <div class="styleguide-heading">
+      <div class="styleguide-columns">
         <dl class="styleguide-details">
           <dt>Class</dt><dd><code>pos-heading-4</code></dd>
           <dt>Font family</dt><dd class="styleguide-typography-content-family"></dd>
@@ -607,7 +607,7 @@ layout: 'modules/common-styling/style-guide'
     <article id="text-styles">
       <h2 class="pos-heading-2">Text styles</h2>
       <h3 class="pos-heading-4">Sidenote</h3>
-      <div class="styleguide-heading">
+      <div class="styleguide-columns">
         <dl class="styleguide-details">
           <dt>Class</dt><dd><code>pos-supplementary</code></dd>
           <dt>Font family</dt><dd class="styleguide-typography-content-family"></dd>
@@ -630,7 +630,7 @@ layout: 'modules/common-styling/style-guide'
       </div>
 
       <h3 class="pos-heading-4">Tip</h3>
-      <div class="styleguide-heading">
+      <div class="styleguide-columns">
         <dl class="styleguide-details">
           <dt>Class</dt><dd><code>pos-tip</code></dd>
           <dt>Font family</dt><dd class="styleguide-typography-content-family"></dd>
@@ -824,15 +824,18 @@ layout: 'modules/common-styling/style-guide'
 <form action="" class="pos-form pos-form-simple">
   <fieldset>
     <label for="styleguide-form-example-a">Email</label>
-    <input type="email" id="styleguide-form-example-a" placeholder="Email address" required>
+    <input type="email" id="styleguide-form-example-a" placeholder="Email address" required {% render 'modules/common-styling/forms/error_input_handler', name: 'styleguide-form-example-a', errors: errors['styleguide-form-example-a'] %}>
+    {% render 'modules/common-styling/forms/error_list', name: 'styleguide-example-error', errors: errors['styleguide-form-example-a'] %}
   </fieldset>
   <fieldset>
     <label for="styleguide-form-example-b">Password</label>
-    <input type="password" id="styleguide-form-example-b" placeholder="••••••••" required>
+    <input type="password" id="styleguide-form-example-b" placeholder="••••••••" required {% render 'modules/common-styling/forms/error_input_handler', name: 'styleguide-form-example-b', errors: errors['styleguide-form-example-b'] %}>
+    {% render 'modules/common-styling/forms/error_list', name: 'styleguide-example-error', errors: errors['styleguide-form-example-b'] %}
   </fieldset>
   <fieldset>
-    <input type="checkbox" id="styleguide-form-example-c" required>
+    <input type="checkbox" id="styleguide-form-example-c" required {% render 'modules/common-styling/forms/error_input_handler', name: 'styleguide-form-example-c', errors: errors['styleguide-form-example-c'] %}>
     <label for="styleguide-form-example-c">An agreement</label>
+    {% render 'modules/common-styling/forms/error_list', name: 'styleguide-example-error', errors: errors['styleguide-form-example-c'] %}
   </fieldset>
 </form>
 {% endraw %}{% endcapture %}
@@ -1139,6 +1142,28 @@ layout: 'modules/common-styling/style-guide'
           <div class="styleguide-code">
             <pre><code>{{ code | lstrip | rstrip }}</code></pre>
           </div>
+        </div>
+      </div>
+
+
+      <h3 class="pos-heading-4">Error handling</h3>
+
+        <p>There are two partials that can be helpful when dealing with forms validation. One can be added to the input itself to handle usability code and the other can output the error message.</p>
+
+        {% liquid
+          assign errors = '{ "styleguide-example-error": ["This is a field with two errors", "This is the second error"] }' | parse_json
+        %}
+        <div class="styleguide-example">
+          <input type="text" name="styleguide-example-error" id="styleguide-example-error" class="pos-form-input" {% render 'modules/common-styling/forms/error_input_handler', name: 'styleguide-example-error', errors: errors['styleguide-example-error'] %}>
+          {% render 'modules/common-styling/forms/error_list', name: 'styleguide-example-error', errors: errors['styleguide-example-error'] %}
+{% capture code %}{% raw %}
+<input type="text" name="styleguide-example-error" id="styleguide-example-error" class="pos-form-input" {% render 'modules/common-styling/forms/error_input_handler', name: 'styleguide-example-error', errors: errors['styleguide-example-error'] %}>
+
+{% render 'modules/common-styling/forms/error_list', name: 'styleguide-example-error', errors: errors['styleguide-example-error'] %}
+{% endraw %}{% endcapture %}
+        </div>
+        <div class="styleguide-code">
+          <pre><code>{{ code | lstrip | rstrip }}</code></pre>
         </div>
       </div>
 
