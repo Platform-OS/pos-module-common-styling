@@ -48,7 +48,7 @@
 
 <div {% if required %} required {% endif %} class="pos-form-multiselect {% if multiline %} pos-form-multiselect-multiline {% endif %} {% if combine_selected %} pos-form-multiselect-combine {% endif %}" id="{{ id }}">
 
-  <div class="pos-form-multiselect-input pos-form-input" tabindex="0">
+  <div aria-expanded="false" aria-controls="{{ id }}-list-container" class="pos-form-multiselect-input pos-form-input" tabindex="0">
     <span class="pos-form-multiselect-placeholder">
       {{ placeholder | t }}
     </span>
@@ -75,7 +75,7 @@
     {% render 'modules/common-styling/icon', icon: 'dashDown', class: 'pos-form-multiselect-input-arrow' %}
   </div>
 
-  <div class="pos-form-multiselect-list-container">
+  <div class="pos-form-multiselect-list-container" id="{{ id }}-list-container">
     {% if showFilter %}
       <input type="text" placeholder="{{ placeholder_filter | t }}" class="pos-form-multiselect-filter pos-form-input">
     {% endif %}

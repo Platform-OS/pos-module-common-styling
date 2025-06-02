@@ -150,6 +150,7 @@ window.pos.modules.multiselect = function(container, settings){
   module.open = () => {
     module.settings.container.classList.add(module.settings.openedClass);
     module.settings.opened = true;
+    module.settings.toggleButton.setAttribute('aria-expanded', true);
 
     document.addEventListener('keydown', module.reactToEscape);
     document.addEventListener('click', module.reactToClickOutside);
@@ -165,6 +166,7 @@ window.pos.modules.multiselect = function(container, settings){
   module.close = () => {
     module.settings.container.classList.remove(module.settings.openedClass);
     module.settings.opened = false;
+    module.settings.toggleButton.setAttribute('aria-expanded', false);
 
     document.removeEventListener('keydown', module.reactToEscape);
     document.removeEventListener('click', module.reactToClickOutside);
