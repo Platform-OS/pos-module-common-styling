@@ -38,6 +38,8 @@ posStyleGuide.colors = () => {
   module.settings.container = document.querySelector('#colors');
   // the list with the properties color (dom nodes)
   module.settings.propertiesList = module.settings.container.querySelectorAll('.styleguide-color-container');
+  // icons (dom nodes)
+  module.settings.iconNodes = document.querySelectorAll('#icons svg');
 
 
   // purpose:   initializes module
@@ -47,6 +49,9 @@ posStyleGuide.colors = () => {
     module.showFontDetails();
     module.showHeadingsDetails();
     module.copyCode();
+    module.wrapIcons();
+    module.showIconNames();
+    module.copyIcon();
   };
 
 
@@ -138,9 +143,56 @@ posStyleGuide.colors = () => {
         });
       });
     });
+  }
 
-    
+
+  // purpose:		wrap icons in list elements
+  // ------------------------------------------------------------------------
+  module.wrapIcons = () => {
+
+    module.settings.iconNodes.forEach(item => {
+      let wrapper = document.createElement('li');
+
+      wrapper.classList.add('flex', 'flex-col', 'items-center', 'cursor-pointer');
+
+      item.parentNode.insertBefore(wrapper, item);
+      wrapper.appendChild(item);
+    });
+
   };
+
+
+  // purpose:		show icon names
+  // ------------------------------------------------------------------------
+  module.showIconNames = () => {
+    
+    module.settings.iconNodes.forEach(item => {
+      item.insertAdjacentHTML('afterend', item.getAttribute('data-icon'));
+    });
+
+  };
+
+
+  // purpose:   copies the icon render function to clipboard on click
+  // ------------------------------------------------------------------------
+  module.copyIcon = () => {
+    module.settings.iconNodes.forEach(icon => {
+      icon.parentElement.addEventListener('click', () => {
+        let name = icon.getAttribute('data-icon');
+
+        navigator.clipboard.writeText(`{% render 'modules/common-styling/icon', icon: '${name}' %}`).then(() => {
+          icon.parentElement.classList.add('styleguide-icon-copied');
+
+          setTimeout(() => {
+            icon.parentElement.classList.remove('styleguide-icon-copied');
+          }, 800);
+        }, () => {
+          new Error('Could not copy the code to clipboard');
+        });
+      });
+    });
+  };
+
 
 
   module.init();

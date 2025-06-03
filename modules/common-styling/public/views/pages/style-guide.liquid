@@ -8,6 +8,7 @@ layout: 'modules/common-styling/style-guide'
     <ul>
       <li><a href="#initialization">Initialization</a></li>
       <li><a href="#colors">Colors</a></li>
+      <li><a href="#icons">Icons</a></li>
       <li><a href="#fonts">Typography</a></li>
       <li><a href="#interactive-elements">Interactive elements</a></li>
       <li><a href="#buttons">Buttons</a></li>
@@ -435,6 +436,20 @@ layout: 'modules/common-styling/style-guide'
 
     </article>
 
+
+    <!---------------------------------------------------------------------------------------- colors -->
+    <article id="icons">
+      <h2 class="pos-heading-2">Icons</h2>
+{% capture code %}{% raw %}
+{% render 'modules/common-styling/icon', icon: 'dashDown' %}
+{% endraw %}{% endcapture %}
+      <div class="styleguide-code">
+        <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+      </div>
+      <ul>
+        {% render 'modules/common-styling/icon', icon: 'all' %}
+      </ul>
+    </article>
 
 
     <!---------------------------------------------------------------------------------------- fonts -->
@@ -1168,6 +1183,46 @@ layout: 'modules/common-styling/style-guide'
       </div>
 
     </article>
+
+
+
+    <!---------------------------------------------------------------------------------------- boxes -->
+    <article id="boxes">
+      <h2 class="pos-heading-2">Boxes</h2>
+    </article>
+
+    <div class="styleguide-columns">
+      <div>
+        <div class="styleguide-example">
+          <div class="pos-card">The quick brown fox jumps over the lazy dog</div>
+        </div>
+{% capture code %}{% raw %}
+<div class="pos-card"></div>
+{% endraw %}{% endcapture %}
+        <div class="styleguide-code">
+          <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+        </div>
+        <dl class="styleguide-details">
+          <dt>class</dt><dd><code>pos-card</code></dd>
+          <dt>props</dt><dd><code>--pos-padding-card</code>, <code>--pos-radius-card</code>, <code>--pos-color-content-background</code></dd>
+        </dl>
+      </div>
+      <div>
+        <div class="styleguide-example">
+          <div class="pos-card pos-card-highlighted">The quick brown fox jumps over the lazy dog</div>
+        </div>
+{% capture code %}{% raw %}
+<div class="pos-card pos-card-highlighted"></div>
+{% endraw %}{% endcapture %}
+        <div class="styleguide-code">
+          <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+        </div>
+        <dl class="styleguide-details">
+          <dt>class</dt><dd><code>pos-card pos-card-highlighted</code></dd>
+          <dt>props</dt><dd><code>--pos-padding-card</code>, <code>--pos-radius-card</code>, <code>--pos-color-highlight-background</code></dd>
+        </dl>
+      </div>
+    </div>
 
   </section>
 

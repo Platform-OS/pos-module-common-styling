@@ -198,6 +198,10 @@ p code {
     content: ')';
   }
 
+  .styleguide-code + .styleguide-details {
+    margin-block-start: var(--pos-gap-section-elements);
+  }
+
 /* table with examples */
 .styleguide-examples-table th,
 .styleguide-examples-table td {
@@ -328,6 +332,48 @@ p code {
   font-size: .9rem;
   font-family: monospace;
   color: var(--pos-color-content-text-supplementary)
+}
+
+
+
+/* common elements
+============================================================================ */
+#icons ul {
+  display: flex;
+  gap: .8em;
+  flex-wrap: wrap;
+
+  font-size: .9em;
+  color: var(--pos-color-content-text-supplementary);
+}
+
+#icons li {
+  display: flex;
+  flex-direction: column;
+  gap: .3em;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+#icons svg {
+  width: 64px;
+  height: 64px;
+  padding: 20px;
+
+  background-color: var(--pos-color-content-background);
+  border-radius: var(--pos-radius-panel);
+
+  color: var(--pos-color-content-text);
+}
+
+#icons li:hover {
+  color: var(--pos-color-interactive-hover);
+}
+
+#icons .styleguide-icon-copied,
+#icons .styleguide-icon-copied svg {
+  color: var(--pos-color-confirmation);
 }
 
 
