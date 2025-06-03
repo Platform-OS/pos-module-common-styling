@@ -356,7 +356,7 @@ p code {
   cursor: pointer;
 }
 
-#icons svg {
+#icons ul svg {
   width: 64px;
   height: 64px;
   padding: 20px;
