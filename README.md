@@ -118,7 +118,7 @@ To enable debug mode you can set the `pos.debug` to `true` in the JS Console. Th
 When building your own module please use the following method to log debug data:
 
 ```
-pos.modules.debug(module.settings.debug, module.settings.id, 'Popup opened');
+pos.modules.debug([true || module.settings.debug], [module id (string)], [message (string)]);
 ```
 
 

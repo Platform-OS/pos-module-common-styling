@@ -56,17 +56,7 @@ window.pos.modules.password = function(container, settings){
     });
 
     module.settings.toggle.addEventListener('click', event => {
-      if(module.settings.type === 'password'){
-        module.settings.type = 'text';
-        module.settings.input.setAttribute('type', 'text');
-        pos.modules.debug(module.settings.debug, module.settings.id, 'Showing password in plain text');
-      } else {
-        module.settings.type = 'password';
-        module.settings.input.setAttribute('type', 'password');
-        pos.modules.debug(module.settings.debug, module.settings.id, 'Masking password');
-      }
-
-      module.settings.container.classList.toggle(module.settings.showClass);
+      this.toggleVisibility();
     });
   };
 
@@ -105,6 +95,23 @@ window.pos.modules.password = function(container, settings){
     module.settings.container.classList.add(`${module.settings.classPrefix}${strength}`);
 
     pos.modules.debug(module.settings.debug, module.settings.id, `Updated strength meter class to ${module.settings.classPrefix}${strength}`);
+  };
+
+
+  // purpose:		toggles password visibility between masked and plain text
+  // ------------------------------------------------------------------------
+  module.toggleVisibility = () => {
+      if(module.settings.type === 'password'){
+        module.settings.type = 'text';
+        module.settings.input.setAttribute('type', 'text');
+        pos.modules.debug(module.settings.debug, module.settings.id, 'Showing password in plain text');
+      } else {
+        module.settings.type = 'password';
+        module.settings.input.setAttribute('type', 'password');
+        pos.modules.debug(module.settings.debug, module.settings.id, 'Masking password');
+      }
+
+      module.settings.container.classList.toggle(module.settings.showClass);
   };
 
 
