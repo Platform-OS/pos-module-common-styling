@@ -79,8 +79,8 @@ The modules should not pollute the global JavaScript namespace. For this purpose
 There are several basic objects used across the modules that could be extended for consistency. Those are shared across many modules, so **remember not to overwrite them in your code** and extend the objects instead.
 
 | window.pos | Global namespace for all modules-related data. |
-| window.pos.modules | If your module provides a public API then you should attach it to this object namespacing your module accordingly `window.pos.module.myModule = {}` |
-| window.pos.modules.active | If your module creates a separate class instance and it provides a public API then it can be attached to this object. |
+| window.pos.modules | If your module provides a public API or a constructor then you should attach it to this object namespacing your module accordingly `window.pos.module.myModule = {}` |
+| window.pos.modules.active | If your module creates a separate instance and it provides a public API then it can be attached to this object. |
 | window.pos.profile | Stores all the profile-related data for currently logged in user. |
 | window.pos.translations | If your JavaScript code needs access to any translations you should append them to this object. |
 
@@ -109,6 +109,19 @@ As an example starting point for defining JavaScript for your module you can use
   }
 </script>
 ```
+
+
+## Debuging JavaScript modules
+
+To enable debug mode you can set the `pos.debug` to `true` in the JS Console. This will log events from the default provided modules.
+
+When building your own module please use the following method to log debug data:
+
+```
+pos.modules.debug(module.settings.debug, module.settings.id, 'Popup opened');
+```
+
+
 
 
 ## Handling cache with importmaps

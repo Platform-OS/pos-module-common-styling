@@ -354,6 +354,8 @@ p code {
   align-items: center;
 
   cursor: pointer;
+
+  transition: color .1s linear;
 }
 
 #icons ul svg {
@@ -365,9 +367,12 @@ p code {
   border-radius: var(--pos-radius-panel);
 
   color: var(--pos-color-content-text);
+
+  transition: color .1s linear;
 }
 
-#icons li:hover {
+#icons li:not(.styleguide-icon-copied):hover,
+#icons li:not(.styleguide-icon-copied):hover svg {
   color: var(--pos-color-interactive-hover);
 }
 
