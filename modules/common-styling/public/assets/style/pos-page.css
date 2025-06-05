@@ -2,6 +2,7 @@
   defines global page structure and looks
 
   page background and font
+  utility classes
 */
 
 
@@ -29,6 +30,21 @@
     background-color: var(--pos-color-selection-background);
 
     color: var(--pos-color-selection-text);
+  }
+
+
+  /* utility classes
+  ============================================================================ */
+  .pos-text-end {
+    text-align: end;
+  }
+
+  .pos-text-start {
+    text-align: start;
+  }
+
+  .pos-text-center {
+    text-align: center;
   }
 
 }

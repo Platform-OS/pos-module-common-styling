@@ -20,6 +20,10 @@ article + article {
   align-items: start;
 }
 
+  .styleguide-columns + .styleguide-columns {
+    margin-block-start: var(--pos-gap-section-elements);
+  }
+
   @media (max-width: 1000px) {
     .styleguide-columns {
       grid-template-columns: 1fr;
@@ -45,13 +49,16 @@ p code {
 }
 
 .styleguide-code {
-  margin-block: var(--pos-gap-text-text);
   position: relative;
   
   background-color: var(--pos-color-content-background);
   border: 1px solid var(--pos-color-frame);
   border-radius: var(--pos-radius-panel);
 }
+
+  * + .styleguide-code {
+    margin-block: var(--pos-gap-text-text);
+  }
 
   .styleguide-code:last-child {
     margin-block-end: 0;
@@ -64,12 +71,21 @@ p code {
     white-space: pre;
   }
 
+    .styleguide-code pre:focus-visible {
+      outline: 2px solid var(--pos-color-focused);
+      outline-offset: 4px;
+    }
+
 /* rendered output examples */
 .styleguide-example {
   padding: var(--pos-padding-card);
   display: block;
 
   border: 1px dashed var(--pos-color-frame);
+  border-radius: 1rem;
+}
+
+.styleguide-example:has(+ .styleguide-code) {
   border-radius: 1rem 1rem 0 0;
 }
 
@@ -198,7 +214,7 @@ p code {
     content: ')';
   }
 
-  .styleguide-code + .styleguide-details {
+  * + .styleguide-details {
     margin-block-start: var(--pos-gap-section-elements);
   }
 
