@@ -13,17 +13,17 @@
 
   /* basic
   ============================================================================ */
-  .pos-button,
-  .pos-button * {
-    box-sizing: border-box;
-  }
-
   .pos-button {
     all: unset;
     display: revert;
 
     user-select: none;
     -webkit-user-select: none;
+  }
+
+  .pos-button,
+  .pos-button * {
+    box-sizing: border-box;
   }
 
   .pos-button {
