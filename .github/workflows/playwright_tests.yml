@@ -78,7 +78,6 @@ jobs:
           MPKIT_TOKEN: ${{ steps.get-token.outputs.mpkit-token }}
         run: |
           set -eu
-          rm app/pos-modules.*
           pos-cli deploy
 
   test:
