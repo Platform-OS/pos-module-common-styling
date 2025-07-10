@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "style-guide-tests": "npx playwright test --project=style-guide-tests"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.53.2",
+    "@types/node": "^24.0.10",
+    "playwright": "^1.53.2"
+  },
+  "name": "pos-module-common-styling",
+  "description": "WIP",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "playwright-core": "^1.53.2"
+  },
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

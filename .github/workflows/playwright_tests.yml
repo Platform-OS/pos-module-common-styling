@@ -71,6 +71,16 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Clean data
+        timeout-minutes: 10
+        shell: sh
+        env:
+          MPKIT_TOKEN: ${{ steps.get-token.outputs.mpkit-token }}
+        run: |
+          set -eu
+
+          pos-cli data clean --include-schema --auto-confirm
+
       - name: Deploy
         timeout-minutes: 10
         shell: sh
@@ -78,6 +88,7 @@ jobs:
           MPKIT_TOKEN: ${{ steps.get-token.outputs.mpkit-token }}
         run: |
           set -eu
+
           pos-cli deploy
 
   test:
