@@ -71,13 +71,15 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Build
+      - name: Clean data
+        timeout-minutes: 10
         shell: sh
+        env:
+          MPKIT_TOKEN: ${{ steps.get-token.outputs.mpkit-token }}
         run: |
           set -eu
-          echo $MPKIT_URL
-          npm install
-          ./scripts/inject_git_version.sh
+
+          pos-cli data clean --include-schema --auto-confirm
 
       - name: Deploy
         timeout-minutes: 10
@@ -86,8 +88,8 @@ jobs:
           MPKIT_TOKEN: ${{ steps.get-token.outputs.mpkit-token }}
         run: |
           set -eu
-          rm app/pos-modules.*
-          sh pw_tests/data/seed/seed.sh
+
+          pos-cli deploy
 
   test:
     needs: ["reserve-ci-instance", "deploy"]
