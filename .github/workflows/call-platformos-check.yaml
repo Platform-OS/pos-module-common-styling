@@ -1,11 +1,17 @@
 name: Run platformos-check on Liquid files
 on:
   push:
-    paths-ignore:
-      - '**/README.md'
+    paths:
+      - '**/*.liquid'
+      - '**/*.yml'
+      - '**/*.yaml'
+      - '**/*.json'
   pull_request:
-    paths-ignore:
-      - '**/README.md'
+    paths:
+      - '**/*.liquid'
+      - '**/*.yml'
+      - '**/*.yaml'
+      - '**/*.json'
   workflow_dispatch:
 
 jobs:
