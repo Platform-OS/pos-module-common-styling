@@ -123,6 +123,18 @@ pos.modules.debug([true || module.settings.debug], [module id (string)], [messag
 
 
 
+## Module communication using events
+
+To provide a way of reacting to your module changes, please use JavaScript event when appropriate, prefixing the event with `pos-` like follows:
+
+```
+document.dispatchEvent(new CustomEvent('pos-somethingHappenedInMyModule', { bubbles: true, detail: { something: 'new value' } }));
+pos.modules.debug(module.settings.debug, 'event', `pos-somethingHappenedInMyModule`, { something: new value });
+```
+
+Using `pos.modules.debug()` to add information about the event provides an easy way for the developers to react to changes provided by your module without the need to check the code or browser through documentation.
+
+
 
 ## Handling cache with importmaps
 
