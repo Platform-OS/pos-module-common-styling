@@ -508,6 +508,15 @@ p code {
   flex-direction: column;
 }
 
+#buttons .pos-tip {
+  margin-block-start: var(--pos-gap-section-elements);
+}
+
+#buttons .styleguide-examples-table {
+  width: 100%;
+  margin-block-start: var(--pos-gap-section-section);
+}
+
 
 
 /* forms
