@@ -195,7 +195,7 @@ pos.modules.load = load;
 ```
 
 ```
-new pos.modules.load({
+await pos.modules.load({
   endpoint: [string],
   target: [string],
   method: [string],
