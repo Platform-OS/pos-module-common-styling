@@ -32,7 +32,7 @@ export function load(userSettings = {}){
   // trigger to run the loading process (string)
   module.settings.triggerType = userSettings.triggerType || 'click';
   // if you want to enable debug mode that logs to console (bool)
-  module.settings.debug = userSettings.debug || true;
+  module.settings.debug = userSettings.debug || false;
 
 
   // purpose:		initializes the module

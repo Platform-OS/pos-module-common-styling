@@ -190,7 +190,7 @@ On the server-side:
 A pre-defined method of loading HTML content to a container:
 
 ```
-const { load } = await import('modules/common-styling/pos-load.js');
+const { load } = await import('modules/common-styling/js/pos-load.js');
 pos.modules.load = load;
 ```
 

@@ -12,17 +12,32 @@
 <link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-table.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-tag.css' | asset_url }}">
 
-<script src="{{ 'modules/common-styling/js/pos.js' | asset_url }}"></script>
-
 <script>
-
-  if(typeof window.pos.csrfToken !== 'string'){
+  // purpose:		creates global namespace for all platformOS related modules
+  // ------------------------------------------------------------------------
+  if(typeof window.pos !== 'object'){
+    // global namespace
+    window.pos = {};
+    // modules classes should go here
+    window.pos.modules = {};
+    // active instances of modules should go here
+    window.pos.modules.active = {};
+    // translations that needs to be used in JS can be outputted here from liquid
+    window.pos.translations = {};
+    // enables debug mode on all the modules
+    window.pos.debug = false;
+    // csrf token
     window.pos.csrfToken = '{{ context.authenticity_token }}';
   }
+</script>
 
+<script src="{{ 'modules/common-styling/js/pos-debug.js' | asset_url }}" defer></script>
+
+<script>
   /* selectively load modules */
   document.addEventListener('DOMContentLoaded', () => {
 
+    /* password input */
     if(document.querySelector('.pos-form-password')){
       import('{{ 'modules/common-styling/js/pos-forms-password.js' | asset_url }}').then(module => {
         document.querySelectorAll('.pos-form-password').forEach((element, index) => {
@@ -31,6 +46,7 @@
       });
     }
 
+    /* multiseleft input */
     if(document.querySelector('.pos-form-multiselect')){
       import('{{ 'modules/common-styling/js/pos-forms-multiselect.js' | asset_url }}').then(module => {
         document.querySelectorAll('.pos-form-multiselect').forEach((element, index) => {
@@ -39,6 +55,27 @@
       });
     }
 
-  });
+    // purpose:		loads HTML from an endpoint and puts it in the container
+    // arguments: endpoint (string) - URL to load the content from
+    //            target (string) - selector of the element where the content should be loaded
+    //            method (string) -  `replace` or `append` to the container
+    //            trigger (dom node) - element that triggers the loading of the content
+    //            triggerType (string) - `click` or `hover` to trigger the loading process
+    // ------------------------------------------------------------------------
+    import('{{ 'modules/common-styling/js/pos-load.js' | asset_url }}').then(module => {
+      window.pos.modules.load = module.load;
 
+      const loads = document.querySelectorAll('[data-load-content]');
+      loads.forEach(async load => {
+        await pos.modules.load({
+          endpoint: load.getAttribute('data-load-content'),
+          target: load.getAttribute('data-load-target'),
+          method: load.getAttribute('data-load-method'),
+          trigger: load,
+          triggerType: load.getAttribute('data-load-trigger-type') || 'click'
+        });
+      });
+    });
+
+  });
 </script>
