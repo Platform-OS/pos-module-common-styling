@@ -41,3 +41,25 @@ pos.modules.debug = (active, moduleId, information, data = '') => {
     console.log(`%c${moduleId}%c ${information}`, `padding: .2em .5em; background-color: ${stringToColor(moduleId)}; border-radius: 4px;`, 'all: revert;', data);
   }
 }
+
+
+// purpose:		loads HTML from an endpoint and puts it in the container
+// arguments: endpoint (string) - URL to load the content from
+//            target (string) - selector of the element where the content should be loaded
+//            method (string) -  `replace` or `append` to the container
+//            trigger (dom node) - element that triggers the loading of the content
+//            triggerType (string) - `click` or `hover` to trigger the loading process
+// ------------------------------------------------------------------------
+const { load } = await import('modules/common-styling/pos-load.js');
+pos.modules.load = load;
+
+const loads = document.querySelectorAll('[data-load-content]');
+loads.forEach(load => {
+  new pos.modules.load({
+    endpoint: load.getAttribute('data-load-content'),
+    target: load.getAttribute('data-load-target'),
+    method: load.getAttribute('data-load-method'),
+    trigger: load,
+    triggerType: load.getAttribute('data-load-trigger-type') || 'click'
+  });
+});
