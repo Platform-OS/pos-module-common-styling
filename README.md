@@ -182,3 +182,55 @@ new pos.modules.toast('[severity]', '[message]') to show new notification
 
 On the server-side:
 [TO DO]
+
+
+
+### Loading html endpoint and placing it in a container
+
+A pre-defined method of loading HTML content to a container:
+
+```
+const { load } = await import('modules/common-styling/pos-load.js');
+pos.modules.load = load;
+```
+
+```
+new pos.modules.load({
+  endpoint: [string],
+  target: [string],
+  method: [string],
+  trigger: [dom node],
+  triggerType: [string]
+});
+```
+
+| endpoint    | string   | URL to the endpoint that returns the HTML to be applied to a container |
+| target      | string   | selector for the target container that the HTML will be applied to     |
+| method      | string   | `replace` or `append` - the returned HTML will replace the content of the container or will be appended after the last node of the container |
+| trigger     | dom node | the HTML element that will trigger loading the endpoint |
+| triggerType | string   | `click` or `hover` - the loading process will be started either by clicking or hovering over the trigger |
+
+
+You can use the `load` method in a direct way or extend it by building a simple solution that will trigger the method for given HTML attribute like so:
+
+```
+const { load } = await import('modules/common-styling/pos-load.js');
+pos.modules.load = load;
+
+const loads = document.querySelectorAll('[data-load-content]');
+loads.forEach(load => {
+  new pos.modules.load({
+    endpoint: load.getAttribute('data-load-content'),
+    target: load.getAttribute('data-load-target'),
+    method: load.getAttribute('data-load-type'),
+    trigger: load,
+    triggerType: load.getAttribute('data-trigger-type') || 'click'
+  });
+});
+```
+
+To run the above you just need a single HTML element with some custom attributes that will load the HTML from `/test/example_endpoint` to container with ID `example_container`:
+
+```
+<button type="button" data-load-content="/test/example_endpoint" data-load-target="#example_container">
+```
