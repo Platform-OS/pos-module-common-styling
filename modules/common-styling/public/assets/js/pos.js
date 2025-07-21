@@ -50,11 +50,13 @@ pos.modules.debug = (active, moduleId, information, data = '') => {
 //            trigger (dom node) - element that triggers the loading of the content
 //            triggerType (string) - `click` or `hover` to trigger the loading process
 // ------------------------------------------------------------------------
-const { load } = await import('modules/common-styling/pos-load.js');
-pos.modules.load = load;
+pos.modules.load = async () => {
+  const { load } = await import('modules/common-styling/pos-load.js');
+  return load;
+}
 
-const loads = document.querySelectorAll('[data-load-content]');
-loads.forEach(load => {
+const posLoads = document.querySelectorAll('[data-load-content]');
+posLoads.forEach(load => {
   new pos.modules.load({
     endpoint: load.getAttribute('data-load-content'),
     target: load.getAttribute('data-load-target'),
