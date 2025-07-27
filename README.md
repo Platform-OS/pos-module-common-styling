@@ -205,9 +205,9 @@ await pos.modules.load({
   triggerType: [string]
 });
 ```
-
-| endpoint    | string   | URL of the endpoint that returns the HTML to be applied to a container |
+|  parameter  | type     | description                                                            |
 |-------------|----------|------------------------------------------------------------------------|
+| endpoint    | string   | URL of the endpoint that returns the HTML to be applied to a container |
 | target      | string   | selector for the target container that the HTML will be applied to     |
 | method      | string   | `replace` or `append` - the returned HTML will replace the content of the container or will be appended after the last node of the container |
 | trigger     | dom node | the HTML element that will trigger loading the endpoint |
