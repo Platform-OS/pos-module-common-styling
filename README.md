@@ -119,7 +119,7 @@ To enable debug mode, you can set the `pos.debug` to `true` in the JS Console. T
 
 When building your module, please use the following method to log debug data:
 
-```
+```js
 pos.modules.debug([true || module.settings.debug], [module id (string)], [message (string)]);
 ```
 
