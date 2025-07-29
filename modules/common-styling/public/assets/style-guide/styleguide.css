@@ -154,7 +154,7 @@ p code {
   margin-block-end: .2em;
 }
 
-.pos-heading-4 {
+.styleguide-heading-4 {
   margin-block-start: 1.5em;
   margin-block-end: .4em;
 }
@@ -290,7 +290,7 @@ p code {
   border-radius: 0 1rem 1rem;
 }
 
-#colors li:first-child .pos-heading-4 {
+#colors li:first-child .styleguide-heading-4 {
   margin-block-start: 0;
 }
 
@@ -440,8 +440,7 @@ p code {
 ============================================================================ */
 #headings .pos-heading-1,
 #headings .pos-heading-2,
-#headings .pos-heading-3,
-#headings .pos-heading-4 {
+#headings .pos-heading-3 {
   margin: 0;
 }
 
@@ -497,10 +496,6 @@ p code {
 
 #buttons .styleguide-code + .styleguide-example {
   margin-block-start: var(--pos-gap-card-card);
-}
-
-#buttons .styleguide-example .pos-heading-4 {
-  margin-block-start: 0;
 }
 
 #buttons .styleguide-example picture {
