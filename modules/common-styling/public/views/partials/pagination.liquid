@@ -1,0 +1,79 @@
+{% comment %} 
+
+  numbered pagination with arrows if the number of pages is large
+
+  count - (int) number of pages in total
+  maxVisible - (int) maximum number of pages to show on the list, more will can be navigated with arrows
+  active - (int) currently viewed page
+  url - (string) query string for the pagination
+
+{% endcomment %}
+
+
+
+{% liquid
+  assign count = count | default: 10
+  assign maxVisible = maxVisible | default: 10
+  assign url = url | default: '?page='
+
+  if count > maxVisible
+    assign limit = maxVisible | divided_by: 2 | round
+    assign startPage = active | minus: limit
+    assign endPage = active | plus: limit
+  endif
+
+  if count <= maxVisible
+    assign startPage = 1
+    assign endPage = count
+  endif
+
+  if startPage < 1
+    assign startPage = 1
+    assign endPage = maxVisible
+  endif
+
+  if endPage > count
+    assign startPage = count | minus: maxVisible | plus: 1
+    assign endPage = count
+  endif
+
+  assign leftArrow = startPage | minus: 1
+  assign rightArrow = endPage | plus: 1
+%}
+
+
+<nav role="navigation" aria-label="Pagination Navigation" class="pos-pagination">
+
+  <ul>
+
+    {% if startPage > 1 %}
+      <li>
+        <a href="{{ url }}{{ leftArrow }}" aria-label="Goto Page {{ leftArrow }}">
+          {% render 'modules/common-styling/icon', icon: 'dashLeft' %}
+        </a>
+      </li>
+    {% endif %}
+
+    {% for i in (1..count) %}
+      {% if i >= startPage and i <= endPage %}
+        <li>
+          {% if active == i %}
+            <a href="{{ url }}{{ i }}" aria-label="Current Page, Page {{ i }}" aria-current="true">{{ i }}</a>
+          {% else %}
+            <a href="{{ url }}{{ i }}" aria-label="Go to page {{ i }}">{{ i }}</a>
+          {% endif %}
+        </li>
+      {% endif %}
+    {% endfor %}
+
+    {% if count > endPage %}
+      <li>
+        <a href="{{ url }}{{ rightArrow }}" aria-label="Go to page {{ rightArrow }}">
+          {% render 'modules/common-styling/icon', icon: 'dashRight' %}
+        </a>
+      </li>
+    {% endif %}
+
+  </ul>
+
+</nav>

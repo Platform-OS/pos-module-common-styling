@@ -34,11 +34,20 @@
     overflow: hidden;
   }
 
+    .pos-card-content:has(.pos-card-content-permalink:focus-visible) {
+      outline: 2px solid var(--pos-color-focused);
+      outline-offset: 2px;
+    }
+
   .pos-card-content-permalink {
     display: flex;
     flex-direction: column;
     gap: var(--pos-gap-card-elements);
   }
+
+    a.pos-card-content-permalink:focus-visible {
+      outline: none;
+    }
 
   .pos-card-content-title {
     margin-block-end: calc(var(--pos-gap-text-text) / 2);

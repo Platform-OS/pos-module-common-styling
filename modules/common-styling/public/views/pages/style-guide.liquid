@@ -15,6 +15,8 @@ layout: 'modules/common-styling/style-guide'
       <li><a href="#forms">Forms</a></li>
       <li><a href="#boxes">Boxes</a></li>
       <li><a href="#tables">Tables</a></li>
+      <li><a href="#toasts">Toasts</a></li>
+      <li><a href="#navigation">Navigation</a></li>
     </ul>
   </nav>
 
@@ -1475,7 +1477,7 @@ layout: 'modules/common-styling/style-guide'
     </article>
 
 
-    <!---------------------------------------------------------------------------------------- tables -->
+    <!---------------------------------------------------------------------------------------- toasts -->
     <article id="toasts">
       <h2 class="pos-heading-2">Toasts</h2>
 
@@ -1538,6 +1540,25 @@ new pos.modules.toast('[severity]', '[message]');
             </div>
           </div>
         </div>
+      </div>
+    </article>
+
+
+    <!---------------------------------------------------------------------------------------- navigation -->
+    <article id="navigation">
+      <h2 class="pos-heading-2">Navigation</h2>
+
+      <h3 class="pos-heading-4 styleguide-heading-4">Pagination</h3>
+      <div class="styleguide-example">
+        {% liquid
+          render 'modules/common-styling/pagination', count: 20, active: 7, maxCount: 10
+        %}
+      </div>
+{% capture code %}{% raw %}
+render 'modules/common-styling/pagination', count: [total number of pages], active: [current page]
+{% endraw %}{% endcapture %}
+      <div class="styleguide-code">
+        <pre><code>{{ code | lstrip | rstrip }}</code></pre>
       </div>
     </article>
 

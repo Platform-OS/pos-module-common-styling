@@ -1,0 +1,34 @@
+/*
+  numbered pagination
+*/
+
+
+
+@layer common-styling {
+
+  .pos-pagination {
+    margin-block-start: var(--pos-gap-card-card);
+    display: flex;
+    justify-content: end;
+  }
+
+  .pos-pagination ul {
+    display: flex;
+    gap: calc(var(--pos-gap-text-text) / 2);
+  }
+
+  .pos-pagination a {
+    min-width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: var(--pos-radius-button);
+  }
+
+  .pos-pagination a[aria-current="true"] {
+    border: 1px solid var(--pos-color-interactive);
+  }
+
+}
