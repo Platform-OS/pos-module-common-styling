@@ -80,6 +80,25 @@ window.pos.modules.popover = function(container, userSettings = {}){
         }
       });
     }
+
+    // if user uses tab to navigate through the menu, close the popover when the focus leaves
+    if(module.settings.menu){
+      function hideWhenOutOfFocus(event){
+        if(!module.settings.popover.contains(event.relatedTarget)){
+          pos.modules.debug(module.settings.debug, module.settings.id, 'Popover lost focus, closing', module.settings.container);
+          module.settings.popover.hidePopover();
+        }
+      }
+
+      module.settings.popover.addEventListener('beforetoggle', event => {
+        if(event.newState == 'open'){
+          module.settings.popover.addEventListener('focusout', hideWhenOutOfFocus);
+        } else {
+          module.settings.popover.removeEventListener('focusout', hideWhenOutOfFocus);
+        }
+      });
+
+    }
   };
 
 
