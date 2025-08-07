@@ -1,0 +1,86 @@
+/*
+  popover menu that floats around the button that triggers it's visiblity
+
+  popover position
+  opened state
+  menu inside the popover
+*/
+
+
+
+@layer common-styling {
+
+  /* popover position
+  ============================================================================ */
+  .pos-popover [popovertarget] {
+    position: relative;
+  }
+
+  .pos-popover [popover] {
+    min-width: 100px;
+    max-width: 300px;
+    margin-block-start: 1rem;
+    position-area: block-end span-inline-start;
+    position-try-fallbacks: flip-inline;
+    overflow: hidden;
+
+    border-radius: var(--pos-radius-panel);
+    background-color: var(--pos-color-content-background);
+  }
+
+
+  /* opened state
+  ============================================================================ */
+  .pos-popover:has(:popover-open) [popovertarget]:after {
+    width: 16px;
+    height: 11px;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: calc(50% - 8px);
+
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    background-color: var(--pos-color-interactive);
+
+    content: '';
+  }
+
+
+  /* menu inside the popover
+  ============================================================================ */
+  .pos-popover menu li a,
+  .pos-popover menu li button {
+    width: 100%;
+    padding: 1rem .75rem;
+    display: flex;
+    gap: .5em;
+    align-items: center;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+    color: var(--pos-color-interactive);
+
+    transition-property: color, background-color;
+    transition-duration: .1s;
+    transition-timing-function: linear;
+  }
+
+  .pos-popover menu li a:hover,
+  .pos-popover menu li button:hover,
+  .pos-popover menu li a:focus-visible,
+  .pos-popover menu li button:focus-visible {
+    outline: none;
+    border-radius: 0;
+    background-color: var(--pos-color-button-primary-background);
+
+    color: var(--pos-color-button-primary-text);
+  }
+
+  .pos-popover menu svg {
+    width: 1.2em;
+    height: 1.2em;
+
+    color: inherit;
+  }
+
+}

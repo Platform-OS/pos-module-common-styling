@@ -1560,6 +1560,57 @@ render 'modules/common-styling/pagination', count: [total number of pages], acti
       <div class="styleguide-code">
         <pre><code>{{ code | lstrip | rstrip }}</code></pre>
       </div>
+
+      <h3 class="pos-heading-4 styleguide-heading-4">Popover</h3>
+      <div class="styleguide-example" style="text-align: center;">
+        <div class="pos-popover">
+          <button popovertarget="styleguide-popover" class="pos-button">
+            Popover example
+          </button>
+          <div popover id="styleguide-popover">
+            The quick brown fox jumps over the lazy dog
+          </div>
+        </div>
+      </div>
+{% capture code %}{% raw %}
+<button popovertarget="styleguide-popover" class="pos-button">
+  Popover example
+</button>
+<div popover id="styleguide-popover">
+  The quick brown fox jumps over the lazy dog
+</div>
+{% endraw %}{% endcapture %}
+      <div class="styleguide-code">
+        <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+      </div>
+
+      <h3 class="pos-heading-4 styleguide-heading-4">Popover menu</h3>
+      <div class="styleguide-example" style="text-align: center;">
+        <div class="pos-popover">
+          <button popovertarget="styleguide-popover-menu" class="pos-button">
+            Popover menu
+          </button>
+          <menu popover id="styleguide-popover-menu">
+            <li><a href="">Option</a></li>
+            <li><button type="button">Option</button></li>
+          </menu>
+        </div>
+      </div>
+{% capture code %}{% raw %}
+<div class="pos-popover">
+  <button popovertarget="styleguide-popover-menu" class="pos-button">
+    Popover menu
+  </button>
+  <menu popover id="styleguide-popover-menu">
+    <li><a href="">Option</a></li>
+    <li><button type="button">Option</button></li>
+  </menu>
+</div>
+{% endraw %}{% endcapture %}
+      <div class="styleguide-code">
+        <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+      </div>
+
     </article>
 
   </section>
