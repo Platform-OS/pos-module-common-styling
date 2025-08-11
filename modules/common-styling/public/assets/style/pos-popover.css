@@ -18,7 +18,7 @@
 
   .pos-popover [popover] {
     min-width: 100px;
-    max-width: 300px;
+    max-width: 600px;
     margin-block-start: 1rem;
     position-area: block-end span-inline-start;
     position-try-fallbacks: flip-inline;
@@ -26,6 +26,20 @@
 
     border-radius: var(--pos-radius-panel);
     background-color: var(--pos-color-content-background);
+  }
+
+  @media (max-width: 600px) {
+      .pos-popover [popover] {
+        width: calc(100vw - var(--pos-padding-page) * 2) !important;
+        position: absolute;
+        left: var(--pos-padding-page);
+      }
+
+    @supports (anchor-name: --pos-anchor) {
+      .pos-popover [popover] {
+        position-area: bottom center;
+      }
+    }
   }
 
 
