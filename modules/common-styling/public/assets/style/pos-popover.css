@@ -29,16 +29,10 @@
   }
 
   @media (max-width: 600px) {
-      .pos-popover [popover] {
-        width: calc(100vw - var(--pos-padding-page) * 2) !important;
-        position: absolute;
-        left: var(--pos-padding-page);
-      }
-
-    @supports (anchor-name: --pos-anchor) {
-      .pos-popover [popover] {
-        position-area: bottom center;
-      }
+    .pos-popover [popover] {
+      width: calc(100vw - var(--pos-padding-page) * 2) !important;
+      position: absolute;
+      inset-inline-start: var(--pos-padding-page);
     }
   }
 
