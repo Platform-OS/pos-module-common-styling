@@ -440,6 +440,23 @@ layout: 'modules/common-styling/style-guide'
     </article>
 
 
+    <!---------------------------------------------------------------------------------------- gradients and shadows -->
+    <article id="gradients">
+      <h2 class="pos-heading-2">Gradients and shadows</h2>
+
+      <h3 class="pos-heading-4 styleguide-heading-4">Increasing text legibility over na image</h3>
+      <p>When using text on an image you might need to increase the text legibility and ensure the contrast between those two stays high. For that you may use an eased gradient available through the css custom property: <code>--pos-gradient-legibility</code> or a pre-defined class <code>pos-increaseLegibility</code>. Be caresul with the later though as it uses relative positioning and may break your layout in some cases.</p>
+      <dl class="styleguide-details">
+        <dt>Class</dt><dd><code>pos-increaseLegibility</code></dd>
+        <dt>Properties</dt><dd><code>--pos-gradient-legibility</code></dd>
+      </dl>
+      
+      <picture class="styleguide-example pos-increaseLegibility" style="margin-block-start: var(--pos-gap-section-elements); background-color: #fff;">
+        <h4 class="pos-heading-4" style="color: #fff;">The quick brown fox</h4>
+      </picture>
+    </article>
+
+
     <!---------------------------------------------------------------------------------------- icons -->
     <article id="icons">
       <h2 class="pos-heading-2">Icons</h2>

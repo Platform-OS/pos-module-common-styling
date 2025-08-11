@@ -5,6 +5,7 @@
   links
   headings
   sidenotes
+  increasing text legibility
 */
 
 
@@ -123,5 +124,31 @@
       top: 3px;
       flex-shrink: 0;
     }
+
+
+  /* increasing text legibility
+  ============================================================================ */
+  .pos-increaseLegibility {
+    position: relative;
+  }
+
+  .pos-increaseLegibility:before {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    inset-block-end: 0;
+    opacity: .5;
+
+    border-start-end-radius: inherit;
+    border-start-start-radius: inherit;
+    background-image: var(--pos-gradient-legibility);
+
+    content: '';
+  }
+
+  .pos-increaseLegibility > * {
+    position: relative;
+    z-index: 2;
+  }
 
 }
