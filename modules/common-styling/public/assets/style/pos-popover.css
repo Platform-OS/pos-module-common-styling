@@ -31,7 +31,9 @@
   @media (max-width: 600px) {
     .pos-popover [popover] {
       width: calc(100vw - var(--pos-padding-page) * 2) !important;
+      position-area: none;
       position: absolute;
+      inset-block-start: anchor(bottom);
       inset-inline-start: var(--pos-padding-page);
     }
   }
@@ -39,6 +41,10 @@
 
   /* opened state
   ============================================================================ */
+  .pos-popover:has(:popover-open) {
+    z-index: 10;
+  }
+
   .pos-popover:has(:popover-open) [popovertarget]:after {
     width: 16px;
     height: 11px;

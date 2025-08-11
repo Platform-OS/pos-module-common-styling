@@ -102,7 +102,7 @@ window.pos.modules.popover = function(container, userSettings = {}){
     // polyfill for Firefox and Safari lacking support for anchor positioning
     // can be deleted from code as is when all browsers support it
     if(!('anchorName' in document.documentElement.style)){
-      module.settings.popover.addEventListener('beforetoggle', event => {
+      module.settings.popover.addEventListener('toggle', event => {
         if(event.newState == 'open'){
           module.positionPopoverFallback();
           window.addEventListener('resize', popoverReposition);
@@ -206,9 +206,23 @@ window.pos.modules.popover = function(container, userSettings = {}){
   module.positionPopoverFallback = () => {
     pos.modules.debug(module.settings.debug, module.settings.id, 'This browser does not support anchor positioning, setting the position manually', module.settings.container);
 
+    const triggerSize = module.settings.trigger.getBoundingClientRect();
+    const popoverSize = module.settings.popover.getBoundingClientRect();
+
     module.settings.popover.style.position = 'absolute';
-    module.settings.popover.style.right = window.innerWidth - (module.settings.trigger.getBoundingClientRect()).right + 'px';
-    module.settings.popover.style.top = `${module.settings.trigger.bottom}px`;
+
+    // position to right
+    if(triggerSize.left - popoverSize.width > 0){
+      module.settings.popover.style.right = window.innerWidth - triggerSize.right + 'px';
+    }
+    // position to left
+    else if(triggerSize.left + popoverSize.width < window.innerWidth){
+      module.settings.popover.style.left = triggerSize.left + 'px';
+    }
+    // position to center
+    else {
+      module.settings.popover.style.left = triggerSize.left + (triggerSize.width - popoverSize.width) / 2 + 'px';
+    }
   };
 
 
