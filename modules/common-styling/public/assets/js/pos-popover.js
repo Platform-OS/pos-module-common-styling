@@ -97,7 +97,32 @@ window.pos.modules.popover = function(container, userSettings = {}){
           module.settings.popover.removeEventListener('focusout', hideWhenOutOfFocus);
         }
       });
+    }
 
+    // polyfill for Firefox and Safari lacking support for anchor positioning
+    // can be deleted from code as is when all browsers support it
+    if(!('anchorName' in document.documentElement.style)){
+      module.settings.popover.addEventListener('beforetoggle', event => {
+        if(event.newState == 'open'){
+          module.positionPopoverFallback();
+          window.addEventListener('resize', popoverReposition);
+        } else {
+          window.removeEventListener('resize', popoverReposition);
+        }
+      });
+
+      // reposition popover when browser window is resized
+      let popoverRepositionDebounce;
+      
+      function popoverReposition(){
+        clearTimeout(popoverRepositionDebounce);
+
+        popoverRepositionDebounce = setTimeout(() => {
+          module.positionPopoverFallback();
+
+          pos.modules.debug(module.settings.debug, module.settings.id, 'Browser window resized, repositioning the popover', module.settings.container);
+        }, 100);
+      }
     }
   };
 
@@ -147,24 +172,43 @@ window.pos.modules.popover = function(container, userSettings = {}){
   };
 
 
+  // purpose:		focuses first menu item
+  // ------------------------------------------------------------------------
   module.focusFirstMenuItem = () => {
     pos.modules.debug(module.settings.debug, module.settings.id, 'Focusing first menu item', module.settings.container);
     module.settings.menu.querySelector('li:first-child a, li:first-child button').focus();
   };
 
+  // purpose:		focuses last menu item
+  // ------------------------------------------------------------------------
   module.focusLastMenuItem = () => {
     pos.modules.debug(module.settings.debug, module.settings.id, 'Focusing last menu item', module.settings.container);
     module.settings.menu.querySelector('li:last-child a, li:last-child button').focus();
   };
 
+  // purpose:		focuses menu item that is next to the currently focused one
+  // ------------------------------------------------------------------------
   module.focusNextMenuItem = () => {
     pos.modules.debug(module.settings.debug, module.settings.id, 'Focusing next available menu item', module.settings.container);
     document.activeElement.closest('li').nextElementSibling.querySelector('a, button').focus();
   };
 
+  // purpose:		focuses menu item that is previous to the currently focused one
+  // ------------------------------------------------------------------------
   module.focusPreviousMenuItem = () => {
     pos.modules.debug(module.settings.debug, module.settings.id, 'Focusing previous available menu item', module.settings.container);
     document.activeElement.closest('li').previousElementSibling.querySelector('a, button').focus();
+  };
+
+
+  // purpose:		positions the popover relative to the trigger element
+  // ------------------------------------------------------------------------
+  module.positionPopoverFallback = () => {
+    pos.modules.debug(module.settings.debug, module.settings.id, 'This browser does not support anchor positioning, setting the position manually', module.settings.container);
+
+    module.settings.popover.style.position = 'absolute';
+    module.settings.popover.style.right = window.innerWidth - (module.settings.trigger.getBoundingClientRect()).right + 'px';
+    module.settings.popover.style.top = `${module.settings.trigger.bottom}px`;
   };
 
 
