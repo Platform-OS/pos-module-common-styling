@@ -29,11 +29,13 @@ This command installs the Common Styling Module and updates or creates the `app/
 ### Setup
 
 1. **Install the module** using the [pos-cli](https://github.com/Platform-OS/pos-cli).
-2. **Include the following partial** into your layout's `<head>` section:
+2. **Include the following partial** into your [layout](https://documentation.platformos.com/developer-guide/pages/layouts)'s `<head>` section:
 
 ```liquid
 {% render 'modules/common-styling/init' %}
 ```
+
+(If you do not have a layout yet, you might want to check [style-guide's layout](https://github.com/Platform-OS/pos-module-common-styling/blob/master/modules/common-styling/public/views/layouts/style-guide.liquid) for an inspiration of how minimum layout can look like)
 
 3. **Optionally, use the CSS reset**. It's not recommended to use it in an existing app, probably, but you can safely use it on a fresh one. To use it, just pass a parameter to the render tag mentioned above and use a `pos-app` class anywhere on your main content container.
 
