@@ -19,6 +19,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  overflow: hidden;
   
   border-radius: 50%;
   background-color: var(--pos-color-frame);
@@ -45,26 +46,37 @@
 .pos-avatar-m {
   width: 32px;
   height: 32px;
+
+  font-size: .85rem;
 }
+
 
 .pos-avatar-l {
   width: 48px;
   height: 48px;
+
+  font-size: 1rem;
 }
 
 .pos-avatar-xl {
   width: 94px;
   height: 94px;
+
+  font-size: 2rem;
 }
 
 .pos-avatar-xxl {
   width: 160px;
   height: 160px;
+
+  font-size: 3rem;
 }
 
 .pos-avatar-xxxl {
   width: 192px;
   height: 192px;
+
+  font-size: 3.5rem;
 }
 
 
