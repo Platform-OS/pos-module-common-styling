@@ -112,7 +112,7 @@ Instead of editing the module directly, you can override only the variables you 
 Add a file to your project, for example:
 
 ```
-app/assets/variables.css
+app/assets/<my-app-name>-config.css
 ```
 
 This is where you’ll put your overrides.
