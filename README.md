@@ -23,7 +23,7 @@ Common-styling follows the [platformOS DevKit best practices](https://documentat
 
 The platformOS Common Styling Module is available on the [Partner Portal Modules Marketplace](https://partners.platformos.com/marketplace/pos_modules/154).
 
-After installation, visit `<your instance url>/style-guide` to preview all available components, see examples of forms, buttons, and typography, and ind the complete list of CSS variables you can override.
+After installation, visit `<your instance url>/style-guide` to preview all available components, see examples of forms, buttons, typography and the complete list of CSS variables you can override.
 
 ### Prerequisites
 
