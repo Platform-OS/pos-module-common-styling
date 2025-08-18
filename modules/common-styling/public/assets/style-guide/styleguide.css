@@ -608,16 +608,19 @@ p code {
   margin-block-start: calc(var(--pos-gap-text-text) / 2);
 }
 
-#text-inputs .styleguide-example {
+#text-inputs .styleguide-example,
+#text-inputs-textarea .styleguide-example {
   display: flex;
   flex-direction: column;
   gap: .5em;
 }
 
-#text-inputs > :last-child {
+#text-inputs > :last-child,
+#text-inputs-textarea > :last-child {
   padding-inline-start: calc(var(--pos-gap-section-section) / 2);
 }
 
-#text-inputs table input {
+#text-inputs table input,
+#text-inputs-textarea table textarea {
   width: 150px;
 }

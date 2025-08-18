@@ -915,8 +915,12 @@ layout: 'modules/common-styling/style-guide'
           <input type="password" id="styleguide-form-example-b" placeholder="••••••••" required>
         </fieldset>
         <fieldset>
-          <input type="checkbox" id="styleguide-form-example-c" required>
-          <label for="styleguide-form-example-c">An agreement</label>
+          <label for="styleguide-form-example-c">Message</label>
+          <textarea id="styleguide-form-example-c" placeholder="Your message"></textarea>
+        </fieldset>
+        <fieldset>
+          <input type="checkbox" id="styleguide-form-example-d" required>
+          <label for="styleguide-form-example-d">An agreement</label>
         </fieldset>
       </form>
 {% capture code %}{% raw %}
@@ -1128,6 +1132,65 @@ layout: 'modules/common-styling/style-guide'
           </table>
         </div>
 
+      </div>
+
+      <div id="text-inputs-textarea" class="styleguide-columns">
+
+        <div>
+          <div class="styleguide-example">
+            <textarea class="pos-form-input" placeholder="Textarea"></textarea>
+            <dl class="styleguide-details">
+              <dt>Class</dt><dd><code>pos-form-input</code></dd>
+            </dl>
+          </div>
+      {% capture code %}{% raw %}
+      <textarea class="pos-form-input" placeholder="Textarea"></textarea>
+      {% endraw %}{% endcapture %}
+          <div class="styleguide-code">
+            <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+          </div>
+
+          {% render 'modules/common-styling/tip', content: 'When overwriting the <code>&lt;input&gt;</code> classes, please remember to also overwrite the debug classes used in the style guide: <code>pos-debug-form-input-hover</code>, <code>pos-debug-form-input-focus-visible</code>.' %}
+        </div>
+
+        <div>
+          <table class="styleguide-examples-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Placeholder</th>
+                <th>Filled</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Default</th>
+                <td><textarea class="pos-form-input" placeholder="Textarea"></textarea></td>
+                <td><textarea class="pos-form-input" placeholder="Textarea">Lorem ipsum</textarea></td>
+              </tr>
+              <tr>
+                <th class="styleguide-table-heading">Hover</th>
+                <td><textarea class="pos-form-input pos-debug-form-input-hover" placeholder="Textarea"></textarea></td>
+                <td><textarea class="pos-form-input pos-debug-form-input-hover" placeholder="Textarea">Lorem ipsum</textarea></td>
+              </tr>
+              <tr>
+                <th scope="row">Focused</th>
+                <td><textarea class="pos-form-input pos-debug-form-input-focus-visible" placeholder="Textarea"></textarea></td>
+                <td><textarea class="pos-form-input pos-debug-form-input-focus-visible" placeholder="Textarea">Lorem ipsum</textarea></td>
+              </tr>
+              <tr>
+                <th scope="row">Disabled</th>
+                <td><textarea disabled class="pos-form-input" placeholder="Textarea"></textarea></td>
+                <td><textarea disabled class="pos-form-input" placeholder="Textarea">Lorem ipsum</textarea></td>
+              </tr>
+              <tr>
+                <th scope="row">Error</th>
+                <td><textarea aria-invalid="true" class="pos-form-input" placeholder="Textarea"></textarea></td>
+                <td><textarea aria-invalid="true" class="pos-form-input" placeholder="Textarea">Lorem ipsum</textarea></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
 
