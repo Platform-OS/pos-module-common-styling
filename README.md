@@ -173,7 +173,7 @@ This forces the dark theme regardless of system settings.
 ### Notes
 
 - Both light and dark themes use the same set of CSS variables. If you override variables, make sure to provide values for both themes if needed.
-- You can preview dark mode in your browser by toggling system preferences or manually applying `.pos-theme-dark`.
+- You can preview dark mode in your browser [using dev tools](https://stackoverflow.com/a/59223868), toggling system preferences, or manually applying `.pos-theme-dark`.
 - Example — overriding variables just for dark mode:
 
 ```css
@@ -181,6 +181,7 @@ This forces the dark theme regardless of system settings.
   --pos-color-dark-button-primary-background: #004d00;
 }
 ```
+
 
 ## Scoping CSS
 
