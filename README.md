@@ -50,7 +50,7 @@ This command installs the Common Styling Module and updates or creates the `app/
 ```
 
 4. **Explore the built-in Style Guide.**
-After installation, visit `/style-guide` on your instance.
+After installation, visit `/style-guide` on your instance. (Make sure you deploy the module using `pos-cli deploy` command)
 - Preview all available components.
 - See examples of forms, buttons, and typography.
 - Find the complete list of CSS variables you can override.
