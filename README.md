@@ -177,8 +177,8 @@ This forces the dark theme regardless of system settings.
 - Example — overriding variables just for dark mode:
 
 ```css
-:root.pos-theme-dark {
-  --pos-color-button-primary-background: #004d00;
+:root {
+  --pos-color-dark-button-primary-background: #004d00;
 }
 ```
 
