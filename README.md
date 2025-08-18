@@ -55,7 +55,6 @@ After installation, visit `/style-guide` on your instance. (Make sure you deploy
 - See examples of forms, buttons, and typography.
 - Find the complete list of CSS variables you can override.
 
-5. **Update Your .gitignore**: Add `modules/common-styling` to your `.gitignore` file to avoid directly modifying the module files. This precaution helps maintain the integrity of the module and simplifies future updates.
 
 ### Setup
 
