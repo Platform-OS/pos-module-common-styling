@@ -69,7 +69,7 @@ After installation, visit `/style-guide` on your instance. (Make sure you deploy
 
 👉 If you do not have a layout, check the [style-guide's layout](https://github.com/Platform-OS/pos-module-common-styling/blob/master/modules/common-styling/public/views/layouts/style-guide.liquid) for an example of a minimal layout.
 
-3. **Optionally enable the CSS reset**. The reset removes default browser styles (e.g., textarea borders).
+3. **Optionally enable the [CSS reset](https://github.com/Platform-OS/pos-module-common-styling/blob/master/modules/common-styling/public/assets/style/pos-reset.css)**. It resets default browser styling and fixes some browser-specific issues
 - It’s safe to use in a fresh app.
 - In an existing app, enabling it might cause unexpected changes.
 
