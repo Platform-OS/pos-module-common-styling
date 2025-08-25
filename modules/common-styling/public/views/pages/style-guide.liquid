@@ -1001,6 +1001,28 @@ layout: 'modules/common-styling/style-guide'
         </form>
       </div>
 
+      <div class="styleguide-columns">
+        <div>
+          <dl class="styleguide-details">
+            <dt>Class</dt><dd><code>pos-form-fieldset-combined</code></dd>
+          </dl>
+{% capture code %}{% raw %}
+<fieldset class="pos-form-fieldset-combined">
+  
+</fieldset>
+{% endraw %}{% endcapture %}
+          <div class="styleguide-code">
+            <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+          </div>
+        </div>
+        <form action="" class="pos-form styleguide-forms-placeholder-container">
+          <fieldset class="styleguide-forms-placeholder-fieldset pos-form-fieldset-combined">
+            <div class="styleguide-forms-placeholder-input"></div>
+            <div class="styleguide-forms-placeholder-button"></div>
+          </fieldset>
+        </form>
+      </div>
+
       <h3 class="pos-heading-4 styleguide-heading-4">Labels</h3>
 
       <div class="styleguide-columns">

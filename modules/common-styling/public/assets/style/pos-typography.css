@@ -6,6 +6,7 @@
   headings
   sidenotes
   increasing text legibility
+  long text
 */
 
 
@@ -149,6 +150,25 @@
   .pos-increaseLegibility > * {
     position: relative;
     z-index: 2;
+  }
+
+
+  /* long text
+  ============================================================================ */
+  .pos-prose .pos-heading-3 {
+    margin-block-end: .5rem;
+  }
+
+  .pos-prose ol {
+    margin-inline-start: 1.2em;
+
+    list-style-type: decimal;
+  }
+
+  .pos-prose ul {
+    margin-inline-start: 1.2em;
+
+    list-style-type: disc;
   }
 
 }

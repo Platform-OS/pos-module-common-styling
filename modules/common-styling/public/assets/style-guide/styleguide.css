@@ -543,6 +543,11 @@ p code {
     margin-block-start: var(--pos-gap-text-text)
   }
 
+  .styleguide-forms-placeholder-fieldset.pos-form-fieldset-combined {
+    height: auto;
+    padding: var(--pos-padding-card);
+  }
+
 .styleguide-forms-placeholder-input {
   height: 2rem;
   display: block;
@@ -624,3 +629,13 @@ p code {
 #text-inputs-textarea table textarea {
   width: 150px;
 }
+
+  .pos-form-fieldset-combined .styleguide-forms-placeholder-input {
+    flex-grow: 1;
+  }
+
+  .pos-form-fieldset-combined .styleguide-forms-placeholder-button {
+    margin: 0;
+    
+    border-inline-start: 3px dotted var(--pos-color-content-background);
+  }

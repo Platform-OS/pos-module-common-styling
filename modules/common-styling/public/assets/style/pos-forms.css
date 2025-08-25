@@ -51,6 +51,31 @@
     align-items: center;
   }
 
+  /* combined fieldset */
+  .pos-form .pos-form-fieldset-combined {
+    display: flex;
+    align-items: center;
+  }
+
+    .pos-form-fieldset-combined > * {
+      margin-inline-start: -1px;
+    }
+
+    .pos-form-fieldset-combined > *:not(:first-child) {
+      border-start-start-radius: 0;
+      border-end-start-radius: 0;
+    }
+
+    .pos-form-fieldset-combined > *:not(:last-child) {
+      border-start-end-radius: 0;
+      border-end-end-radius: 0;
+    }
+
+    .pos-form-fieldset-combined > :first-child {
+      margin-inline-start: 0;
+    }
+
+
 
   /* labels
   ============================================================================ */
@@ -154,7 +179,7 @@
   .pos-form textarea:focus-visible,
   .pos-debug-form-input-focus-visible {
     position: relative;
-    z-index: 1;
+    z-index: 2;
 
     border-color: var(--pos-color-input-active-frame);
     background-color: var(--pos-color-input-active-background);
@@ -578,6 +603,5 @@
   .pos-form-multiselect-list .pos-form-multiselect-list-item-filtered {
     display: none;
   }
-
 
 }
