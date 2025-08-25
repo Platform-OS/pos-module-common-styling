@@ -73,11 +73,11 @@
         padding-inline-end: 0;
       }
 
-    .pos-table-content > ul:not(:first-child) li {
+    .pos-table-content > ul:not(:first-child) > li {
       border-block-start: 1px solid var(--pos-color-frame);
     }
 
-    .pos-table-content:not(.pos-card) > ul:last-child li {
+    .pos-table-content:not(.pos-card) > ul:last-child > li {
       padding-block-end: 0;
     }
   }
