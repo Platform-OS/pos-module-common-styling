@@ -24,10 +24,10 @@ layout: 'modules/common-styling/style-guide'
     
     <!---------------------------------------------------------------------------------------- initialization -->
     <article id="initialization">
-      <h2 class="pos-heading-2">Initlialization</h2>
+      <h2 class="pos-heading-2">Initialization</h2>
       <div class="styleguide-columns">
         <div>
-          <p>All of the following CSS (except CSS custom properties) are scoped to container that uses <code>pos-app</code> class. You can use that class either on the root <code>html</code> tag of your app or just limit the scope to any container.</p>
+          <p>All of the following CSS (except CSS custom properties) are scoped to container that uses <code>pos-app</code> class. You can apply this class to the root <code>html</code> tag to style your entire app, or add it to a specific container to limit the scope.</p>
 {% capture code %}{% raw %}
 <html class="pos-app">
 …
@@ -37,7 +37,7 @@ layout: 'modules/common-styling/style-guide'
           </div>
 
           <h3 class="pos-heading-4 styleguide-heading-4">Dark mode</h3>
-          <p>To enable dark mode add the <code>pos-theme-darkEnabled</code> class to the same container. Dark theme setting is based on the user's system settings or can be forced by adding a <code>pos-theme-dark</code> class to your app container.</p>
+          <p>To enable dark mode, add the <code>pos-theme-darkEnabled</code> class to the same container. This will switch the theme automatically based on the user’s system settings. If you want to force dark mode manually, use the <code>pos-theme-dark</code> class instead.</p>
 {% capture code %}{% raw %}
 <html class="pos-app pos-theme-darkEnabled">
 …
@@ -444,8 +444,8 @@ layout: 'modules/common-styling/style-guide'
     <article id="gradients">
       <h2 class="pos-heading-2">Gradients and shadows</h2>
 
-      <h3 class="pos-heading-4 styleguide-heading-4">Increasing text legibility over na image</h3>
-      <p>When using text on an image you might need to increase the text legibility and ensure the contrast between those two stays high. For that you may use an eased gradient available through the css custom property: <code>--pos-gradient-legibility</code> or a pre-defined class <code>pos-increaseLegibility</code>. Be caresul with the later though as it uses relative positioning and may break your layout in some cases.</p>
+      <h3 class="pos-heading-4 styleguide-heading-4">Increasing text legibility over images</h3>
+      <p>When placing text on top of an image, you may need to improve legibility and ensure the contrast stays high. You can achieve this with the eased gradient available through the CSS custom property <code>--pos-gradient-legibility</code> or by using the pre-defined class <code>pos-increaseLegibility</code>. Use the class with caution, as it relies on relative positioning and may affect your layout in some cases.</p>
       <dl class="styleguide-details">
         <dt>Class</dt><dd><code>pos-increaseLegibility</code></dd>
         <dt>Properties</dt><dd><code>--pos-gradient-legibility</code></dd>
@@ -581,7 +581,7 @@ layout: 'modules/common-styling/style-guide'
             The quick brown fox jumps over the lazy dog
           </picture>
 {% capture code %}{% raw %}
-<h2 class="pos-heading-2">The quick brown fox jumps over the lazy dog</h1>
+<h2 class="pos-heading-2">The quick brown fox jumps over the lazy dog</h2>
 {% endraw %}{% endcapture %}
           <div class="styleguide-code">
             <pre><code>{{ code | lstrip | rstrip }}</code></pre>
@@ -604,7 +604,7 @@ layout: 'modules/common-styling/style-guide'
             The quick brown fox jumps over the lazy dog
           </picture>
 {% capture code %}{% raw %}
-<h3 class="pos-heading-3">The quick brown fox jumps over the lazy dog</h1>
+<h3 class="pos-heading-3">The quick brown fox jumps over the lazy dog</h3>
 {% endraw %}{% endcapture %}
           <div class="styleguide-code">
             <pre><code>{{ code | lstrip | rstrip }}</code></pre>
@@ -627,7 +627,7 @@ layout: 'modules/common-styling/style-guide'
             The quick brown fox jumps over the lazy dog
           </picture>
 {% capture code %}{% raw %}
-<h4 class="pos-heading-4">The quick brown fox jumps over the lazy dog</h1>
+<h4 class="pos-heading-4">The quick brown fox jumps over the lazy dog</h4>
 {% endraw %}{% endcapture %}
           <div class="styleguide-code">
             <pre><code>{{ code | lstrip | rstrip }}</code></pre>
