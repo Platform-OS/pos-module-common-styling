@@ -1,12 +1,29 @@
-WIP
+# platformOS Common-Styling Module
 
-This module contains reusable CSS and JS, which are or will be leveraged by [platformOS modules](https://documentation.platformos.com/developer-guide/modules/platformos-modules#our-modules), and which you will be able to use in your projects. The idea is to provide a consistent and documented way of providing modules that look good from the start and which you can easily customize to fit your needs.
+_(WIP)_
 
-This module follows the [platformOS DevKit best practices](https://documentation.platformos.com/developer-guide/modules/platformos-modules).
+The Common-Styling module provides a reusable design system for platformOS to make your projects look great out of the box and gives you simple tools to customize them.
+
+It includes reusable CSS and JavaScript that are (or will be) leveraged by [platformOS modules](https://documentation.platformos.com/developer-guide/modules/platformos-modules#our-modules), and which you can also use directly in your own projects. The idea is to provide a consistent, documented way of building modules that look good from the start and which you can easily customize to fit your needs.
+
+Common-styling follows the [platformOS DevKit best practices](https://documentation.platformos.com/developer-guide/modules/platformos-modules).
+
+## Features
+
+- ⚙️ Customizable through CSS variables defined in `pos-config.css`
+- 📖 Built-in `/style-guide` page to preview components and check available variables
+- 🧩 Provides shared CSS and JavaScript utilities for use in platformOS modules and projects
+- 📝 Includes base styles for forms, buttons, typography, and other common components
+- 🛡️ Scoped with `pos-` prefixes and CSS layers to avoid conflicts with project code
+- 🌙 Supports both light and dark themes (automatic or manual)
+- 📱 Responsive styles included by default
+- ✅ Follows [platformOS DevKit best practices](https://documentation.platformos.com/developer-guide/modules/platformos-modules)
 
 ## Installation
 
 The platformOS Common Styling Module is available on the [Partner Portal Modules Marketplace](https://partners.platformos.com/marketplace/pos_modules/154).
+
+After installation, visit `<your instance url>/style-guide` to preview all available components, see examples of forms, buttons, typography and the complete list of CSS variables you can override.
 
 ### Prerequisites
 
@@ -26,51 +43,177 @@ The platformOS Common Styling is fully compatible with [platformOS Check](https:
 
 This command installs the Common Styling Module and updates or creates the `app/pos-modules.json` file in your project directory to track module configurations.
 
+3. **Download the source code** into your local environment:
+
+```bash
+   pos-cli modules download common-styling
+```
+
+4. **Explore the built-in Style Guide.**
+After installation, visit `/style-guide` on your instance. (Make sure you deploy the module using `pos-cli deploy` command)
+- Preview all available components.
+- See examples of forms, buttons, and typography.
+- Find the complete list of CSS variables you can override.
+
+
 ### Setup
 
 1. **Install the module** using the [pos-cli](https://github.com/Platform-OS/pos-cli).
+
 2. **Include the following partial** into your [layout](https://documentation.platformos.com/developer-guide/pages/layouts)'s `<head>` section:
 
 ```liquid
 {% render 'modules/common-styling/init' %}
 ```
 
-(If you do not have a layout yet, you might want to check [style-guide's layout](https://github.com/Platform-OS/pos-module-common-styling/blob/master/modules/common-styling/public/views/layouts/style-guide.liquid) for an inspiration of how minimum layout can look like)
+👉 If you do not have a layout, check the [style-guide's layout](https://github.com/Platform-OS/pos-module-common-styling/blob/master/modules/common-styling/public/views/layouts/style-guide.liquid) for an example of a minimal layout.
 
-3. **Optionally, use the CSS reset**. It's not recommended to use it in an existing app, probably, but you can safely use it on a fresh one. To use it, just pass a parameter to the render tag mentioned above and use a `pos-app` class anywhere on your main content container.
+3. **Optionally enable the [CSS reset](https://github.com/Platform-OS/pos-module-common-styling/blob/master/modules/common-styling/public/assets/style/pos-reset.css)**. It resets default browser styling and fixes some browser-specific issues
+- It’s safe to use in a fresh app.
+- In an existing app, enabling it might cause unexpected changes.
+
+To use it, pass the `reset: true` parameter to the render tag mentioned above and use a `pos-app` class anywhere on your main content container:
 
 ```liquid
 {% render 'modules/common-styling/init', reset: true %}
 ```
 
-4. If you want to use `common-styling` in the whole app, add the `pos-app` class to your application `<html>` tag. You can use the class on any container to scope `common-styling` just for that part of the app.
+4. **Scope the styling with `pos-app`:**
+- To apply common-styling globally, add `class="pos-app"` to your application’s `<html>` tag:
 
-5. All of the available CSS custom properties, styling previews, and pre-made components are documented under `/style-guide`.
+```html
+<html lang="en" class="pos-app">
+```
+- To apply styles only in certain parts of your app, wrap content in a container:
+
+```html
+<div class="pos-app">
+</div>
+```
+
+> **Note:** If you plan to add your own CSS overrides, always load them **after** `common-styling` in your layout. This way, your styles take precedence over the defaults.
 
 ## Customizing CSS
 
-When using the `common-styling` module, you can easily configure the looks of components by overwriting the CSS variables stored in `pos-config.css`. Just copy the variables you need to overwrite to the CSS of your app so they can be overwritten.
+When using the `common-styling` module, you can configure the look of components by overriding the CSS variables defined in **`pos-config.css`**.  
+Define overrides inside `:root {}` so they apply globally across your app.
+Instead of editing the module directly, you can override only the variables you need in your own stylesheet.
 
-When building CSS, don't hardcode any (well... probably with some exceptions) color or size. Everything should use CSS variables that are in line with [Figma variables](https://documentation.platformos.com/kits/ui/platformos-design-kit#download). (Pro tip - you can use calc(), from-color(), or color-mix() if needed).
+👉 Copy only the variables you want to change into your app’s CSS file, and redefine them there.
+
+👉 Use `/style-guide` as your main reference for available variables and component classes. This page lists all color variables, form components, buttons, and more. It’s the recommended way to discover what you can override.
+
+👉 Common-styling is responsive out of the box. To test layouts, use your browser’s responsive design mode (DevTools → device toolbar).
+
+
+### 1. Create a custom stylesheet
+
+Add a file to your project, for example:
+
+```
+app/assets/<my-app-name>-config.css
+```
+
+This is where you’ll put your overrides.
+
+### 2. Load it after common-styling
+
+In your layout (for example: `application.liquid`), include your stylesheet **below** the `common-styling` init. This ensures your overrides take precedence.
+
+```liquid
+{% render 'modules/common-styling/init' %}
+<link rel="stylesheet" href="{{ 'variables.css' | asset_url }}">
+```
+
+### 3. Override variables
+
+Copy only the variables you want to change from `pos-config.css` into your stylesheet, and redefine them under `:root`.
+
+Example — giving primary buttons a green theme:
+
+```css
+:root {
+  --pos-color-button-primary-background: #008000;
+  --pos-color-button-primary-hover-background: #00a000;
+}
+```
+
+### Tips and Best practices
+
+- Don’t hardcode values like colors or sizes (with very few exceptions). Always rely on the provided CSS variables.
+- Override **only what you need** — don’t copy the full config.
+- You can use CSS functions like `calc()`, `from-color()`, or `color-mix()` if you need to adjust variables dynamically.
+- Stick to the provided variable system, which maps to our [Figma design kit](https://documentation.platformos.com/kits/ui/platformos-design-kit#download).
+- If your app supports **dark mode**, remember to override both light and dark variables.
+- Use `/style-guide` to preview available variables and confirm your overrides.
 
 
 ## Dark mode
 
-There are two base themes provided by default - a light and a dark one. To enable dark mode on your app, please use `.pos-theme-darkEnabled` class on the root `html` tag of your layout. It will switch to dark theme automatically based on the system settings, or - if you need to switch manually - please use `.pos-theme-dark` class on the root `html` tag of your layout.
+The `common-styling` module includes two base themes by default: a light and a dark one.
+
+### Automatic dark mode
+
+To enable automatic dark mode (switches based on the user’s system preference), add the following class to the root `<html>` tag in your layout:
+
+```html
+<html class="pos-app pos-theme-darkEnabled">
+```
+
+### Manual dark mode
+
+If you want to control the theme manually, use:
+
+```html
+<html class="pos-app pos-theme-dark">
+```
+
+This forces the dark theme regardless of system settings.
+
+### Notes
+
+- Both light and dark themes use the same set of CSS variables. If you override variables, make sure to provide values for both themes if needed.
+- You can preview dark mode in your browser [using dev tools](https://stackoverflow.com/a/59223868), toggling system preferences, or manually applying `.pos-theme-dark`.
+- Example — overriding variables just for dark mode:
+
+```css
+:root {
+  --pos-color-dark-button-primary-background: #004d00;
+}
+```
 
 
 ## Scoping CSS
 
+To avoid conflicts and keep styles predictable, all CSS in this module follows a **scoping** convention.
+
 When naming your module CSS files, please prefix them with `pos-` for consistency.
 
-When naming your CSS classes, please prefix those with `pos-`. We are trying to make sure that the CSS from modules won't interfere with any other CSS that could be used in the project. Keep in mind that the module can be used in various contexts, so any styling needs to be scoped just to the module code.
+### Naming conventions
 
-Every CSS is placed inside a `common-styling` CSS layer to lower its specificity and so that you can always easily overwrite it without having to worry about the selectors used.
+- **Files:** Prefix module CSS files with `pos-` (e.g., `pos-form.css`, `pos-button.css`) for consistency.
+- **Classes:** Prefix CSS classes with `pos-` (e.g., `.pos-form`, `.pos-button`). This ensures styles from `common-styling` won’t interfere with unrelated CSS in your project.
 
-Some CSS rules will be inherited when the parent container has a specific class. Example of`.pos-form` class on a container will style the inputs, buttons, and form-related stuff inside the container.
+👉 Keep in mind that the module can be used in various contexts, so any styling needs to be scoped just to the module code.
 
-Each component should have its own separate CSS file.
+### CSS layers
 
+All styles from `common-styling` are placed inside a dedicated CSS layer.
+This lowers specificity so you can override them easily in your own stylesheet, without having to worry about the selectors used.
+
+### Scoped styling
+
+Some CSS rules will be inherited when the parent container has a specific class. For example, the `.pos-form` scopes styling so that inputs, buttons, and other form-related elements inside the container adopt the design system styles.
+
+### Component structure
+
+**Each component should have its own separate CSS file.** This keeps the codebase modular, easier to maintain, and consistent across projects.
+
+For example:
+
+- `pos-form.css` for forms
+- `pos-button.css` for buttons
+- `pos-card.css` for cards
 
 ## JavaScript namespace for modules
 
@@ -114,7 +257,6 @@ As an example starting point for defining JavaScript for your module, you can us
 </script>
 ```
 
-
 ## Debugging JavaScript modules
 
 To enable debug mode, you can set the `pos.debug` to `true` in the JS Console. This will log events from the default provided modules.
@@ -124,8 +266,6 @@ When building your module, please use the following method to log debug data:
 ```js
 pos.modules.debug([true || module.settings.debug], [module id (string)], [message (string)]);
 ```
-
-
 
 ## Module communication using events
 
@@ -138,11 +278,9 @@ pos.modules.debug(module.settings.debug, 'event', `pos-somethingHappenedInMyModu
 
 Using `pos.modules.debug()` to add information about the event provides an easy way for the developers to react to changes provided by your module without the need to check the code or browse through documentation.
 
-
-
 ## Handling cache with importmaps
 
-When using the `import` statement in your JavaScript files, you will request a JS file from the CDN that could already be cached by the browser. PlatformOS handles breaking the cache for assets by using the `asset_url` filter. You cannot use it in the JS files, though, but the browsers allow you to map any filename to any other URL using [Import Maps](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap). Currently, only a single import map on a page can be used, and it needs to be defined before any other JS script. (This will change soon as multiple import maps are in the works for all the browsers.)
+When using the `import` statement in your JavaScript files, you will request a JS file from the CDN that could already be cached by the browser. platformOS handles breaking the cache for assets by using the `asset_url` filter. You cannot use it in the JS files, though, but the browsers allow you to map any filename to any other URL using [Import Maps](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap). Currently, only a single import map on a page can be used, and it needs to be defined before any other JS script. (This will change soon as multiple import maps are in the works for all the browsers.)
 
 An example import map looks like this:
 
@@ -163,12 +301,12 @@ An example import map looks like this:
 
 The first line allows you to use relative `import` statements inside your JS files, the last line resets it back to the default.
 
-
 ## Components
 
 ### Toast notifications
 
 1. Render the partial in your application layout (preferably at the very bottom)
+
 ```liquid
 {% liquid
   function flash = 'modules/core/commands/session/get', key: 'sflash'
@@ -210,10 +348,11 @@ await pos.modules.load({
 |  parameter  | type     | description                                                            |
 |-------------|----------|------------------------------------------------------------------------|
 | endpoint    | string   | URL of the endpoint that returns the HTML to be applied to a container |
-| target      | string   | selector for the target container that the HTML will be applied to     |
-| method      | string   | `replace` or `append` - the returned HTML will replace the content of the container or will be appended after the last node of the container |
-| trigger     | dom node | the HTML element that will trigger loading the endpoint |
-| triggerType | string   | `click` or `hover` - the loading process will be started either by clicking or hovering over the trigger |
+| target      | string   | Selector for the target container that the HTML will be applied to     |
+| method      | string   | Either `replace` or `append`. The returned HTML will replace the content of the container or will be appended after the last node of the container |
+| trigger     | dom node | The HTML element that triggers loading the endpoint |
+| triggerType | string   | Either `click` or `hover`. Defines whether loading starts on click or hover trigger |
+
 
 You can use the `load` method directly or use the simpler method by adding some custom attributes to the trigger element that will initialize loading the endpoint when interacted with:
 
@@ -225,7 +364,9 @@ Clicking the following button will load the HTML from `/test/example_endpoint` t
 <div id="example_container">Loading…</div>
 ```
 
-| data-load-content       | URL of the endpoint that returns the HTML to be applied to a container |
-| data-load-target        | selector for the target container that the HTML will be applied to     |
-| data-load-method        | `replace` or `append` - the returned HTML will replace the content of the container or will be appended after the last node of the container |
-| data-load-trigger-type  | if you want the loading process to be triggered by `click` or `mouseenter` JS events |
+| attribute              | description                                                                 |
+|------------------------|-----------------------------------------------------------------------------|
+| data-load-content    | URL of the endpoint that returns the HTML to be applied to a container       |
+| data-load-target     | Selector for the target container that the HTML will be applied to           |
+| data-load-method     | `replace` or `append` – the returned HTML will either replace the container’s content or be appended after the last node of the container |
+| data-load-trigger-type | Defines whether the loading process is triggered by a `click` or `mouseenter` event |
