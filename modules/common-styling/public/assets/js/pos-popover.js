@@ -32,7 +32,7 @@ window.pos.modules.popover = function(container, userSettings = {}){
   // all of the focusable elements in the menu (array)
   module.settings.focusable = [];
   // to enable debug mode (bool)
-  module.settings.debug = (userSettings?.debug) ? userSettings.debug : true;
+  module.settings.debug = (userSettings?.debug) ? userSettings.debug : false;
 
   
 
