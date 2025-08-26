@@ -1,4 +1,4 @@
-/*
+  /*
   handles focus for popover menus and provides fallback for firefox lacking anchor positioning
 
   usage:
@@ -29,8 +29,10 @@ window.pos.modules.popover = function(container, userSettings = {}){
   module.settings.opened = false;
   // menu element inside the popover (dom node)
   module.settings.menu = module.settings.popover.matches('menu') ? module.settings.popover : module.settings.popover.querySelector('menu');
+  // all of the focusable elements in the menu (array)
+  module.settings.focusable = [];
   // to enable debug mode (bool)
-  module.settings.debug = (userSettings?.debug) ? userSettings.debug : false;
+  module.settings.debug = (userSettings?.debug) ? userSettings.debug : true;
 
   
 
@@ -39,11 +41,18 @@ window.pos.modules.popover = function(container, userSettings = {}){
   module.init = () => {
     pos.modules.debug(module.settings.debug, module.settings.id, 'Initializing popover menu', module.settings.container);
 
-    module.settings.popover.addEventListener('beforetoggle', event => {
+    module.settings.popover.addEventListener('toggle', event => {
       if(event.newState == 'open'){
+        // set all the focusable menu items
+        if(module.settings.menu){
+          module.settings.focusable = Array.from(module.settings.menu.querySelectorAll('li a, li button')).filter(element => element.checkVisibility())
+        }
+
+        // set state
         module.settings.opened = true;
         pos.modules.debug(module.settings.debug, module.settings.id, 'Popover opened', module.settings.container);
 
+        // dispatch custom event
         document.dispatchEvent(new CustomEvent('pos-popover-opened', { bubbles: true, detail: { target: module.settings.popover, id: module.settings.id } }));
         pos.modules.debug(module.settings.debug, 'event', 'pos-popover-opened', { target: module.settings.popover, id: module.settings.id });
 
@@ -52,9 +61,11 @@ window.pos.modules.popover = function(container, userSettings = {}){
           document.addEventListener('keydown', module.keyboard);
         }
       } else {
+        // set state
         module.settings.opened = false;
         pos.modules.debug(module.settings.debug, module.settings.id, 'Popover closed', module.settings.container);
 
+        // dispatch custom event
         document.dispatchEvent(new CustomEvent('pos-popover-closed', { bubbles: true, detail: { target: module.settings.popover, id: module.settings.id } }));
         pos.modules.debug(module.settings.debug, 'event', 'pos-popover-closed', { target: module.settings.popover, id: module.settings.id });
 
@@ -134,7 +145,7 @@ window.pos.modules.popover = function(container, userSettings = {}){
       event.preventDefault();
 
       if(module.settings.menu.contains(document.activeElement)){
-        if(document.activeElement.closest('li').nextElementSibling){
+        if(module.settings.focusable[module.settings.focusable.indexOf(document.activeElement)+1]){
           module.focusNextMenuItem();
         } else {
           pos.modules.debug(module.settings.debug, module.settings.id, 'There is no next menu item', module.settings.container);
@@ -149,7 +160,7 @@ window.pos.modules.popover = function(container, userSettings = {}){
       event.preventDefault();
 
       if(module.settings.menu.contains(document.activeElement)){
-        if(document.activeElement.closest('li').previousElementSibling){
+        if(module.settings.focusable[module.settings.focusable.indexOf(document.activeElement)-1]){
           module.focusPreviousMenuItem();
         } else {
           pos.modules.debug(module.settings.debug, module.settings.id, 'There is no previous menu item', module.settings.container);
@@ -172,32 +183,35 @@ window.pos.modules.popover = function(container, userSettings = {}){
   };
 
 
-  // purpose:		focuses first menu item
+  // purpose:		focuses first visible menu item
   // ------------------------------------------------------------------------
   module.focusFirstMenuItem = () => {
-    pos.modules.debug(module.settings.debug, module.settings.id, 'Focusing first menu item', module.settings.container);
-    module.settings.menu.querySelector('li:first-child a, li:first-child button').focus();
+    module.settings.focusable[0].focus();
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Focusing first visible menu item', module.settings.focusable[0]);
   };
 
-  // purpose:		focuses last menu item
+  // purpose:		focuses last visible menu item
   // ------------------------------------------------------------------------
   module.focusLastMenuItem = () => {
-    pos.modules.debug(module.settings.debug, module.settings.id, 'Focusing last menu item', module.settings.container);
-    module.settings.menu.querySelector('li:last-child a, li:last-child button').focus();
+    module.settings.focusable[module.settings.focusable.length-1].focus();
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Focusing last visible menu item', module.settings.focusable[module.settings.focusable.length-1]);
   };
 
   // purpose:		focuses menu item that is next to the currently focused one
   // ------------------------------------------------------------------------
   module.focusNextMenuItem = () => {
-    pos.modules.debug(module.settings.debug, module.settings.id, 'Focusing next available menu item', module.settings.container);
-    document.activeElement.closest('li').nextElementSibling.querySelector('a, button').focus();
+    const currentlyFocused = module.settings.focusable.indexOf(document.activeElement);
+    module.settings.focusable[currentlyFocused+1].focus();
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Focusing next available menu item', module.settings.focusable[currentlyFocused+1]);
   };
 
   // purpose:		focuses menu item that is previous to the currently focused one
   // ------------------------------------------------------------------------
   module.focusPreviousMenuItem = () => {
-    pos.modules.debug(module.settings.debug, module.settings.id, 'Focusing previous available menu item', module.settings.container);
-    document.activeElement.closest('li').previousElementSibling.querySelector('a, button').focus();
+    const currentlyFocused = module.settings.focusable.indexOf(document.activeElement);
+    module.settings.focusable[currentlyFocused-1].focus();
+
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Focusing previous available menu item', module.settings.focusable[currentlyFocused-1]);
   };
 
 
