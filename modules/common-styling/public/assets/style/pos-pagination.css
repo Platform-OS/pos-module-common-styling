@@ -9,7 +9,23 @@
   .pos-pagination {
     margin-block-start: var(--pos-gap-card-card);
     display: flex;
+    align-items: center;
     justify-content: end;
+  }
+
+  .pos-pagination svg {
+    height: 100%;
+  }
+
+  .pos-pagination .pos-label {
+    position: absolute;
+    left: -200vw;
+  }
+
+  .pos-pagination .pos-pagination-previous,
+  .pos-pagination .pos-pagination-next {
+    height: 1.25em !important;
+    padding-inline: .75em;
   }
 
   .pos-pagination ul {

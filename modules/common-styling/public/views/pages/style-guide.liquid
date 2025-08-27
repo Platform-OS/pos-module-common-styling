@@ -1653,7 +1653,7 @@ new pos.modules.toast('[severity]', '[message]');
       <h3 class="pos-heading-4 styleguide-heading-4">Pagination</h3>
       <div class="styleguide-example">
         {% liquid
-          render 'modules/common-styling/pagination', count: 20, active: 7, maxCount: 10
+          render 'modules/common-styling/pagination', total_pages: 20
         %}
       </div>
 {% capture code %}{% raw %}
