@@ -1730,7 +1730,7 @@ render 'modules/common-styling/pagination', total_pages: 20
         <button class="pos-button pos-dialog-trigger" data-modaltarget="styleguide-dialog-example-1">Open dialog</button>
       </div>
 {% capture code %}{% raw %}
-<button class="pos-dialog-trigger" data-dialogtarget="styleguide-dialog-example-1">Open dialog</button>
+<button data-dialogtarget="styleguide-dialog-example-1">Open dialog</button>
 
 <dialog class="pos-dialog" id="styleguide-dialog-example-1">
   <header class="pos-dialog-header">
@@ -1748,7 +1748,7 @@ render 'modules/common-styling/pagination', total_pages: 20
         <pre><code>{{ code | lstrip | rstrip }}</code></pre>
       </div>
 {% capture code %}{% raw %}
-<button class="pos-dialog-trigger" data-dialogtarget="styleguide-dialog-example-2">Open dialog</button>
+<button data-dialogtarget="styleguide-dialog-example-2">Open dialog</button>
 
 {% render 'modules/common-styling/content/dialog', id: 'styleguide-dialog-example-2' title: 'Title', content: '<p>Lorem ipsum…</p>'%}
 {% endraw %}{% endcapture %}

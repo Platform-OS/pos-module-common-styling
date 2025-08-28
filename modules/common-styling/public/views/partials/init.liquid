@@ -68,7 +68,7 @@
     };
 
     /* modals */
-    if(document.querySelector('.pos-dialog-trigger')){
+    if(document.querySelector('[data-dialogtarget]')){
       import('{{ 'modules/common-styling/js/pos-dialog.js' | asset_url }}').then(module => {
         document.querySelectorAll('.pos-dialog-trigger').forEach((element, index) => {
           window.pos.modules.active[element.dataset.dialogtarget] = new window.pos.modules.dialog({
