@@ -5,6 +5,7 @@
   links
   headings
   sidenotes
+  utility classes
   increasing text legibility
   long text
 */
@@ -125,6 +126,13 @@
       top: 3px;
       flex-shrink: 0;
     }
+
+
+  /* utility classes
+  ============================================================================ */
+  .pos-text-center {
+    text-align: center;
+  }
 
 
   /* increasing text legibility

@@ -11,8 +11,10 @@
 
 
 <dialog class="pos-dialog" id="{{ id }}">
-  <header class="pos-dialog-header">
-    <h2 class="pos-heading-2">{{ title }}</h2>
+  <header class="pos-dialog-header{% if title == blank %} pos-dialog-header-simple{% endif %}">
+    {% if title %}
+      <h2 class="pos-heading-2">{{ title }}</h2>
+    {% endif %}
     <button title="Close" class="pos-dialog-close">
       <span class="pos-label">Close</span>
       {% render 'modules/common-styling/icon', icon: 'x' %}

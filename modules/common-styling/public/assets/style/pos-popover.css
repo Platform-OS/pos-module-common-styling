@@ -69,7 +69,7 @@
     width: 100%;
     padding: 1rem .75rem;
     display: flex;
-    gap: .5em;
+    gap: .6em;
     align-items: center;
 
     cursor: pointer;
@@ -97,7 +97,14 @@
     width: 1.2em;
     height: 1.2em;
 
-    color: inherit;
+    color: var(--pos-color-content-text-supplementary);
   }
+
+    .pos-popover menu li a:hover svg,
+    .pos-popover menu li a:focus-visible svg,
+    .pos-popover menu li button:hover svg,
+    .pos-popover menu li button:focus-visible svg {
+      color: inherit;
+    }
 
 }

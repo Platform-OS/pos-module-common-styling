@@ -70,7 +70,7 @@
     /* modals */
     if(document.querySelector('[data-dialogtarget]')){
       import('{{ 'modules/common-styling/js/pos-dialog.js' | asset_url }}').then(module => {
-        document.querySelectorAll('.pos-dialog-trigger').forEach((element, index) => {
+        document.querySelectorAll('[data-dialogtarget]').forEach((element, index) => {
           window.pos.modules.active[element.dataset.dialogtarget] = new window.pos.modules.dialog({
             trigger: element,
             container: document.querySelector('#' + element.dataset.dialogtarget)

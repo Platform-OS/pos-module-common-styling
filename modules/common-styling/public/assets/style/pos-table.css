@@ -17,17 +17,17 @@
     }
 
   /* header */
-  .pos-table header {
+  .pos-table > header {
     text-transform: uppercase;
     color: var(--pos-color-content-text-supplementary);
   }
 
     @media (min-width: 801px) {
-      .pos-table header {
+      .pos-table > header {
         display: table-row;
       }
 
-      .pos-table header > * {
+      .pos-table > header > * {
         padding-inline: var(--pos-padding-cell);
         padding-block: calc(var(--pos-padding-cell) / 2);
         display: table-cell;
@@ -35,17 +35,17 @@
         font-size: .9rem;
       }
 
-      .pos-table header > :first-of-type {
+      .pos-table > header > :first-of-type {
         padding-inline-start: 0;
       }
 
-      .pos-table header > :last-of-type {
+      .pos-table > header > :last-of-type {
         padding-inline-end: 0;
       }
     }
 
     @media (max-width: 800px) {
-      .pos-table header {
+      .pos-table > header {
         display: none;
       }
     }

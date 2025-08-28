@@ -2,6 +2,7 @@
   dialog window
 
   layout
+  looks
   content
   backdrop
 */
@@ -22,13 +23,20 @@
     overflow: auto;
   }
 
+    @media (max-width: 500px) {
+      .pos-dialog {
+        width: calc(100vw - 2 * var(--pos-padding-page));
+        min-width: 0;
+      }
+    }
 
-  /*  content
+
+  /*  looks
   ============================================================================ */
-.pos-dialog:open {
-  opacity: 1;
-  scale: 1;
-}
+  .pos-dialog:open {
+    opacity: 1;
+    scale: 1;
+  }
 
   .pos-dialog {
     max-width: 600px;
@@ -55,16 +63,32 @@
     }
   }
 
+
+  /*  content
+  ============================================================================ */
   .pos-dialog-header {
     display: flex;
     align-items: start;
     justify-content: space-between;
+    margin-block-end: var(--pos-gap-section-elements);
   }
+
+    .pos-dialog-header-simple {
+      margin-block-end: -1rem;
+      justify-content: flex-end;
+    }
+
+    .pos-dialog-header .pos-heading-2 {
+      margin-block-start: -.3em;
+    }
 
     .pos-dialog-header .pos-dialog-close {
         width: 1.5rem;
         height: 1.5rem;
+        padding-block-start: .2em;
         flex-shrink: 0;
+        position: relative;
+        z-index: 1;
 
         cursor: pointer;
         border-radius: var(--pos-radius-button);
@@ -88,6 +112,14 @@
   .pos-dialog-header .pos-label {
     position: absolute;
     left: -200vw;
+  }
+
+  .pos-dialog-actions {
+    margin-block-start: var(--pos-gap-section-elements);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--pos-gap-button-button);
+    justify-content: center;
   }
 
 
