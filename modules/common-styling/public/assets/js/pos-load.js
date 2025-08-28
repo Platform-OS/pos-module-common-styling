@@ -39,6 +39,7 @@ export function load(userSettings = {}){
   // ------------------------------------------------------------------------
   module.init = async function(){
     module.settings.trigger.addEventListener(module.settings.triggerType, module.load);
+    module.settings.trigger.addEventListener('focus', module.load);
   };
 
 
@@ -70,6 +71,7 @@ export function load(userSettings = {}){
   // ------------------------------------------------------------------------
   module.destroy = function(){
     module.settings.trigger.removeEventListener('click', module.load);
+    module.settings.trigger.removeEventListener('focus', module.load);
     pos.modules.debug(module.settings.debug, module.settings.id, 'Destroyed module', module.settings);
     module.settings = {};
   };

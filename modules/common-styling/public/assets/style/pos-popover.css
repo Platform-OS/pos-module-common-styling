@@ -21,7 +21,8 @@
     max-width: 600px;
     margin-block-start: 1rem;
     position-area: block-end span-inline-start;
-    position-try-fallbacks: flip-inline;
+    position-try-options: flip-block, flip-inline;
+    position-try-fallbacks: flip-block, flip-inline;
     overflow: hidden;
 
     border-radius: var(--pos-radius-panel);
@@ -32,6 +33,8 @@
     .pos-popover [popover] {
       width: calc(100vw - var(--pos-padding-page) * 2) !important;
       position-area: none;
+      position-try-options: none;
+      position-try-fallbacks: none;
       position: absolute;
       inset-block-start: anchor(bottom);
       inset-inline-start: var(--pos-padding-page);

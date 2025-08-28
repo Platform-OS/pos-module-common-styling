@@ -17,7 +17,7 @@ window.pos.modules.popover = function(container, userSettings = {}){
   // purpose:		settings that are being used across the module
   // ------------------------------------------------------------------------
   module.settings = {};
-  // notifications container (dom node)
+  // popover container (dom node)
   module.settings.container = container || document.querySelector('.pos-popover');
   // popover trigger (dom node)
   module.settings.trigger = module.settings.container.querySelector('[popovertarget]');
@@ -34,7 +34,7 @@ window.pos.modules.popover = function(container, userSettings = {}){
   // to enable debug mode (bool)
   module.settings.debug = (userSettings?.debug) ? userSettings.debug : false;
 
-  
+
 
   // purpose:		initializes the component
   // ------------------------------------------------------------------------

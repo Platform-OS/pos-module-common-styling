@@ -23,6 +23,7 @@
   spacing
   button shape
   input shape
+  transitions
 */
 
 
@@ -835,4 +836,12 @@
   --pos-height-button: var(--pos-height-input);
   /* border width for inputs */
   --pos-border-button: var(--pos-border-input);
+}
+
+
+
+/* transitions */
+/* ================================================================================ */
+:root {
+  --pos-transition-ui-detail: cubic-bezier(.3, 1, .06, 1);
 }
