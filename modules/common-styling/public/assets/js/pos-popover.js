@@ -221,20 +221,27 @@ window.pos.modules.popover = function(container, userSettings = {}){
     pos.modules.debug(module.settings.debug, module.settings.id, 'This browser does not support anchor positioning, setting the position manually', module.settings.container);
 
     const triggerSize = module.settings.trigger.getBoundingClientRect();
+    triggerSize.offsetBottom = triggerSize.bottom + window.scrollY;
     const popoverSize = module.settings.popover.getBoundingClientRect();
 
     module.settings.popover.style.position = 'absolute';
 
+    // position to top
+    module.settings.popover.style.top = triggerSize.offsetBottom + 'px';
+
     // position to right
     if(triggerSize.left - popoverSize.width > 0){
+      module.settings.popover.style.left = 'auto';
       module.settings.popover.style.right = window.innerWidth - triggerSize.right + 'px';
     }
     // position to left
     else if(triggerSize.left + popoverSize.width < window.innerWidth){
+      module.settings.popover.style.right = 'auto';
       module.settings.popover.style.left = triggerSize.left + 'px';
     }
     // position to center
     else {
+      module.settings.popover.style.right = 'auto';
       module.settings.popover.style.left = triggerSize.left + (triggerSize.width - popoverSize.width) / 2 + 'px';
     }
   };
