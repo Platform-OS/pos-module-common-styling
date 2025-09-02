@@ -26,9 +26,6 @@
   ============================================================================ */
   .pos-form fieldset,
   .pos-form-fieldset {
-    all: unset;
-    display: revert;
-
     box-sizing: border-box;
   }
 
@@ -79,15 +76,38 @@
 
   /* labels
   ============================================================================ */
-  .pos-form-simple fieldset:has(label + input) label {
-    margin-inline-start: -.1em;
+  .pos-form-simple fieldset:has(label + input) label,
+  .pos-form-simple fieldset:has(label + textarea) label,
+  .pos-form-simple fieldset:has(label + .hashtag-container) label,
+  .pos-form-simple fieldset:has(label + .uppy-container) label {
+    margin-inline-start: -.1ex;
+    margin-block-end: .1em;
     align-self: start;
   }
 
-  .pos-form :has([required]) label:after {
+  .pos-form :has([required]:not([type="radio"])) label:after,
+  .pos-form :has([required]:not([type="radio"])) label strong:after {
     color: var(--pos-color-important);
 
     content: " *";
+  }
+
+  .pos-form :has([required]) label:has(strong):after {
+    display: none;
+  }
+
+  .pos-form label:has(strong) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pos-form label strong {
+    font-weight: 400;
+  }
+
+  .pos-form label small {
+    font-size: .85em;
+    color: var(--pos-color-content-text-supplementary);
   }
 
 
@@ -158,12 +178,12 @@
     transition-timing-function: linear;
   }
 
-  .pos-form-input:not(:disabled):hover,
-  .pos-form [type="text"]:not(:disabled):hover,
-  .pos-form [type="email"]:not(:disabled):hover,
-  .pos-form [type="password"]:not(:disabled):hover,
-  .pos-form [type="url"]:not(:disabled):hover,
-  .pos-form textarea:not(:disabled):hover,
+  .pos-form-input:not(:disabled):not(:focus-visible):hover,
+  .pos-form [type="text"]:not(:disabled):not(:focus-visible):hover,
+  .pos-form [type="email"]:not(:disabled):not(:focus-visible):hover,
+  .pos-form [type="password"]:not(:disabled):not(:focus-visible):hover,
+  .pos-form [type="url"]:not(:disabled):not(:focus-visible):hover,
+  .pos-form textarea:not(:disabled):not(:focus-visible):hover,
   .pos-debug-form-input-hover {
     border-color: var(--pos-color-input-hover-frame);
     background-color: var(--pos-color-input-hover-background);
@@ -185,7 +205,7 @@
     background-color: var(--pos-color-input-active-background);
     outline: 2px solid var(--pos-color-focused);
 
-    color: var(--pos-color-input-focus-text);
+    color: var(--pos-color-input-active-text);
   }
 
   .pos-form-input:disabled,
@@ -294,6 +314,16 @@
   .pos-form-error {
     text-wrap: pretty;
     color: var(--pos-color-important);
+  }
+
+
+  /* form actions, submit buttons
+  ============================================================================ */
+  .pos-form-actions {
+    margin-block-start: var(--pos-gap-section-elements);
+    display: flex;
+    justify-content: end;
+    gap: var(--pos-gap-button-button);
   }
 
 

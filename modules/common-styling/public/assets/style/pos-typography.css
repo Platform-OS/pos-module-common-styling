@@ -100,6 +100,14 @@
     font-weight: 400;
   }
 
+  .pos-heading-3 + .pos-card {
+    margin-block-start: .3em;
+  }
+
+  .pos-card + .pos-heading-3 {
+    margin-block-start: var(--pos-gap-card-card);
+  }
+
 
   /* sidenotes
   ============================================================================ */
@@ -111,7 +119,7 @@
   /* tips
   ============================================================================ */
   .pos-tip {
-    margin-block-start: .5rem;
+    margin-block-start: .2rem;
     position: relative;
     display: flex;
     gap: .5em;
@@ -123,7 +131,7 @@
       width: 1.2rem;
       height: 1.2rem;
       position: relative;
-      top: 3px;
+      top: 2px;
       flex-shrink: 0;
     }
 
