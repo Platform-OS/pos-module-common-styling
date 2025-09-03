@@ -49,7 +49,7 @@
   }
 
   /* combined fieldset */
-  .pos-form .pos-form-fieldset-combined {
+  .pos-form-fieldset-combined {
     display: flex;
     align-items: center;
   }
