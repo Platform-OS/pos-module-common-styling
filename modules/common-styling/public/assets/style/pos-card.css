@@ -4,6 +4,7 @@
   basic
   highlighted
   content
+  alert
 */
 
 
@@ -109,5 +110,65 @@
   .pos-card-content-footer ul svg {
     width: .75rem;
   }
+
+
+  /* alert
+  ============================================================================ */
+  .pos-card-alert {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+
+    background-color: var(--pos-color-highlight-background);
+    border: 1px solid var(--pos-color-frame);
+
+    color: var(--pos-color-highlight-text);
+  }
+
+    .pos-card-alert + .pos-card,
+    .pos-card-alert + .pos-community-space-header {
+      margin-block-start: var(--pos-gap-card-card);
+    }
+
+    .pos-card + .pos-card-alert,
+    .pos-community-space-header + .pos-card-alert {
+      margin-block-start: var(--pos-gap-card-card);
+    }
+
+  .pos-card-alert svg {
+    width: 1.5rem;
+
+    fill: var(--pos-color-content-text-supplementary);
+  }
+
+  /* warning */
+  .pos-card-alert-warning {
+    background-color: var(--pos-color-warning-disabled);
+    border-color: var(--pos-color-warning);
+  }
+
+    .pos-card-alert-warning svg {
+      fill: var(--pos-color-warning);
+    }
+
+  /* error */
+  .pos-card-alert-error {
+    background-color: var(--pos-color-important-disabled);
+    border-color: var(--pos-color-important);
+  }
+
+    .pos-card-alert-error svg {
+      fill: var(--pos-color-important);
+    }
+
+  /* success */
+  .pos-card-alert-success {
+    background-color: var(--pos-color-confirmation-disabled);
+    border-color: var(--pos-color-confirmation);
+  }
+
+    .pos-card-alert-success svg {
+      fill: var(--pos-color-confirmation);
+    }
 
 }
