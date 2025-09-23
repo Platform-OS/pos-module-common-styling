@@ -128,9 +128,9 @@ posStyleGuide.colors = () => {
     document.querySelectorAll('.styleguide-code').forEach(element => {
       element.appendChild(copyButton.content.cloneNode(true));
 
-      element.addEventListener('click', event => {
+      element.querySelector('.styleguide-copy').addEventListener('click', event => {
         // text to copy to the clipboard (string)
-        const text = element.parentElement.querySelector('pre code').textContent.trim();
+        const text = element.querySelector('pre code').textContent.trim();
 
         // copy code to clipboard
         navigator.clipboard.writeText(text).then(() => {

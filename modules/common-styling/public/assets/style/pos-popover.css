@@ -107,4 +107,17 @@
       color: inherit;
     }
 
+  .pos-popover .pos-popover-menu-item-important button,
+  .pos-popover .pos-popover-menu-item-important a,
+  .pos-popover .pos-popover-menu-item-important svg {
+    color: var(--pos-color-important);
+  }
+
+    .pos-popover  .pos-popover-menu-item-important a:hover,
+    .pos-popover  .pos-popover-menu-item-important button:hover,
+    .pos-popover  .pos-popover-menu-item-important a:focus-visible,
+    .pos-popover  .pos-popover-menu-item-important button:focus-visible {
+      background-color: var(--pos-color-important);
+    }
+
 }

@@ -78,6 +78,7 @@
     margin-inline-start: -.1ex;
     display: block;
 
+    line-height: 1.2;
     font-family: var(--pos-font-heading);
     font-size: 2rem;
     font-weight: 500;

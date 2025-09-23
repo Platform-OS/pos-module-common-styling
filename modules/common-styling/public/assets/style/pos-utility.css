@@ -1,0 +1,13 @@
+/*
+  utility classes for spacings and layout
+*/
+
+
+.pos-heading-with-action {
+  margin-block-end: var(--pos-gap-title-content);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--pos-gap-button-button);
+}

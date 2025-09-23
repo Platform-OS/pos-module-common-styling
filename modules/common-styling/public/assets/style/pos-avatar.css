@@ -36,14 +36,14 @@
   font-size: .6rem;
 }
 
-.pos-avatar-s {
+.pos-avatar-sm {
   width: 24px;
   height: 24px;
 
   font-size: .7rem;
 }
 
-.pos-avatar-m {
+.pos-avatar-md {
   width: 32px;
   height: 32px;
 
@@ -51,7 +51,7 @@
 }
 
 
-.pos-avatar-l {
+.pos-avatar-lg {
   width: 48px;
   height: 48px;
 
@@ -65,14 +65,14 @@
   font-size: 2rem;
 }
 
-.pos-avatar-xxl {
+.pos-avatar-2xl {
   width: 160px;
   height: 160px;
 
   font-size: 3rem;
 }
 
-.pos-avatar-xxxl {
+.pos-avatar-3xl {
   width: 192px;
   height: 192px;
 
