@@ -313,7 +313,7 @@ The first line allows you to use relative `import` statements inside your JS fil
   if context.location.pathname != flash.from or flash.force_clear
     function _ = 'modules/core/commands/session/clear', key: 'sflash'
   endif
-  theme_render_rc 'modules/common-styling/toasts', params: flash
+  render 'modules/common-styling/toasts', params: flash
 %}
 ```
 

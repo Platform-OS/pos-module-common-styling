@@ -1593,7 +1593,7 @@ layout: 'modules/common-styling/style-guide'
   if context.location.pathname != flash.from or flash.force_clear
     function _ = 'modules/core/commands/session/clear', key: 'sflash'
   endif
-  theme_render_rc 'modules/common-styling/toasts', params: flash
+  render 'modules/common-styling/toasts', params: flash
 %}
 {% endraw %}{% endcapture %}
           <div class="styleguide-code">
