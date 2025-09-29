@@ -153,8 +153,6 @@ posStyleGuide.colors = () => {
     module.settings.iconNodes.forEach(item => {
       let wrapper = document.createElement('li');
 
-      wrapper.classList.add('flex', 'flex-col', 'items-center', 'cursor-pointer');
-
       item.parentNode.insertBefore(wrapper, item);
       wrapper.appendChild(item);
     });
@@ -167,7 +165,8 @@ posStyleGuide.colors = () => {
   module.showIconNames = () => {
     
     module.settings.iconNodes.forEach(item => {
-      item.insertAdjacentHTML('afterend', item.getAttribute('data-icon'));
+      item.insertAdjacentHTML('afterend', `<span>${item.getAttribute('data-icon')}</span>`);
+      item.parentElement.title = `Copy '${item.getAttribute('data-icon')}' icon code to clipboard`;
     });
 
   };

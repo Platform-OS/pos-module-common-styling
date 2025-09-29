@@ -366,6 +366,7 @@ p code {
 }
 
 #icons li {
+  width: 94px;
   display: flex;
   flex-direction: column;
   gap: .3em;
@@ -376,17 +377,26 @@ p code {
   transition: color .1s linear;
 }
 
+#icons li > span {
+  width: 94px;
+  overflow: hidden;
+
+  white-space: nowrap;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+
 #icons ul svg {
-  width: 64px;
-  height: 64px;
-  padding: 20px;
+  width: 94px;
+  height: 94px;
+  padding: 30px;
 
   background-color: var(--pos-color-content-background);
   border-radius: var(--pos-radius-panel);
 
   color: var(--pos-color-content-text);
 
-  transition: color .1s linear;
+  transition: color .1s linear, scale .2s var(--pos-transition-ui-detail);
 }
 
 #icons li:not(.styleguide-icon-copied):hover,
@@ -398,6 +408,10 @@ p code {
 #icons .styleguide-icon-copied svg {
   color: var(--pos-color-confirmation);
 }
+
+  #icons .styleguide-icon-copied svg {
+    scale: .9;
+  }
 
 
 
