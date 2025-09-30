@@ -1,0 +1,47 @@
+<article id="text-styles">
+  <h2 class="pos-heading-2">Text styles</h2>
+  <h3 class="pos-heading-4 styleguide-heading-4">Sidenote</h3>
+  <div class="styleguide-columns">
+    <dl class="styleguide-details">
+      <dt>Class</dt><dd><code>pos-supplementary</code></dd>
+      <dt>Font family</dt><dd class="styleguide-typography-content-family"></dd>
+      <dt>Color</dt><dd class="styleguide-typography-content-color"></dd>
+      <dt>Size</dt><dd class="styleguide-typography-content-size"></dd>
+      <dt>Weight</dt><dd class="styleguide-typography-content-weight"></dd>
+      <dt>Line height</dt><dd class="styleguide-typography-content-lineheight"></dd>
+    </dl>
+    <div>
+      <picture class="styleguide-example pos-supplementary">
+        The quick brown fox jumps over the lazy dog
+      </picture>
+{% capture code %}{% raw %}
+<span class="pos-supplementary">The quick brown fox jumps over the lazy dog</span>
+{% endraw %}{% endcapture %}
+      <div class="styleguide-code">
+        <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="pos-heading-4 styleguide-heading-4">Tip</h3>
+  <div class="styleguide-columns">
+    <dl class="styleguide-details">
+      <dt>Class</dt><dd><code>pos-tip</code></dd>
+      <dt>Font family</dt><dd class="styleguide-typography-content-family"></dd>
+      <dt>Color</dt><dd class="styleguide-typography-content-color"></dd>
+      <dt>Size</dt><dd class="styleguide-typography-content-size"></dd>
+      <dt>Weight</dt><dd class="styleguide-typography-content-weight"></dd>
+      <dt>Line height</dt><dd class="styleguide-typography-content-lineheight"></dd>
+    </dl>
+    <div>
+      <picture class="styleguide-example pos-supplementary">
+        {% render 'modules/common-styling/tip', content: 'The quick brown fox jumps over the lazy dog' %}
+      </picture>
+      {% capture code %}{% raw %}
+        {% render 'modules/common-styling/tip', content: 'The quick brown fox jumps over the lazy dog' %}
+      {% endraw %}{% endcapture %}
+      <div class="styleguide-code">
+        <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+      </div>
+    </div>
+</article>
