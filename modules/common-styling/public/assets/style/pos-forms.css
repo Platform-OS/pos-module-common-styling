@@ -155,6 +155,8 @@
   .pos-form [type="email"],
   .pos-form [type="password"],
   .pos-form [type="url"],
+  .pos-form [type="datetime"],
+  .pos-form [type="datetime-local"],
   .pos-form textarea {
     all: unset;
     display: revert;
@@ -183,6 +185,8 @@
   .pos-form [type="email"]:not(:disabled):not(:focus-visible):hover,
   .pos-form [type="password"]:not(:disabled):not(:focus-visible):hover,
   .pos-form [type="url"]:not(:disabled):not(:focus-visible):hover,
+  .pos-form [type="datetime"]:not(:disabled):not(:focus-visible):hover,
+  .pos-form [type="datetime-local"]:not(:disabled):not(:focus-visible):hover,
   .pos-form textarea:not(:disabled):not(:focus-visible):hover,
   .pos-debug-form-input-hover {
     border-color: var(--pos-color-input-hover-frame);
@@ -196,6 +200,8 @@
   .pos-form [type="email"]:focus-visible,
   .pos-form [type="password"]:focus-visible,
   .pos-form [type="url"]:focus-visible,
+  .pos-form [type="datetime"]:focus-visible,
+  .pos-form [type="datetime-local"]:focus-visible,
   .pos-form textarea:focus-visible,
   .pos-debug-form-input-focus-visible {
     position: relative;
@@ -212,7 +218,9 @@
   .pos-form [type="text"]:disabled,
   .pos-form [type="email"]:disabled,
   .pos-form [type="password"]:disabled,
-  .pos-form [type="url"]:disabled
+  .pos-form [type="url"]:disabled,
+  .pos-form [type="datetime"]:disabled,
+  .pos-form [type="datetime-local"]:disabled,
   .pos-form textarea:disabled {
     border-color: var(--pos-color-input-disabled-frame);
     background-color: var(--pos-color-input-disabled-background);
@@ -225,6 +233,8 @@
   .pos-form [type="email"]::placeholder,
   .pos-form [type="password"]::placeholder,
   .pos-form [type="url"]::placeholder,
+  .pos-form [type="datetime"]::placeholder,
+  .pos-form [type="datetime-local"]::placeholder,
   .pos-form textarea::placeholder {
     color: var(--pos-color-input-placeholder);
   }
@@ -307,7 +317,10 @@
   .pos-form [type="text"][aria-invalid="true"],
   .pos-form [type="email"][aria-invalid="true"],
   .pos-form [type="password"][aria-invalid="true"],
-  .pos-form [type="url"][aria-invalid="true"] {
+  .pos-form [type="url"][aria-invalid="true"],
+  .pos-form [type="datetime"][aria-invalid="true"],
+  .pos-form [type="datetime-local"][aria-invalid="true"],
+  .pos-form textarea[aria-invalid="true"] {
     border-color: var(--pos-color-important);
   }
 

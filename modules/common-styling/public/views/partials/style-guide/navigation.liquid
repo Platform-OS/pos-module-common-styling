@@ -8,7 +8,7 @@
     %}
   </div>
   {% capture code %}{% raw %}
-    render 'modules/common-styling/pagination', total_pages: 20
+render 'modules/common-styling/pagination', total_pages: 20
   {% endraw %}{% endcapture %}
   <div class="styleguide-code">
     <pre><code>{{ code | lstrip | rstrip }}</code></pre>
@@ -26,8 +26,8 @@
     </div>
   </div>
   {% capture code %}{% raw %}
-    <button popovertarget="styleguide-popover" class="pos-button">Popover example</button>
-    <div popover id="styleguide-popover">The quick brown fox jumps over the lazy dog</div>
+<button popovertarget="styleguide-popover" class="pos-button">Popover example</button>
+<div popover id="styleguide-popover">The quick brown fox jumps over the lazy dog</div>
   {% endraw %}{% endcapture %}
   <div class="styleguide-code">
     <pre><code>{{ code | lstrip | rstrip }}</code></pre>
@@ -46,13 +46,13 @@
     </div>
   </div>
   {% capture code %}{% raw %}
-  <div class="pos-popover">
-    <button popovertarget="styleguide-popover-menu" class="pos-button">Popover menu</button>
-    <menu popover id="styleguide-popover-menu">
-      <li><a href="">Option</a></li>
-      <li><button type="button">Option</button></li>
-    </menu>
-  </div>
+<div class="pos-popover">
+  <button popovertarget="styleguide-popover-menu" class="pos-button">Popover menu</button>
+  <menu popover id="styleguide-popover-menu">
+    <li><a href="">Option</a></li>
+    <li><button type="button">Option</button></li>
+  </menu>
+</div>
   {% endraw %}{% endcapture %}
   <div class="styleguide-code">
     <pre><code>{{ code | lstrip | rstrip }}</code></pre>
@@ -65,7 +65,7 @@
       <h2 class="pos-heading-2">Title</h2>
       <button title="close" class="pos-dialog-close">
         <span class="pos-label">Close</span>
-        {% render 'modules/common-styling/icon', icon: 'x', class: null %}
+        {% render 'modules/common-styling/icon', icon: 'x' %}
       </button>
     </header>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quis lorem rutrum, lacinia velit non, accumsan quam. Sed tincidunt purus eget euismod congue. Aliquam ultrices lectus eu quam pulvinar cursus. Mauris aliquet leo ante. Integer at urna felis.</p><br>
@@ -75,27 +75,27 @@
     <button class="pos-button" data-dialogtarget="styleguide-dialog-example-1">Open dialog</button>
   </div>
   {% capture code %}{% raw %}
-    <button data-dialogtarget="styleguide-dialog-example-1">Open dialog</button>
+<button data-dialogtarget="styleguide-dialog-example-1">Open dialog</button>
 
-    <dialog class="pos-dialog" id="styleguide-dialog-example-1">
-      <header class="pos-dialog-header">
-        <h2 class="pos-heading-2">Title</h2>
-        <button title="close" class="pos-dialog-close">
-          <span class="pos-label">Close</span>
-          {% render 'modules/common-styling/icon', icon: 'x' %}
-        </button>
-      </header>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quis lorem rutrum, lacinia velit non, accumsan quam. Sed tincidunt purus eget euismod congue. Aliquam ultrices lectus eu quam pulvinar cursus. Mauris aliquet leo ante. Integer at urna felis.</p><br>
-      <button class="pos-button pos-dialog-close">Cancel</button>
-    </dialog>
+<dialog class="pos-dialog" id="styleguide-dialog-example-1">
+  <header class="pos-dialog-header">
+    <h2 class="pos-heading-2">Title</h2>
+    <button title="close" class="pos-dialog-close">
+      <span class="pos-label">Close</span>
+      {% render 'modules/common-styling/icon', icon: 'x' %}
+    </button>
+  </header>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quis lorem rutrum, lacinia velit non, accumsan quam. Sed tincidunt purus eget euismod congue. Aliquam ultrices lectus eu quam pulvinar cursus. Mauris aliquet leo ante. Integer at urna felis.</p><br>
+  <button class="pos-button pos-dialog-close">Cancel</button>
+</dialog>
   {% endraw %}{% endcapture %}
   <div class="styleguide-code">
     <pre><code>{{ code | lstrip | rstrip }}</code></pre>
   </div>
   {% capture code %}{% raw %}
-    <button data-dialogtarget="styleguide-dialog-example-2">Open dialog</button>
+<button data-dialogtarget="styleguide-dialog-example-2">Open dialog</button>
 
-    {% render 'modules/common-styling/content/dialog', id: 'styleguide-dialog-example-2' title: 'Title', content: '<p>Lorem ipsum…</p>'%}
+{% render 'modules/common-styling/content/dialog', id: 'styleguide-dialog-example-2' title: 'Title', content: '<p>Lorem ipsum…</p>'%}
   {% endraw %}{% endcapture %}
   <div class="styleguide-code">
     <pre><code>{{ code | lstrip | rstrip }}</code></pre>

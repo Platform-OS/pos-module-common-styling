@@ -11,3 +11,21 @@
   align-items: center;
   gap: var(--pos-gap-button-button);
 }
+
+  .pos-heading-with-action small {
+    margin-inline-start: .2ch;
+    display: block;
+
+    line-height: 1.5em;
+    font-size: .8rem;
+    color: var(--pos-color-content-text-supplementary)
+  }
+
+
+.pos-gap-section-section {
+  margin-block-start: var(--pos-gap-section-section);
+}
+
+.pos-gap-text-text {
+  margin-block-start: var(--pos-gap-text-text);
+}

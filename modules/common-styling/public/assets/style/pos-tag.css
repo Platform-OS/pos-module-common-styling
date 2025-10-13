@@ -5,7 +5,7 @@
   basic
   confirmation
   warning
-  error
+  important
   interactive
 */
 
@@ -23,6 +23,7 @@
     /* basic
     ============================================================================ */
     .pos-tag {
+      min-height: 1.5rem;
       padding: .33em 1rem;
       display: inline-flex;
       align-items: center;
@@ -44,7 +45,7 @@
 
     /* confirmation
     ============================================================================ */
-    .pos-tag.pos-tag-success {
+    .pos-tag.pos-tag-confirmation {
       background-color: var(--pos-color-confirmation-disabled);
     }
 
@@ -58,7 +59,7 @@
 
     /* error
     ============================================================================ */
-    .pos-tag.pos-tag-warning {
+    .pos-tag.pos-tag-important {
       background-color: var(--pos-color-important-disabled);
     }
 
@@ -66,6 +67,9 @@
     ============================================================================ */
     .pos-tag.pos-tag-interactive {
       background-color: var(--pos-color-interactive);
+      cursor: pointer;
+
+      color: var(--pos-color-content-inverted-text);
     }
 
     a.pos-tag-interactive:hover,

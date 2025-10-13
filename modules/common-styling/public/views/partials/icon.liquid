@@ -9,6 +9,10 @@
 {% endcomment %}
 
 
+{% liquid
+  assign class = class | default: ''
+%}
+
 {% capture attrs %}
   viewBox="0 0 24 24"
   fill="none"

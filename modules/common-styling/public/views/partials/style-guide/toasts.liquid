@@ -7,13 +7,13 @@
       <p>Adding the following code to your application `layout` file will initialize the module:</p>
 
       {% capture code %}{% raw %}
-        {% liquid
-          function flash = 'modules/core/commands/session/get', key: 'sflash'
-          if context.location.pathname != flash.from or flash.force_clear
-            function _ = 'modules/core/commands/session/clear', key: 'sflash'
-          endif
-          render 'modules/common-styling/toasts', params: flash
-        %}
+{% liquid
+  function flash = 'modules/core/commands/session/get', key: 'sflash'
+  if context.location.pathname != flash.from or flash.force_clear
+    function _ = 'modules/core/commands/session/clear', key: 'sflash'
+  endif
+  render 'modules/common-styling/toasts', params: flash
+%}
       {% endraw %}{% endcapture %}
 
       <div class="styleguide-code">

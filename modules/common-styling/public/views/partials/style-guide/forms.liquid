@@ -23,21 +23,21 @@
   </form>
 {% capture code %}{% raw %}
 <form action="" class="pos-form pos-form-simple">
-<fieldset>
-<label for="styleguide-form-example-a">Email</label>
-<input type="email" id="styleguide-form-example-a" placeholder="Email address" required {% render 'modules/common-styling/forms/error_input_handler', name: 'styleguide-form-example-a', errors: errors['styleguide-form-example-a'] %}>
-{% render 'modules/common-styling/forms/error_list', name: 'styleguide-example-error', errors: errors['styleguide-form-example-a'] %}
-</fieldset>
-<fieldset>
-<label for="styleguide-form-example-b">Password</label>
-<input type="password" id="styleguide-form-example-b" placeholder="••••••••" required {% render 'modules/common-styling/forms/error_input_handler', name: 'styleguide-form-example-b', errors: errors['styleguide-form-example-b'] %}>
-{% render 'modules/common-styling/forms/error_list', name: 'styleguide-example-error', errors: errors['styleguide-form-example-b'] %}
-</fieldset>
-<fieldset>
-<input type="checkbox" id="styleguide-form-example-c" required {% render 'modules/common-styling/forms/error_input_handler', name: 'styleguide-form-example-c', errors: errors['styleguide-form-example-c'] %}>
-<label for="styleguide-form-example-c">An agreement</label>
-{% render 'modules/common-styling/forms/error_list', name: 'styleguide-example-error', errors: errors['styleguide-form-example-c'] %}
-</fieldset>
+  <fieldset>
+    <label for="styleguide-form-example-a">Email</label>
+    <input type="email" id="styleguide-form-example-a" placeholder="Email address" required {% render 'modules/common-styling/forms/error_input_handler', name: 'styleguide-form-example-a', errors: errors['styleguide-form-example-a'] %}>
+    {% render 'modules/common-styling/forms/error_list', name: 'styleguide-example-error', errors: errors['styleguide-form-example-a'] %}
+  </fieldset>
+  <fieldset>
+    <label for="styleguide-form-example-b">Password</label>
+    <input type="password" id="styleguide-form-example-b" placeholder="••••••••" required {% render 'modules/common-styling/forms/error_input_handler', name: 'styleguide-form-example-b', errors: errors['styleguide-form-example-b'] %}>
+    {% render 'modules/common-styling/forms/error_list', name: 'styleguide-example-error', errors: errors['styleguide-form-example-b'] %}
+  </fieldset>
+  <fieldset>
+    <input type="checkbox" id="styleguide-form-example-c" required {% render 'modules/common-styling/forms/error_input_handler', name: 'styleguide-form-example-c', errors: errors['styleguide-form-example-c'] %}>
+    <label for="styleguide-form-example-c">An agreement</label>
+    {% render 'modules/common-styling/forms/error_list', name: 'styleguide-example-error', errors: errors['styleguide-form-example-c'] %}
+  </fieldset>
 </form>
 {% endraw %}{% endcapture %}
   <div class="styleguide-code">
@@ -120,6 +120,23 @@
       </fieldset>
     </form>
   </div>
+
+  <h3 class="pos-heading-4 styleguide-heading-4">Form actions</h3>
+  <form action="" class="pos-form styleguide-example">
+    <fieldset class="pos-form-actions">
+      <div class="styleguide-forms-placeholder-button"></div>
+      <div class="styleguide-forms-placeholder-button"></div>
+    </fieldset>
+  </form>
+{% capture code %}{% raw %}
+<fieldset class="pos-form-actions">
+
+</fieldset>
+{% endraw %}{% endcapture %}
+  <div class="styleguide-code">
+    <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+  </div>
+  
 
   <h3 class="pos-heading-4 styleguide-heading-4">Labels</h3>
 

@@ -9,6 +9,10 @@
   gap: calc(var(--pos-padding-page) * 5);
 }
 
+article {
+  scroll-margin: var(--pos-padding-page);
+}
+
 article + article {
   margin-block-start: var(--pos-gap-section-section);
 }
@@ -417,10 +421,14 @@ p code {
 
 /* fonts
 ============================================================================ */
-#fonts p {
+#fonts p + p {
   margin-block-start: var(--pos-gap-text-text);
 
   line-height: 1.3em;
+}
+
+.styleguide-fonts-prose {
+  min-height: 7lh;
 }
 
 .styleguide-fonts-example {
@@ -624,6 +632,14 @@ p code {
   .styleguide-forms-placeholder-button-next {
     margin-inline-start: auto;
   }
+
+.styleguide-forms-placeholder-tag {
+  width: 80px;
+  height: 1.5rem;
+
+  background-color: var(--pos-color-highlight-background);
+  border-radius: var(--pos-radius-tag);
+}
 
 #forms .styleguide-details + p {
   margin-block-start: calc(var(--pos-gap-text-text) / 2);
