@@ -671,3 +671,48 @@ p code {
     
     border-inline-start: 3px dotted var(--pos-color-content-background);
   }
+
+
+/* spacings
+============================================================================ */
+.styleguide-spacings-example {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.styleguide-spacings-example:before {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  inset-inline-end: 2.2rem;
+  background: var(--pos-color-content-text);
+
+  clip-path: path('M12.25 2.94H14l-2-3-2 3h1.75V21H10l2 3 2-3h-1.75V2.94z');
+
+  content: '';
+}
+
+.styleguide-spacings-example-value {
+  padding: 2px 3px;
+  position: absolute;
+  inset-inline-end: .5rem;
+
+  background-color: var(--pos-color-content-text);
+  border-radius: var(--pos-radius-tag);
+
+  text-transform: uppercase;
+  font-size: .75rem;
+  color: var(--pos-color-content-background);
+}
+
+
+/* placeholders
+============================================================================ */
+.styleguide-placeholder-input {
+  height: var(--pos-height-input);
+
+  border-radius: var(--pos-radius-input);
+  background-color: var(--pos-color-highlight-background);
+}

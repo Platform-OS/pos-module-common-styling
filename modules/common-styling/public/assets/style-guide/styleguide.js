@@ -52,6 +52,7 @@ posStyleGuide.colors = () => {
     module.wrapIcons();
     module.showIconNames();
     module.copyIcon();
+    module.addMeasurements();
   };
 
 
@@ -189,6 +190,15 @@ posStyleGuide.colors = () => {
           new Error('Could not copy the code to clipboard');
         });
       });
+    });
+  };
+
+
+  // purpose:   adds measurements to the spacings section
+  // ------------------------------------------------------------------------
+  module.addMeasurements = () => {
+    document.querySelectorAll('#spacings .styleguide-spacings-example').forEach(element => {
+      element.innerHTML += `<div class="styleguide-spacings-example-value">${(window.getComputedStyle(element.parentElement.querySelector('.styleguide-placeholder-input:last-child'))).getPropertyValue('margin-block-start')}</div>`;
     });
   };
 
