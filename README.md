@@ -68,17 +68,7 @@ After installation, visit `/style-guide` on your instance. (Make sure you deploy
 
 👉 If you do not have a layout, check the [style-guide's layout](https://github.com/Platform-OS/pos-module-common-styling/blob/master/modules/common-styling/public/views/layouts/style-guide.liquid) for an example of a minimal layout.
 
-3. **Optionally enable the [CSS reset](https://github.com/Platform-OS/pos-module-common-styling/blob/master/modules/common-styling/public/assets/style/pos-reset.css)**. It resets default browser styling and fixes some browser-specific issues
-- It’s safe to use in a fresh app.
-- In an existing app, enabling it might cause unexpected changes.
-
-To use it, pass the `reset: true` parameter to the render tag mentioned above and use a `pos-app` class anywhere on your main content container:
-
-```liquid
-{% render 'modules/common-styling/init', reset: true %}
-```
-
-4. **Scope the styling with `pos-app`:**
+3. **Scope the styling with `pos-app`:**
 - To apply common-styling globally, add `class="pos-app"` to your application’s `<html>` tag:
 
 ```html
@@ -89,6 +79,24 @@ To use it, pass the `reset: true` parameter to the render tag mentioned above an
 ```html
 <div class="pos-app">
 </div>
+```
+
+4. Ensure you configured your [Instance](https://documentation.platformos.com/developer-guide/glossary#instance) to escape output instead of sanitizing through [app/config.yml](https://documentation.platformos.com/developer-guide/platformos-workflow/directory-structure/config)
+
+```yaml
+---
+escape_output_instead_of_sanitize: true
+---
+```
+
+5. **Optionally enable the [CSS reset](https://github.com/Platform-OS/pos-module-common-styling/blob/master/modules/common-styling/public/assets/style/pos-reset.css)**. It resets default browser styling and fixes some browser-specific issues
+- It’s safe to use in a fresh app.
+- In an existing app, enabling it might cause unexpected changes.
+
+To use it, pass the `reset: true` parameter to the render tag mentioned above and use a `pos-app` class anywhere on your main content container:
+
+```liquid
+{% render 'modules/common-styling/init', reset: true %}
 ```
 
 > **Note:** If you plan to add your own CSS overrides, always load them **after** `common-styling` in your layout. This way, your styles take precedence over the defaults.
