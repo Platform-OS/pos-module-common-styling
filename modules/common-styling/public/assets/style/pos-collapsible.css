@@ -1,0 +1,115 @@
+/*
+  collapsible navigation
+
+  layout
+*/
+
+
+@layer common-styling {
+
+  /* layout
+  ============================================================================ */
+  .pos-collapsible {
+    line-height: 2.2em;
+  }
+
+  .pos-collapsible div {
+    width: 100%;
+    display: grid;
+    overflow: hidden;
+    grid-template-rows: 1fr;
+    
+    transition: grid-template-rows .3s var(--pos-transition-ui-detail);
+  }
+
+  .pos-collapsible div[inert] {
+    grid-template-rows: 0fr;
+  }
+
+  .pos-collapsible ul {
+    min-height: 0;
+    padding-inline-start: 1em;
+
+    position: relative;
+
+    transition-property: translate, opacity, filter;
+    transition-duration: .25s;
+    transition-timing-function: var(--pos-transition-ui-detail);
+
+    translate: 0 0;
+    filter: blur(0px);
+    opacity: 1;
+  }
+
+  .pos-collapsible [inert] ul {
+    opacity: .4;
+    translate: 0 12px;
+    filter: blur(7px);
+  }
+
+  .pos-collapsible ul:before {
+    position: absolute;
+    inset-inline-start: .25em;
+    inset-block: .5em;
+
+    border-inline-start: 1px solid var(--pos-color-frame);
+
+    content: '';
+  }
+
+  .pos-collapsible li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+
+  /* toggle button
+  ============================================================================ */
+  .pos-collapsible-toggle {
+    width: 32px;
+    height: 32px;
+    padding: 9px;
+    display: flex;
+
+    border-radius: var(--pos-radius-button);
+
+    cursor: pointer;
+
+    transition-property: background-color, color;
+    transition-duration: .1s;
+    transition-timing-function: linear;
+  }
+
+  .pos-collapsible-toggle:hover {
+    background-color: var(--pos-color-highlight-background);
+
+    color: var(--pos-color-highlight-text);
+  }
+
+  .pos-collapsible-toggle:focus-visible {
+    outline: 2px solid var(--pos-color-focused);
+    outline-offset: 2px;
+  }
+
+  .pos-collapsible li:not(:has(> [inert])) > .pos-collapsible-toggle svg {
+    rotate: 90deg;
+  }
+
+  .pos-collapsible-toggle > * {
+    pointer-events: none;
+  }
+
+  .pos-collapsible-toggle .pos-label {
+    position: absolute;
+    inset-inline-start: -200vw;
+  }
+
+  .pos-collapsible-toggle svg {
+    width: 100%;
+
+    transition: rotate .2s var(--pos-transition-ui-detail);
+  }
+
+}

@@ -50,7 +50,7 @@
     </ul>
 
     {% if current != total_pages %}
-      <a href="{{ url }}{{ rightArrow }}" title="Go to page {{ current | plus: 1 }}" class="pos-pagination-next">
+      <a href="{{ url }}{{ current | plus: 1 }}" title="Go to page {{ current | plus: 1 }}" class="pos-pagination-next">
         <span class="pos-label">Go to page {{ current | plus: 1 }}</span>
         {% render 'modules/common-styling/icon', icon: 'dashRight' %}
       </a>

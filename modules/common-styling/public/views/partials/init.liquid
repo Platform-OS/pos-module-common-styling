@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-table.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-tag.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-pagination.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-collapsible.css' | asset_url }}">
 
 <script>
   // purpose:		creates global namespace for all platformOS related modules
@@ -75,6 +76,18 @@
           window.pos.modules.active[element.dataset.dialogtarget] = new window.pos.modules.dialog({
             trigger: element,
             container: document.querySelector('#' + element.dataset.dialogtarget)
+          });
+        });
+      });
+    };
+
+    /* collapsible lists */
+    if(document.querySelector('.pos-collapsible')){
+      import('{{ 'modules/common-styling/js/pos-collapsible.js' | asset_url }}').then(module => {
+        document.querySelectorAll('.pos-collapsible').forEach((element, index) => {
+          window.pos.modules.active[element.id || `pos-collapsible-${index}`] = new window.pos.modules.collapsible({
+            container: element,
+            id: element.id || `pos-collapsible-${index}`
           });
         });
       });

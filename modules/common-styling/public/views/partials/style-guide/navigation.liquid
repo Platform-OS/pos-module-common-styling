@@ -14,6 +14,77 @@ render 'modules/common-styling/pagination', total_pages: 20
     <pre><code>{{ code | lstrip | rstrip }}</code></pre>
   </div>
 
+  <h3 class="pos-heading-4 styleguide-heading-4">Collapsible list</h3>
+  <div class="styleguide-example styleguide-example-narrow">
+    {% parse_json navigation %}
+      [
+        {
+          "label": "PlatformOS",
+          "url": "https://www.platformos.com"
+        },
+        {
+          "label": "Solutions",
+          "url": "https://www.platformos.com/enterprise-solutions",
+          "children": [
+            {
+              "label": "Circularity",
+              "url": "https://www.platformos.com/circularity-solutions"
+            },
+            {
+              "label": "MVP",
+              "url": "https://www.platformos.com/build-an-enterprise-mvp"
+            },
+            {
+              "label": "DocsKit",
+              "url": "https://www.platformos.com/documentation-solution"
+            },
+            {
+              "label": "Government",
+              "url": "https://www.platformos.com/government-solution"
+            },
+            {
+              "label": "Community",
+              "url": "https://www.platformos.com/community-solution"
+            }
+          ]
+        },
+        {
+          "label": "Developers",
+          "children": [
+            {
+              "label": "Documentation",
+              "url": "https://documentation.platformos.com/",
+              "children": [
+                {
+                  "label": "Get Started Guide",
+                  "url": "https://documentation.platformos.com/get-started"
+                }
+              ]
+            },
+            {
+              "label": "FAQ",
+              "url": "https://www.platformos.com/faq"
+            },
+            {
+              "label": "Support",
+              "url": "https://documentation.platformos.com/developer-guide/support-ticketing#email"
+            }
+          ]
+        }
+      ]
+    {% endparse_json %}
+
+    {% liquid
+      render 'modules/common-styling/navigation/collapsible', items: navigation
+    %}
+  </div>
+  {% capture code %}{% raw %}
+render 'modules/common-styling/pagination', total_pages: 20
+  {% endraw %}{% endcapture %}
+  <div class="styleguide-code">
+    <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+  </div>
+
   <h3 class="pos-heading-4 styleguide-heading-4">Popover</h3>
   <div class="styleguide-example" style="text-align: center;">
     <div class="pos-popover">
@@ -100,4 +171,5 @@ render 'modules/common-styling/pagination', total_pages: 20
   <div class="styleguide-code">
     <pre><code>{{ code | lstrip | rstrip }}</code></pre>
   </div>
+
 </article>
