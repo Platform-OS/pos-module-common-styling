@@ -2,6 +2,8 @@
   collapsible navigation
 
   layout
+  toggle button
+  links styling
 */
 
 
@@ -15,7 +17,6 @@
 
   .pos-collapsible div {
     width: 100%;
-    padding-block: .4em;
     display: grid;
     overflow: hidden;
     grid-template-rows: 1fr;
@@ -45,7 +46,7 @@
 
   .pos-collapsible [inert] ul {
     opacity: .4;
-    translate: 0 12px;
+    translate: 0 1rem;
     filter: blur(7px);
   }
 
@@ -60,11 +61,16 @@
   }
 
   .pos-collapsible li {
+    margin-inline-start: -4px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
   }
+
+    .pos-collapsible li:not(:has(> a)){
+      padding-inline: 4px;
+    }
 
 
   /* toggle button
@@ -95,7 +101,7 @@
 
   .pos-collapsible-toggle:focus-visible {
     outline: 2px solid var(--pos-color-focused);
-    outline-offset: 2px;
+    outline-offset: 0;
   }
 
   .pos-collapsible li:not(:has(> [inert])) > .pos-collapsible-toggle svg {
@@ -133,5 +139,16 @@
     .pos-collapsible-active a {
       color: var(--pos-color-interactive-active);
     }
+
+
+  /* links styling
+  ============================================================================ */
+  .pos-collapsible a {
+    padding-inline: 4px;
+  }
+
+  .pos-collapsible a:focus-visible {
+    outline-offset: -2px;
+  }
 
 }
