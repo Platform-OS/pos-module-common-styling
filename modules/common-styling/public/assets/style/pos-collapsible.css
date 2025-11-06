@@ -12,7 +12,7 @@
   /* layout
   ============================================================================ */
   .pos-collapsible {
-    line-height: 2.2em;
+    line-height: 1.4em;
   }
 
   .pos-collapsible div {
@@ -31,12 +31,12 @@
 
   .pos-collapsible ul {
     min-height: 0;
-    padding-inline-start: 1em;
+    padding-inline-start: 1.5em;
 
     position: relative;
 
     transition-property: translate, opacity, filter;
-    transition-duration: .25s;
+    transition-duration: .25s, .25s, .15s;
     transition-timing-function: var(--pos-transition-ui-detail);
 
     translate: 0 0;
@@ -46,8 +46,8 @@
 
   .pos-collapsible [inert] ul {
     opacity: .4;
-    translate: 0 1rem;
-    filter: blur(7px);
+    translate: 0 -.5rem;
+    filter: blur(5px);
   }
 
   .pos-collapsible ul:before {
@@ -62,6 +62,7 @@
 
   .pos-collapsible li {
     margin-inline-start: -4px;
+    padding-block: .25em;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -126,19 +127,22 @@
 
   /* active state
   ============================================================================ */
-  .pos-collapsible-active:before {
+  .pos-collapsible-active > a {
+    display: block;
+    position: relative;
+
+    color: var(--pos-color-interactive-active);
+  }
+
+  .pos-collapsible-active > a:before {
     position: absolute;
-    inset-inline-start: .25em;
-    inset-block: .5em;
+    inset-inline-start: -1em;
+    inset-block: 0;
 
     border-inline-start: 2px solid var(--pos-color-interactive-active);
 
     content: '';
   }
-
-    .pos-collapsible-active a {
-      color: var(--pos-color-interactive-active);
-    }
 
 
   /* links styling

@@ -36,7 +36,7 @@
             endunless
           %}
           
-          <div id="pos-collapsible-{{ item.label | slugify }}" class="pos-collapsible-children"{% unless active_child %} inert{% endunless %}>
+          <div id="pos-collapsible-{{ item.label | slugify }}" class="pos-collapsible-children"{% unless active_child or active == item.url %} inert{% endunless %}>
             {% liquid
               function render_submenu = 'modules/common-styling/navigation/collapsible', items: item.children, inert: true, active: active
               print render_submenu
