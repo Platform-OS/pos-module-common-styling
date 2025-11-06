@@ -21,7 +21,7 @@ window.pos.modules.collapsible = function(userSettings){
   // selector for container with submenu (string)
   module.settings.childrenContainerSelector = userSettings.childrenContainerSelector || '.pos-collapsible-children';
   // to enable debug mode (bool)
-  module.settings.debug = (userSettings?.debug) ? userSettings.debug : true;
+  module.settings.debug = (userSettings?.debug) ? userSettings.debug : false;
 
 
 
@@ -37,13 +37,17 @@ window.pos.modules.collapsible = function(userSettings){
         module.toggle(event.target.parentElement);
       }
     });
+
+    module.settings.container.addEventListener('keydown', module.keyboard);
   };
 
 
   // purpose:		expands a submenu
+  // arguments: list item that you want to expand (dom node)
   // ------------------------------------------------------------------------
   module.open = menu => {
     menu.querySelector(module.settings.childrenContainerSelector).removeAttribute('inert');
+    menu.querySelector(module.settings.toggleButtonSelector).setAttribute('aria-expanded', true);
 
     pos.modules.debug(module.settings.debug, module.settings.id, 'Expanded menu', menu);
     document.dispatchEvent(new CustomEvent('pos-collapsible-opened', { bubbles: true, detail: { target: menu, container: module.settings.container, id: module.settings.id } }));
@@ -52,6 +56,7 @@ window.pos.modules.collapsible = function(userSettings){
 
 
   // purpose:		collapses a submenu
+  // arguments: list item that you want to collapse (dom node)
   // ------------------------------------------------------------------------
   module.close = menu => {
     
@@ -61,6 +66,7 @@ window.pos.modules.collapsible = function(userSettings){
       
       submenu.setAttribute('inert', '');
     });
+    menu.querySelector(module.settings.toggleButtonSelector).setAttribute('aria-expanded', false);
     
     pos.modules.debug(module.settings.debug, module.settings.id, 'Collapsed menu', menu);
     document.dispatchEvent(new CustomEvent('pos-collapsible-closed', { bubbles: true, detail: { target: menu, container: module.settings.container, id: module.settings.id } }));
@@ -69,6 +75,7 @@ window.pos.modules.collapsible = function(userSettings){
 
 
   // purpose:   expands hidden menu or collapses already visible one
+  // arguments: list item that you want to toggle (dom node)
   // ------------------------------------------------------------------------
   module.toggle = menu => {
     if(menu.querySelector(module.settings.childrenContainerSelector).inert){
@@ -76,7 +83,27 @@ window.pos.modules.collapsible = function(userSettings){
     } else {
       module.close(menu);
     }
-  }
+  };
+
+
+  // purpose:		handles keyboard navigation
+  // ------------------------------------------------------------------------
+  module.keyboard = event => {
+    if(event.key === 'ArrowRight'){
+      event.preventDefault();
+
+      if(document.activeElement.parentElement.querySelector(module.settings.toggleButtonSelector)){
+        module.open(event.target.parentElement);
+      }
+    }
+    else if(event.key === 'ArrowLeft'){
+      event.preventDefault();
+
+      if(document.activeElement.parentElement.querySelector(module.settings.toggleButtonSelector)){
+        module.close(event.target.parentElement);
+      }
+    }
+  };
 
 
 

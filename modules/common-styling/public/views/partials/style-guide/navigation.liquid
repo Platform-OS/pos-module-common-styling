@@ -75,11 +75,55 @@ render 'modules/common-styling/pagination', total_pages: 20
     {% endparse_json %}
 
     {% liquid
-      render 'modules/common-styling/navigation/collapsible', items: navigation
+      render 'modules/common-styling/navigation/collapsible', items: navigation, active: 'https://documentation.platformos.com/get-started'
     %}
   </div>
   {% capture code %}{% raw %}
-render 'modules/common-styling/pagination', total_pages: 20
+{% parse_json navigation %}
+  [
+    {
+      "label": "PlatformOS",
+      "url": "https://www.platformos.com"
+    },
+    {
+      "label": "Solutions",
+      "url": "https://www.platformos.com/enterprise-solutions",
+      "children": [
+        {
+          "label": "Circularity",
+          "url": "https://www.platformos.com/circularity-solutions"
+        },
+        {
+          "label": "MVP",
+          "url": "https://www.platformos.com/build-an-enterprise-mvp"
+        }
+      ]
+    },
+    {
+      "label": "Developers",
+      "children": [
+        {
+          "label": "Documentation",
+          "url": "https://documentation.platformos.com/",
+          "children": [
+            {
+              "label": "Get Started Guide",
+              "url": "https://documentation.platformos.com/get-started"
+            }
+          ]
+        },
+        {
+          "label": "FAQ",
+          "url": "https://www.platformos.com/faq"
+        }
+      ]
+    }
+  ]
+{% endparse_json %}
+
+{% liquid
+  render 'modules/common-styling/navigation/collapsible', items: navigation
+%}
   {% endraw %}{% endcapture %}
   <div class="styleguide-code">
     <pre><code>{{ code | lstrip | rstrip }}</code></pre>

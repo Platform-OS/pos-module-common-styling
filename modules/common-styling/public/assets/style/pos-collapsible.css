@@ -15,6 +15,7 @@
 
   .pos-collapsible div {
     width: 100%;
+    padding-block: .4em;
     display: grid;
     overflow: hidden;
     grid-template-rows: 1fr;
@@ -23,6 +24,7 @@
   }
 
   .pos-collapsible div[inert] {
+    padding-block: 0;
     grid-template-rows: 0fr;
   }
 
@@ -70,8 +72,11 @@
   .pos-collapsible-toggle {
     width: 32px;
     height: 32px;
+    margin-inline-end: .3em;
     padding: 9px;
     display: flex;
+    align-items: center;
+    justify-content: center;
 
     border-radius: var(--pos-radius-button);
 
@@ -111,5 +116,22 @@
 
     transition: rotate .2s var(--pos-transition-ui-detail);
   }
+
+
+  /* active state
+  ============================================================================ */
+  .pos-collapsible-active:before {
+    position: absolute;
+    inset-inline-start: .25em;
+    inset-block: .5em;
+
+    border-inline-start: 2px solid var(--pos-color-interactive-active);
+
+    content: '';
+  }
+
+    .pos-collapsible-active a {
+      color: var(--pos-color-interactive-active);
+    }
 
 }

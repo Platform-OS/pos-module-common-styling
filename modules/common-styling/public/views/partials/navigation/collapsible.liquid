@@ -1,5 +1,6 @@
 {% liquid
   assign inert = inert | default: false
+  assign active = active | default: false
 %}
 
 
@@ -8,26 +9,37 @@
   <ul{% if inert == false %} class="pos-collapsible"{% endif %}>
 
     {% for item in items %}
-      
-      <li>
+
+      <li{% if active == item.url %} class="pos-collapsible-active"{% endif %}>
         {% if item.url %}<a href="{{ item.url }}">{% endif %}
           {{ item.label }}
         {% if item.url %}</a>{% endif %}
 
         {% if item.children.size > 0 %}
-          <button type="button" class="pos-collapsible-toggle">
+          <button type="button" class="pos-collapsible-toggle" aria-expanded="false" aria-controls="pos-collapsible-{{ item.label | slugify }}">
             {% render 'modules/common-styling/icon', icon: 'dashRight' %}
             <span class="pos-label">Expand "{{ item.label }}"</span>
           </button>
         {% endif %}
 
         {% if item.children.size > 0 %}
-          <div class="pos-collapsible-children" inert>
+          {% liquid
+            assign active_child = item.children | array_detect: url: active
+
+            unless active_child
+              for child in item.children
+                assign active_child = child.children | array_detect: url: active
+                if active_child
+                  break
+                endif
+              endfor
+            endunless
+          %}
+          
+          <div id="pos-collapsible-{{ item.label | slugify }}" class="pos-collapsible-children"{% unless active_child %} inert{% endunless %}>
             {% liquid
-              if item.children.size > 0
-                function render_submenu = 'modules/common-styling/navigation/collapsible', items: item.children, inert: true
-                print render_submenu
-              endif
+              function render_submenu = 'modules/common-styling/navigation/collapsible', items: item.children, inert: true, active: active
+              print render_submenu
             %}
           </div>
         {% endif %}
@@ -39,6 +51,6 @@
 
 {% endcapture %}
 
-{{ output | html_safe }}
 
+{{ output | html_safe }}
 {% return output %}
