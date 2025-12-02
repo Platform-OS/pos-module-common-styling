@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-pagination.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-collapsible.css' | asset_url }}">
 
+<link rel="stylesheet" href="{{ 'modules/common-styling/style/dependency-uppy.css' | asset_url }}">
+
 <script>
   // purpose:		creates global namespace for all platformOS related modules
   // ------------------------------------------------------------------------
@@ -116,10 +118,37 @@
       });
     });
 
-    if(true){
+    if(document.querySelector('.pos-upload')){
       import('{{ 'modules/common-styling/js/dependency-uppy.js' | asset_url }}').then(module => {
-        const uppyDashboard = new Uppy({ debug: true })
-      })
+        pos.modules.upload = module;
+
+        document.querySelectorAll('.pos-upload').forEach((element, index) => {
+          pos.modules.active[element.id || `pos-upload-${index}`] = new pos.modules.upload.Uppy({
+            maxFileSize: 10485760, // limit file size to 10 mb
+            allowedFileTypes: ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'] // TO DO: Make this configurable
+          })
+            .use(pos.modules.upload.Dashboard, {
+              id: element.id || `pos-upload-${index}`,
+              target: element.querySelector('.pos-upload-dashboard'),
+              inline: true,
+              proudlyDisplayPoweredByUppy: false,
+              width: '100%'
+            })
+            .use(pos.modules.upload.AwsS3, {
+              getUploadParameters() {
+                const url = element.querySelector('form').getAttribute('action');
+                const formDataArray = Array.from(new FormData(element.querySelector('form')));
+                const fields = formDataArray.reduce((acc, cur) => ({ ...acc, [cur[0]]: cur[1] }), {});
+
+                return Promise.resolve({
+                  method: 'POST',
+                  url: url,
+                  fields: fields,
+                });
+              },
+            });
+        });
+      });
     }
 
   });

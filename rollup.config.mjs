@@ -24,7 +24,6 @@ export default {
   output: {
     dir: 'modules/common-styling/public/assets/',
     entryFileNames: 'js/[name].js',
-    assetFileNames: 'style/style/[name].[ext]',
     plugins: [
       terser()
     ]
@@ -32,7 +31,6 @@ export default {
   plugins: [
     postcss({
       extract: true,
-      modules: true,
       minimize: true
     }),
     nodeResolve(),
