@@ -37,6 +37,7 @@
 </script>
 
 <script src="{{ 'modules/common-styling/js/pos-debug.js' | asset_url }}" defer></script>
+<script src="{{ 'modules/common-styling/js/pos-common-styling-dependencies-bundle.js' | asset_url }}" defer></script>
 
 <script>
   /* selectively load modules */
@@ -114,6 +115,12 @@
         });
       });
     });
+
+    if(true){
+      import('{{ 'modules/common-styling/js/dependency-uppy.js' | asset_url }}').then(module => {
+        console.log(module);
+      })
+    }
 
   });
 </script>

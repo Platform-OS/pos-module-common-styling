@@ -286,6 +286,34 @@ pos.modules.debug(module.settings.debug, 'event', `pos-somethingHappenedInMyModu
 
 Using `pos.modules.debug()` to add information about the event provides an easy way for the developers to react to changes provided by your module without the need to check the code or browse through documentation.
 
+## Building dependencies
+
+Rollup is used to build dependencies from NPM registry. To add a new dependency:
+
+1. Use `npm install [package]` as you would normally do
+2. Create new JS file in `src/js/` named `dependency-[package name].js`
+3. In that file use the needed `import` statements
+4. Use `npm run build` to generate the build files for each dependency in `modules/common-styling/public/assets/js`
+5. Use `modules/common-styling/public/views/partials/init.liquid` to load your dependency using async `import()` function
+
+## Using JavaScript modules
+
+After adding the code for your module in `modules/common-styling/public/assets/js/` use the async `import()` function to load them and assign their instances to `pos.modules.active` namespace depending on if they are needed on the page. For example let's load a collapsible list module only when there is such list on the page:
+
+```
+/* collapsible lists */
+if(document.querySelector('.pos-collapsible')){
+  import('{{ 'modules/common-styling/js/pos-collapsible.js' | asset_url }}').then(module => {
+    document.querySelectorAll('.pos-collapsible').forEach((element, index) => {
+      window.pos.modules.active[element.id || `pos-collapsible-${index}`] = new window.pos.modules.collapsible({
+        container: element,
+        id: element.id || `pos-collapsible-${index}`
+      });
+    });
+  });
+};
+```
+
 ## Handling cache with importmaps
 
 When using the `import` statement in your JavaScript files, you will request a JS file from the CDN that could already be cached by the browser. platformOS handles breaking the cache for assets by using the `asset_url` filter. You cannot use it in the JS files, though, but the browsers allow you to map any filename to any other URL using [Import Maps](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap). Currently, only a single import map on a page can be used, and it needs to be defined before any other JS script. (This will change soon as multiple import maps are in the works for all the browsers.)

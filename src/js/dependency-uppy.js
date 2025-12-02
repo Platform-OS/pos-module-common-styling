@@ -1,0 +1,1 @@
+import Uppy from '@uppy/core';
