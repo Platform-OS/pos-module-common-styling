@@ -118,7 +118,7 @@
 
     if(true){
       import('{{ 'modules/common-styling/js/dependency-uppy.js' | asset_url }}').then(module => {
-        console.log(module);
+        const uppyDashboard = new Uppy({ debug: true })
       })
     }
 

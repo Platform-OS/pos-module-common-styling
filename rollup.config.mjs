@@ -5,6 +5,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve'
 import terser from '@rollup/plugin-terser';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
+import postcss from 'rollup-plugin-postcss';
 
 export default {
   input: Object.fromEntries(
@@ -21,17 +22,24 @@ export default {
 		])
 	),
   output: {
-    dir: 'modules/common-styling/public/assets/js/',
+    dir: 'modules/common-styling/public/assets/',
+    entryFileNames: 'js/[name].js',
+    assetFileNames: 'style/style/[name].[ext]',
     plugins: [
       terser()
     ]
   },
   plugins: [
+    postcss({
+      extract: true,
+      modules: true,
+      minimize: true
+    }),
     nodeResolve(),
     json(),
     commonjs({
       include: /node_modules/,
-    })
+    }),
   ],
   treeshake: false
 };
