@@ -3,13 +3,13 @@
 
   <div
     class="pos-upload"
-    id="styleguide-example-upload-simple"
+    id="styleguide-upload"
+
+    data-upload-url="{{ context.presigned_upload.upload_url }}"
+    {% for field in context.presigned_upload.upload_url_payload %}
+      data-request-{{ field[0] }}="{{ field[1] }}"
+    {% endfor %}
   >
-    <form
-      action="{{ context.presigned_url }}"
-      hidden
-    >
-    </form>
 
     <div class="pos-upload-dashboard"></div>
   </div>
