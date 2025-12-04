@@ -1,0 +1,16 @@
+<article id="links">
+  <h2 class="pos-heading-2">File uploading</h2>
+
+  <div
+    class="pos-upload"
+    id="styleguide-upload"
+
+    data-upload-url="{{ context.presigned_upload.upload_url }}"
+    {% for field in context.presigned_upload.upload_url_payload %}
+      data-request-{{ field[0] }}="{{ field[1] }}"
+    {% endfor %}
+  >
+
+    <div class="pos-upload-dashboard"></div>
+  </div>
+</article>
