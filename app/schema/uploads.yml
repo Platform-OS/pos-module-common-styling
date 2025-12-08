@@ -2,3 +2,5 @@ name: uploads
 properties:
   - name: upload
     type: upload
+  - name: metadata
+    type: string

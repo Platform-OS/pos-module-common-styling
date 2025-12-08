@@ -1,16 +1,36 @@
-<article id="links">
+<article id="upload">
   <h2 class="pos-heading-2">File uploading</h2>
 
-  <div
-    class="pos-upload"
-    id="styleguide-upload"
+  <div class="styleguide-columns">
+    {% render 'modules/common-styling/forms/upload',
+      presigned_upload: context.presigned_upload,
+      name: 'styleguide-upload-1'
+    %}
 
-    data-upload-url="{{ context.presigned_upload.upload_url }}"
-    {% for field in context.presigned_upload.upload_url_payload %}
-      data-request-{{ field[0] }}="{{ field[1] }}"
-    {% endfor %}
-  >
-
-    <div class="pos-upload-dashboard"></div>
+    {% parse_json files %}
+      [
+        {
+          "id": "1",
+          "file": {
+            "file_name": "text.txt",
+            "url": "https://cdn.staging.oregon.platform-os.com/instances/12434/property_uploads/uploads/upload/edd8dec0-8352-4ade-b06b-2eca12bc8b90/text.txt",
+            "extension": "txt"
+          }
+        },
+        {
+          "id": "2",
+          "file": {
+            "file_name": "test.png",
+            "url": "https://cdn.staging.oregon.platform-os.com/instances/12434/property_uploads/uploads/upload/743ee926-f8e5-44aa-bb3e-20cbc8ba4889/test.png",
+            "extension": "png"
+          }
+        }
+      ]
+    {% endparse_json %}
+    {% render 'modules/common-styling/forms/upload',
+      presigned_upload: context.presigned_upload,
+      name: 'styleguide-upload-1',
+      files: files
+    %}
   </div>
 </article>

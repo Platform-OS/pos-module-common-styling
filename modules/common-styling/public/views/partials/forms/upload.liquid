@@ -1,0 +1,35 @@
+{% comment %}
+
+  File uploading
+
+  Arguments:
+    - name                  (string, required) name for the <input> with the URLs of uploaded images
+    - presigned_upload      (object, required) presigned upload data (upload url and payload) returned from a `property_upload_presigned_url` query
+    - files                 (array of objects) files that were uploaded before for this upload module and you want them to be shown as already uploaded, should be a result of querying property_upload
+
+{% endcomment %}
+
+
+<div
+  class="pos-upload"
+  id="styleguide-upload"
+
+  data-upload-url="{{ presigned_upload.upload_url }}"
+  {% for field in presigned_upload.upload_url_payload %}
+      data-request-{{ field[0] }}="{{ field[1] }}"
+  {% endfor %}
+>
+
+  <div class="pos-upload-dashboard"></div>
+
+  <template class="pos-upload-file-input">
+    <input type="hidden" name="{{ name }}[]">
+  </template>
+
+  {% for file in files %}
+    {% if file.file.url %}
+      <input type="hidden" name="{{ name }}[]" value="{{ file.file.url }}">
+    {% endif %}
+  {% endfor %}
+  
+</div>

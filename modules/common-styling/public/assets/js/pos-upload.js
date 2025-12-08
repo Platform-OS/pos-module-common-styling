@@ -29,6 +29,8 @@ window.pos.modules.upload = function(settings){
   module.settings.allowedFileTypes = settings.allowedFileTypes;
   // debug mode enabled (bool)
   module.settings.debug = settings.debug || true;
+  // template to add to DOM for each added file
+  module.settings.fileTemplate = module.settings.container.querySelector('.pos-upload-file-input');
 
   // uppy instance for this upload (object)
   module.settings.uppy = null;
@@ -39,11 +41,19 @@ window.pos.modules.upload = function(settings){
 
   // purpose:		initializes the component
   // ------------------------------------------------------------------------
-  module.init = async () => {
+  module.init = () => {
 
     pos.modules.debug(module.settings.debug, module.settings.id, 'Initializing upload module', module.settings.container);
 
     module.startUppy();
+
+    module.settings.container.querySelectorAll('input[type="hidden"]').forEach(async input => {
+      await module.preloadFile(input.value);
+    });
+
+    module.settings.container.addEventListener('pos-upload-file-uploaded', event => {
+      module.buildInput(event.detail.url);
+    });
 
     module.settings.container.dispatchEvent(new CustomEvent('pos-upload-initialized', { bubbles: true, detail: { target: module.settings.container, id: module.settings.id } }));
     pos.modules.debug(module.settings.debug, 'event', 'pos-upload-initialized', { target: module.settings.container, id: module.settings.id });
@@ -100,62 +110,82 @@ window.pos.modules.upload = function(settings){
   // purpose:		starts uppy instance
   // ------------------------------------------------------------------------
   module.startUppy = () => {
+    
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Starting Uppy');
+
+    module.settings.uppy = new pos.modules.uppy.Uppy({
+      maxFileSize: module.settings.maxFileSize,
+      maxNumberOfFiles: module.settings.maxNumberOfFiles,
+      allowedFileTypes: module.settings.allowedFileTypes,
+      debug: module.settings.debug
+    })
+    .use(pos.modules.uppy.AwsS3, {
+      getUploadParameters(file){
+        const fields = {};
+
+        for(let attribute of module.settings.container.attributes){
+          if(attribute.name.startsWith('data-request-')){
+            fields[attribute.name.replace('data-request-', '')] = attribute.value;
+          }
+        }
+
+        return Promise.resolve({
+          method: 'POST',
+          url: module.settings.container.dataset.uploadUrl,
+          fields: fields
+        });
+      },
+    });
+
     if(module.settings.showDashboard){
-      pos.modules.debug(module.settings.debug, module.settings.id, 'Starting Uppy with dashboard');
-      module.settings.uppy = new pos.modules.uppy.Uppy({
-        maxFileSize: module.settings.maxFileSize,
-        maxNumberOfFiles: module.settings.maxNumberOfFiles,
-        allowedFileTypes: module.settings.allowedFileTypes
-      })
-      .use(pos.modules.uppy.Dashboard, {
+      module.settings.uppy.use(pos.modules.uppy.Dashboard, {
         id: module.settings.id,
         target: module.settings.container,
         inline: true,
         proudlyDisplayPoweredByUppy: false,
         width: '100%'
-      })
-      .use(pos.modules.uppy.AwsS3, {
-        getUploadParameters(){
-          const fields = {};
-
-          for(let attribute of module.settings.container.attributes){
-            if(attribute.name.startsWith('data-request-')){
-              fields[attribute.name.replace('data-request-', '')] = attribute.value;
-            }
-          }
-
-          return Promise.resolve({
-            method: 'POST',
-            url: module.settings.container.dataset.uploadUrl,
-            fields: fields,
-          });
-        },
-      });
-    } else {
-      pos.modules.debug(module.settings.debug, module.settings.id, 'Starting Uppy with minimal config');
-      module.settings.uppy = new pos.modules.uppy.Uppy({
-        maxFileSize: module.settings.maxFileSize,
-        maxNumberOfFiles: module.settings.maxNumberOfFiles,
-        allowedFileTypes: module.settings.allowedFileTypes
-      })
-      .use(pos.modules.uppy.AwsS3, {
-        getUploadParameters(){
-          const fields = {};
-
-          for(let attribute of module.settings.container.attributes){
-            if(attribute.name.startsWith('data-request-')){
-              fields[attribute.name.replace('data-request-', '')] = attribute.value;
-            }
-          }
-
-          return Promise.resolve({
-            method: 'POST',
-            url: module.settings.container.dataset.uploadUrl,
-            fields: fields,
-          });
-        },
       });
     }
+
+  };
+
+
+  // purpose:		puts an hidden input on the page with the URL to the uploaded file as value
+  // arguments: uploaded file URL to be stored in the database 
+  // ------------------------------------------------------------------------
+  module.buildInput = (file) => {
+    const element = document.importNode(module.settings.fileTemplate.content, true);
+    element.querySelector('input').value = file;
+    module.settings.container.appendChild(element);
+
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Added a hidden input with the uploaded file as an URL', element.children);
+  };
+
+
+  // purpose:		perloads already uploaded files to the module
+  // arguments: url to remote file
+  // ------------------------------------------------------------------------
+  module.preloadFile = async (url) => {
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Preloading a file', url);
+
+    // fetch file from url
+    const response = await fetch(url);
+    const blob = await response.blob();
+
+    const fileId = module.settings.uppy.addFile({
+      name: url.split('/').pop(),
+      type: blob.type,
+      data: blob,
+      isRemote: true,
+    });
+
+    module.settings.uppy.setFileState(fileId, {
+      progress: {
+        uploadComplete: true,
+        uploadStarted: true
+      },
+      uploadURL: url
+    })
   }
 
 
