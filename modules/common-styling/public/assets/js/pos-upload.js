@@ -38,7 +38,7 @@ window.pos.modules.upload = function(settings){
   // height of the dashboard (string)
   module.settings.height = settings.height || '400px';
   // debug mode enabled (bool)
-  module.settings.debug = settings.debug || true;
+  module.settings.debug = settings.debug || false;
 
   // uppy instance for this upload (object)
   module.settings.uppy = null;
@@ -60,7 +60,12 @@ window.pos.modules.upload = function(settings){
     });
 
     module.settings.container.addEventListener('pos-upload-file-uploaded', event => {
-      module.buildInput(event.detail.url);
+      module.addInput(event.detail);
+    });
+
+    module.settings.container.addEventListener('pos-upload-file-removed', event => {
+      console.log(event);
+      module.removeInput(event.detail);
     });
 
     // set the option to auto proceed after the preloaded files were loaded
@@ -83,9 +88,9 @@ window.pos.modules.upload = function(settings){
       pos.modules.debug(module.settings.debug, 'event', 'pos-upload-files-added', { target: module.settings.container, id: module.settings.id, files: files });
     });
 
-    module.settings.uppy.on('file-removed', (files) => {
-      module.settings.container.dispatchEvent(new CustomEvent('pos-upload-file-removed', { bubbles: true, detail: { target: module.settings.container, id: module.settings.id, files: files } }));
-      pos.modules.debug(module.settings.debug, 'event', 'pos-upload-file-removed', { target: module.settings.container, id: module.settings.id, files: files });
+    module.settings.uppy.on('file-removed', (file) => {
+      module.settings.container.dispatchEvent(new CustomEvent('pos-upload-file-removed', { bubbles: true, detail: { target: module.settings.container, id: module.settings.id, file: file } }));
+      pos.modules.debug(module.settings.debug, 'event', 'pos-upload-file-removed', { target: module.settings.container, id: module.settings.id, file: file });
     });
 
     module.settings.uppy.on('upload', (uploadID, files) => {
@@ -179,14 +184,25 @@ window.pos.modules.upload = function(settings){
 
 
   // purpose:		puts an hidden input on the page with the URL to the uploaded file as value
-  // arguments: uploaded file URL to be stored in the database 
+  // arguments: uploaded file data: id and url (object)
   // ------------------------------------------------------------------------
-  module.buildInput = (file) => {
+  module.addInput = (file) => {
     const element = document.importNode(module.settings.fileTemplate.content, true);
-    element.querySelector('input').value = file;
+    element.querySelector('input').value = file.url;
+    element.querySelector('input').dataset.id = file.file.id;
     module.settings.container.appendChild(element);
 
-    pos.modules.debug(module.settings.debug, module.settings.id, 'Added a hidden input with the uploaded file as an URL', element.children);
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Added a hidden input with the uploaded file as an URL', document.querySelector(`[data-id="${file.file.id}"]`));
+  };
+
+
+  // purpose:		removes the hidden input corresponding to the removed file
+  // arguments: uploaded file data: id
+  // ------------------------------------------------------------------------
+  module.removeInput = (file) => {
+    document.querySelector(`[data-id="${file.file.id}"]`).remove();
+
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Removed a hidden input corresponding to the removed file', file.file.id);
   };
 
 
@@ -215,7 +231,10 @@ window.pos.modules.upload = function(settings){
       },
       uploadURL: url,
       preview: (blob.type.startsWith('image')) ? url : false
-    })
+    });
+
+    // set the uppy ids for hidden inputs corresponding to preloaded file
+    document.querySelector(`[value="${url}"]`).dataset.id = fileId;
   }
 
 
