@@ -2,6 +2,11 @@
 layout: 'modules/common-styling/style-guide'
 ---
 
+{% liquid
+  function presigned_upload = 'queries/uploads/presign', table: 'uploads', property: 'upload'
+  hash_assign context['presigned_upload'] = presigned_upload
+%}
+
 <main class="styleguide">
   <nav class="styleguide-navigation">
     <ul>
@@ -21,6 +26,7 @@ layout: 'modules/common-styling/style-guide'
       <li><a href="#toasts">Toasts</a></li>
       <li><a href="#tags">Tags and badges</a></li>
       <li><a href="#navigation">Navigation</a></li>
+      <li><a href="#upload">File upload</a></li>
     </ul>
   </nav>
 
@@ -42,6 +48,7 @@ layout: 'modules/common-styling/style-guide'
       render 'modules/common-styling/style-guide/toasts'
       render 'modules/common-styling/style-guide/tags'
       render 'modules/common-styling/style-guide/navigation'
+      render 'modules/common-styling/style-guide/upload'
     %}
   </section>
 </main>

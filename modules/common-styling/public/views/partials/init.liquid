@@ -17,6 +17,9 @@
 <link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-pagination.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-collapsible.css' | asset_url }}">
 
+<link rel="stylesheet" href="{{ 'modules/common-styling/style/dependency-uppy.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'modules/common-styling/style/pos-upload.css' | asset_url }}">
+
 <script>
   // purpose:		creates global namespace for all platformOS related modules
   // ------------------------------------------------------------------------
@@ -37,6 +40,7 @@
 </script>
 
 <script src="{{ 'modules/common-styling/js/pos-debug.js' | asset_url }}" defer></script>
+<script src="{{ 'modules/common-styling/js/pos-common-styling-dependencies-bundle.js' | asset_url }}" defer></script>
 
 <script>
   /* selectively load modules */
@@ -114,6 +118,25 @@
         });
       });
     });
+
+
+    /* file upload */
+    if(document.querySelector('.pos-upload')){
+      import('{{ 'modules/common-styling/js/dependency-uppy.js' | asset_url }}').then(module => {
+        pos.modules.uppy = module;
+
+        import('{{ 'modules/common-styling/js/pos-upload.js' | asset_url }}').then(module => {
+          document.querySelectorAll('.pos-upload').forEach((element, index) => {
+            pos.modules.active[element.id || `pos-upload-${index}`] = new pos.modules.upload({
+              container: element,
+              imageEditorEnabled: element.dataset.imageEditorEnabled === 'true',
+              allowedFileTypes: element.dataset.allowedFileTypes,
+              aspectRatio: element.dataset.aspectRatio
+            });
+          });
+        });
+      });
+    }
 
   });
 </script>
