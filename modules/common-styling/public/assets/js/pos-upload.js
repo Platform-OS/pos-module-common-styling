@@ -24,7 +24,7 @@ window.pos.modules.upload = function(settings){
   // maximum file size in bytes for each individual file (int)
   module.settings.maxFileSize = settings.maxFileSize || 10485760;
   // total number of files that can be selected (int)
-  module.settings.maxNumberOfFiles = settings.maxNumberOfFiles;
+  module.settings.maxNumberOfFiles = settings.maxNumberOfFiles && parseInt(settings.maxNumberOfFiles);
   // wildcards image/* or exact mime types image/jpeg or file extensions .jpg, example: ['image/*', '.jpg', '.jpeg', '.png', '.gif'] (array)
   module.settings.allowedFileTypes = settings.allowedFileTypes;
   // template to add to DOM for each added file
@@ -130,6 +130,7 @@ window.pos.modules.upload = function(settings){
         maxFileSize: module.settings.maxFileSize,
         maxNumberOfFiles: module.settings.maxNumberOfFiles,
         allowedFileTypes: module.settings.allowedFileTypes,
+        maxNumberOfFiles: module.settings.maxNumberOfFiles
       },
       debug: module.settings.debug
     })
@@ -153,6 +154,7 @@ window.pos.modules.upload = function(settings){
     });
 
     if(module.settings.showDashboard){
+      pos.modules.debug(module.settings.debug, module.settings.id, 'Starging dashboard', module.settings.container);
       module.settings.uppy.use(pos.modules.uppy.Dashboard, {
         id: module.settings.id,
         target: module.settings.container,
@@ -167,6 +169,7 @@ window.pos.modules.upload = function(settings){
     }
 
     if(module.settings.imageEditorEnabled){
+      pos.modules.debug(module.settings.debug, module.settings.id, 'Starting image editor', module.settings.container);
       module.settings.uppy.use(pos.modules.uppy.ImageEditor);
     }
 

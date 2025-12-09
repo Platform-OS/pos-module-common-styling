@@ -5,12 +5,14 @@
     <div>
       <div class="styleguide-example">
         {% render 'modules/common-styling/forms/upload',
+          id: 'styleguide-upload-1',
           presigned_upload: context.presigned_upload,
           name: 'styleguide-upload-1'
         %}
       </div>
 {% capture code %}{% raw %}
 {% render 'modules/common-styling/forms/upload',
+  id: 'styleguide-upload-1',
   presigned_upload: presigned_upload,
   name: 'styleguide-upload-1'
 %}
@@ -39,6 +41,7 @@
           ]
         {% endparse_json %}
         {% render 'modules/common-styling/forms/upload',
+          id: 'styleguide-upload-2',
           presigned_upload: context.presigned_upload,
           name: 'styleguide-upload-2',
           files: files
@@ -63,6 +66,7 @@
 {% endparse_json %}
 
 {% render 'modules/common-styling/forms/upload',
+  id: 'styleguide-upload-2',
   presigned_upload: presigned_upload,
   name: 'styleguide-upload-2',
   files: files
@@ -79,5 +83,7 @@
     <dt>presigned_upload</dt><dd><i>object, required</i> presigned upload data (upload url and payload) returned from a <code>property_upload_presigned_url</code> query</dd>
     <dt>files</dt><dd><i>array of objects</i> files that were uploaded before and you want them to be shown as already uploaded, should be a result of querying <code>property_upload</code></dd>
     <dt>image_editor_enabled</dt><dd><i>bool</i> if you want to allow editing of images inside the upload dashboard</dd>
+    <dt>allowed_file_types</dt><dd><i>array of strings</i> allowed file types, e.g. <code>['image/*', '.jpg', '.jpeg', '.png', '.gif']</code></dd>
+    <dt>max_number_of_files</dt><dd><i>int</i> total number of files that can be selected</dd>
   </dl>
 </article>
