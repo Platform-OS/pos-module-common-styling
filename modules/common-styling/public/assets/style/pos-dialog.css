@@ -46,6 +46,7 @@
     opacity: 0;
     border-radius: var(--pos-radius-card);
     background-color: var(--pos-color-content-background);
+    box-shadow: var(--pos-shadow-popover);
 
     scale: 0;
 

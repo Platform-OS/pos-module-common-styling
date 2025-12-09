@@ -64,7 +64,6 @@ window.pos.modules.upload = function(settings){
     });
 
     module.settings.container.addEventListener('pos-upload-file-removed', event => {
-      console.log(event);
       module.removeInput(event.detail);
     });
 
