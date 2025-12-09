@@ -10,6 +10,7 @@
 
     - image_editor_enabled  (boolean) whether to enable image editor for uploaded images
     - allowed_file_types    (array of strings) allowed file types, e.g. ['image/*', '.jpg', '.jpeg', '.png', '.gif']
+    - aspect_ratio          (float) aspect ratio for the image editor cropping tool, e.g. 1 for square, 1.78 for widescreen
 
 {% endcomment %}
 
@@ -19,6 +20,7 @@
   assign image_editor_enabled = image_editor_enabled | default: false
   assign allowed_file_types = allowed_file_types | default: null
   assign max_number_of_files = max_number_of_files | default: null
+  assign aspect_ratio = aspect_ratio | default: null
 
 %}
 
@@ -30,6 +32,7 @@
   {% if image_editor_enabled %} data-image-editor-enabled="{{ image_editor_enabled }}" {% endif %}
   {% if allowed_file_types %} data-allowed-file-types="{{ allowed_file_types }}" {% endif %}
   {% if max_number_of_files %} data-max-number-of-files="{{ max_number_of_files }}" {% endif %}
+  {% if aspect_ratio %} data-aspect-ratio="{{ aspect_ratio }}" {% endif %}
 
   data-upload-url="{{ presigned_upload.upload_url }}"
   {% for field in presigned_upload.upload_url_payload %}

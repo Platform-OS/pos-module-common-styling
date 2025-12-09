@@ -31,6 +31,8 @@ window.pos.modules.upload = function(settings){
   module.settings.fileTemplate = module.settings.container.querySelector('.pos-upload-file-input');
   // if you want the photo editor (bool)
   module.settings.imageEditorEnabled = settings.imageEditorEnabled || false;
+  // aspect ration for cropping the image (float)
+  module.settings.aspectRatio = settings.aspectRatio;
   // width of the dashboard (string)
   module.settings.width = settings.width || '100%';
   // height of the dashboard (string)
