@@ -1,36 +1,83 @@
 <article id="upload">
-  <h2 class="pos-heading-2">File uploading</h2>
+  <h2 class="pos-heading-2">File upload</h2>
 
   <div class="styleguide-columns">
-    {% render 'modules/common-styling/forms/upload',
-      presigned_upload: context.presigned_upload,
-      name: 'styleguide-upload-1'
-    %}
+    <div>
+      <div class="styleguide-example">
+        {% render 'modules/common-styling/forms/upload',
+          presigned_upload: context.presigned_upload,
+          name: 'styleguide-upload-1'
+        %}
+      </div>
+{% capture code %}{% raw %}
+{% render 'modules/common-styling/forms/upload',
+  presigned_upload: presigned_upload,
+  name: 'styleguide-upload-1'
+%}
+{% endraw %}{% endcapture %}
+      <div class="styleguide-code">
+        <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+      </div>
+    </div>
 
-    {% parse_json files %}
-      [
-        {
-          "id": "1",
-          "file": {
-            "file_name": "text.txt",
-            "url": "https://cdn.staging.oregon.platform-os.com/instances/12434/property_uploads/uploads/upload/edd8dec0-8352-4ade-b06b-2eca12bc8b90/text.txt",
-            "extension": "txt"
-          }
-        },
-        {
-          "id": "2",
-          "file": {
-            "file_name": "test.png",
-            "url": "https://cdn.staging.oregon.platform-os.com/instances/12434/property_uploads/uploads/upload/743ee926-f8e5-44aa-bb3e-20cbc8ba4889/test.png",
-            "extension": "png"
-          }
-        }
-      ]
-    {% endparse_json %}
-    {% render 'modules/common-styling/forms/upload',
-      presigned_upload: context.presigned_upload,
-      name: 'styleguide-upload-1',
-      files: files
-    %}
+    <div>
+      <div class="styleguide-example">
+        {% parse_json files %}
+          [
+            {
+              "id": "1",
+              "file": {
+                "url": "https://cdn.staging.oregon.platform-os.com/instances/12434/property_uploads/uploads/upload/ba62e7f2-1217-4d5c-b599-531632062cd7/nowy.png"
+              }
+            },
+            {
+              "id": "2",
+              "file": {
+                "url": "https://cdn.staging.oregon.platform-os.com/instances/12434/property_uploads/uploads/upload/1dcf38fb-ae99-48a7-a587-5487e9494b41/test.txt"
+              }
+            }
+          ]
+        {% endparse_json %}
+        {% render 'modules/common-styling/forms/upload',
+          presigned_upload: context.presigned_upload,
+          name: 'styleguide-upload-2',
+          files: files
+        %}
+      </div>
+{% capture code %}{% raw %}
+{% parse_json files %}
+  [
+    {
+      "id": "1",
+      "file": {
+        "url": "https://cdn.staging.oregon.platform-os.com/instances/12434/property_uploads/uploads/upload/ba62e7f2-1217-4d5c-b599-531632062cd7/nowy.png"
+      }
+    },
+    {
+      "id": "2",
+      "file": {
+        "url": "https://cdn.staging.oregon.platform-os.com/instances/12434/property_uploads/uploads/upload/1dcf38fb-ae99-48a7-a587-5487e9494b41/test.txt"
+      }
+    }
+  ]
+{% endparse_json %}
+
+{% render 'modules/common-styling/forms/upload',
+  presigned_upload: presigned_upload,
+  name: 'styleguide-upload-2',
+  files: files
+%}
+{% endraw %}{% endcapture %}
+      <div class="styleguide-code">
+        <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+      </div>
+    </div>
   </div>
+
+  <dl class="styleguide-details">
+    <dt>name</dt><dd><i>string, required</i> name for the <code>&lt;input&gt;</code> with the URLs of uploaded images</dd>
+    <dt>presigned_upload</dt><dd><i>object, required</i> presigned upload data (upload url and payload) returned from a <code>property_upload_presigned_url</code> query</dd>
+    <dt>files</dt><dd><i>array of objects</i> files that were uploaded before and you want them to be shown as already uploaded, should be a result of querying <code>property_upload</code></dd>
+    <dt>image_editor_enabled</dt><dd><i>bool</i> if you want to allow editing of images inside the upload dashboard</dd>
+  </dl>
 </article>

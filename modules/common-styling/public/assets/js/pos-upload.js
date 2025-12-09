@@ -27,10 +27,16 @@ window.pos.modules.upload = function(settings){
   module.settings.maxNumberOfFiles = settings.maxNumberOfFiles;
   // wildcards image/* or exact mime types image/jpeg or file extensions .jpg, example: ['image/*', '.jpg', '.jpeg', '.png', '.gif'] (array)
   module.settings.allowedFileTypes = settings.allowedFileTypes;
-  // debug mode enabled (bool)
-  module.settings.debug = settings.debug || true;
   // template to add to DOM for each added file
   module.settings.fileTemplate = module.settings.container.querySelector('.pos-upload-file-input');
+  // if you want the photo editor (bool)
+  module.settings.imageEditorEnabled = settings.imageEditorEnabled || false;
+  // width of the dashboard (string)
+  module.settings.width = settings.width || '100%';
+  // height of the dashboard (string)
+  module.settings.height = settings.height || '400px';
+  // debug mode enabled (bool)
+  module.settings.debug = settings.debug || true;
 
   // uppy instance for this upload (object)
   module.settings.uppy = null;
@@ -55,9 +61,10 @@ window.pos.modules.upload = function(settings){
       module.buildInput(event.detail.url);
     });
 
-    module.settings.container.dispatchEvent(new CustomEvent('pos-upload-initialized', { bubbles: true, detail: { target: module.settings.container, id: module.settings.id } }));
-    pos.modules.debug(module.settings.debug, 'event', 'pos-upload-initialized', { target: module.settings.container, id: module.settings.id });
-
+    // set the option to auto proceed after the preloaded files were loaded
+    module.settings.uppy.setOptions({
+      autoProceed: !module.settings.editorEnabled && true
+    });
 
     module.settings.uppy.on('upload-success', (file, response) => {
       module.settings.container.dispatchEvent(new CustomEvent('pos-upload-file-uploaded', { bubbles: true, detail: { target: module.settings.container, id: module.settings.id, file: file, response: response, url: response.uploadURL } }));
@@ -103,6 +110,11 @@ window.pos.modules.upload = function(settings){
       module.settings.container.dispatchEvent(new CustomEvent('pos-upload-restriction-failed', { bubbles: true, detail: { target: module.settings.container, id: module.settings.id, file: file, error: error } }));
       pos.modules.debug(module.settings.debug, 'event', 'pos-upload-restriction-failed', { target: module.settings.container, id: module.settings.id, file: file, error: error });
     });
+
+
+    module.settings.container.dispatchEvent(new CustomEvent('pos-upload-initialized', { bubbles: true, detail: { target: module.settings.container, id: module.settings.id, settings: module.settings } }));
+    pos.modules.debug(module.settings.debug, 'event', 'pos-upload-initialized', { target: module.settings.container, id: module.settings.id, settings: module.settings });
+
   };
 
 
@@ -114,9 +126,11 @@ window.pos.modules.upload = function(settings){
     pos.modules.debug(module.settings.debug, module.settings.id, 'Starting Uppy');
 
     module.settings.uppy = new pos.modules.uppy.Uppy({
-      maxFileSize: module.settings.maxFileSize,
-      maxNumberOfFiles: module.settings.maxNumberOfFiles,
-      allowedFileTypes: module.settings.allowedFileTypes,
+      restrictions: {
+        maxFileSize: module.settings.maxFileSize,
+        maxNumberOfFiles: module.settings.maxNumberOfFiles,
+        allowedFileTypes: module.settings.allowedFileTypes,
+      },
       debug: module.settings.debug
     })
     .use(pos.modules.uppy.AwsS3, {
@@ -128,11 +142,12 @@ window.pos.modules.upload = function(settings){
             fields[attribute.name.replace('data-request-', '')] = attribute.value;
           }
         }
+        fields['Content-Type'] = file.type;
 
         return Promise.resolve({
           method: 'POST',
           url: module.settings.container.dataset.uploadUrl,
-          fields: fields
+          fields: fields,
         });
       },
     });
@@ -143,8 +158,16 @@ window.pos.modules.upload = function(settings){
         target: module.settings.container,
         inline: true,
         proudlyDisplayPoweredByUppy: false,
-        width: '100%'
+        width: module.settings.width,
+        height: module.settings.height,
+        hideProgressAfterFinish: true,
+        showRemoveButtonAfterComplete: true,
+        autoOpen: module.settings.imageEditorEnabled && 'imageEditor'
       });
+    }
+
+    if(module.settings.imageEditorEnabled){
+      module.settings.uppy.use(pos.modules.uppy.ImageEditor);
     }
 
   };
@@ -177,14 +200,16 @@ window.pos.modules.upload = function(settings){
       type: blob.type,
       data: blob,
       isRemote: true,
+      remote: url
     });
 
     module.settings.uppy.setFileState(fileId, {
       progress: {
         uploadComplete: true,
-        uploadStarted: true
+        uploadStarted: Date.now()
       },
-      uploadURL: url
+      uploadURL: url,
+      preview: (blob.type.startsWith('image')) ? url : false
     })
   }
 

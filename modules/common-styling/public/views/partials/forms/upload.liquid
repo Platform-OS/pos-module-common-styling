@@ -7,12 +7,23 @@
     - presigned_upload      (object, required) presigned upload data (upload url and payload) returned from a `property_upload_presigned_url` query
     - files                 (array of objects) files that were uploaded before for this upload module and you want them to be shown as already uploaded, should be a result of querying property_upload
 
+    - image_editor_enabled  (boolean) whether to enable image editor for uploaded images
+
 {% endcomment %}
+
+
+{% liquid
+
+  assign image_editor_enabled = image_editor_enabled | default: true
+
+%}
 
 
 <div
   class="pos-upload"
   id="styleguide-upload"
+  
+  data-image-editor-enabled="{{ image_editor_enabled }}"
 
   data-upload-url="{{ presigned_upload.upload_url }}"
   {% for field in presigned_upload.upload_url_payload %}

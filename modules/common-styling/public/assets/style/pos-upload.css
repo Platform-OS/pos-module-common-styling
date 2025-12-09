@@ -79,3 +79,22 @@
 .uppy-Dashboard-Item-status {
   color: var(--pos-color-content-text-supplementary);
 }
+
+.uppy-Dashboard-Item-action--remove {
+  width: 18px;
+  height: 18px;
+}
+
+.uppy-Dashboard-Item-action--remove path:first-child {
+  fill: var(--pos-color-important);
+
+  transition: fill .1s linear;
+}
+
+  .uppy-Dashboard-Item-action--remove:hover path:first-child {
+    fill: var(--pos-color-important-hover);
+  }
+
+.uppy-Dashboard-Item-progressIcon--circle circle {
+  r: 18px;
+}

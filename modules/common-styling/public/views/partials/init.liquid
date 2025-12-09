@@ -119,6 +119,8 @@
       });
     });
 
+
+    /* file upload */
     if(document.querySelector('.pos-upload')){
       import('{{ 'modules/common-styling/js/dependency-uppy.js' | asset_url }}').then(module => {
         pos.modules.uppy = module;
@@ -126,7 +128,8 @@
         import('{{ 'modules/common-styling/js/pos-upload.js' | asset_url }}').then(module => {
           document.querySelectorAll('.pos-upload').forEach((element, index) => {
             pos.modules.active[element.id || `pos-upload-${index}`] = new pos.modules.upload({
-              container: element
+              container: element,
+              imageEditorEnabled: element.dataset.imageEditorEnabled === 'true'
             });
           });
         });
