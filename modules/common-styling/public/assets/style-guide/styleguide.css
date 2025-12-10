@@ -28,7 +28,7 @@ article + article {
     margin-block-start: var(--pos-gap-section-elements);
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1100px) {
     .styleguide-columns {
       grid-template-columns: 1fr;
     }
@@ -72,7 +72,7 @@ p code {
     padding: var(--pos-padding-card);
     overflow-x: auto;
 
-    white-space: pre;
+    white-space: pre-wrap;
   }
 
     .styleguide-code pre:focus-visible {
@@ -329,6 +329,17 @@ p code {
     margin-block-start : var(--pos-gap-card-card);
   }
 
+  @media (max-width: 1100px) {
+    .styleguide-colors {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .styleguide-color {
+      border-radius: var(--pos-radius-panel) !important;
+    }
+  }
+
 .styleguide-color {
   margin-block-end: .3em;
   padding: var(--pos-padding-cell);
@@ -369,6 +380,7 @@ p code {
   display: flex;
   gap: .8em;
   flex-wrap: wrap;
+  justify-content: space-between;
 
   font-size: .9em;
   color: var(--pos-color-content-text-supplementary);

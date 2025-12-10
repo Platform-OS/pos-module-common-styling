@@ -30,6 +30,7 @@
 
   .pos-pagination ul {
     display: flex;
+    flex-wrap: wrap;
     gap: calc(var(--pos-gap-text-text) / 2);
   }
 
