@@ -561,6 +561,11 @@
     --pos-color-content-text-prominent: var(--pos-color-dark-content-text-prominent);
     --pos-color-content-inverted-text: var(--pos-color-dark-content-inverted-text);
     --pos-color-frame: var(--pos-color-dark-frame);
+    --pos-color-highlight-background: var(--pos-color-dark-highlight-background);
+    --pos-color-highlight-text: var(--pos-color-dark-highlight-text);
+    --pos-color-standout-background: var(--pos-color-dark-standout-background);
+    --pos-color-standout-background-hover: var(--pos-color-dark-standout-background-hover);
+    --pos-color-standout-text: var(--pos-color-dark-standout-text);
 
 
     /* interactive elements */

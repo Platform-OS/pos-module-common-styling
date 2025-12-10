@@ -198,7 +198,7 @@ p code {
     border-radius: var(--pos-radius-panel);
     background-color: var(--pos-color-highlight-background);
     
-    color: var(--pos-color-light-highlight-text);
+    color: var(--pos-color-highlight-text);
   }
 
   .styleguide-details dt {
@@ -361,7 +361,7 @@ p code {
 
   font-size: .7rem;
   font-family: monospace;
-  color: var(--pos-color-light-content-inverted-text);
+  color: var(--pos-color-content-inverted-text);
 }
 
 .styleguide-color-hex {
