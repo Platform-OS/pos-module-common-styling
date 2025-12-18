@@ -45,8 +45,14 @@
   .pos-form-simple fieldset:has([type="radio"] + label) {
     display: flex;
     gap: .5em;
-    align-items: center;
+    align-items: start;
   }
+
+    .pos-form-simple fieldset:has([type="checkbox"] + label) input,
+    .pos-form-simple fieldset:has([type="radio"] + label) input {
+      height: 1lh;
+      margin-block-start: 1px;
+    }
 
   /* combined fieldset */
   .pos-form-fieldset-combined {
