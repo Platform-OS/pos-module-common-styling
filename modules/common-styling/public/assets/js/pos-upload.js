@@ -85,6 +85,16 @@ window.pos.modules.upload = function(settings){
     });
 
     module.settings.uppy.on('file-added', (file) => {
+      // if user wants to upload an image, read its dimensions and store those in metadata
+      if(file.type && file.type.startsWith('image/')){
+        module.getImageDimenstions(file.data).then(dimensions => {
+          module.settings.uppy.setFileMeta(file.id, {
+              width: dimensions.width,
+              height: dimensions.height
+            });
+        });
+      }
+
       module.settings.container.dispatchEvent(new CustomEvent('pos-upload-file-added', { bubbles: true, detail: { target: module.settings.container, id: module.settings.id, file: file } }));
       pos.modules.debug(module.settings.debug, 'event', 'pos-upload-file-added', { target: module.settings.container, id: module.settings.id, file: file });
     });
@@ -156,7 +166,7 @@ window.pos.modules.upload = function(settings){
             fields[attribute.name.replace('data-request-', '')] = attribute.value;
           }
         }
-        fields['Content-Type'] = file.type;
+        // fields['Content-Type'] = file.type;
 
         return Promise.resolve({
           method: 'POST',
@@ -167,7 +177,7 @@ window.pos.modules.upload = function(settings){
     });
 
     if(module.settings.showDashboard){
-      pos.modules.debug(module.settings.debug, module.settings.id, 'Starging dashboard', module.settings.container);
+      pos.modules.debug(module.settings.debug, module.settings.id, 'Starting dashboard', module.settings.container);
       module.settings.uppy.use(pos.modules.uppy.Dashboard, {
         id: module.settings.id,
         target: module.settings.container,
@@ -194,7 +204,6 @@ window.pos.modules.upload = function(settings){
   //            uploaded file data: id and url (object)
   // ------------------------------------------------------------------------
   module.addInput = (status, file) => {
-    console.log(file);
     const element = status === 'added' ? document.importNode(module.settings.addedFileTemplate.content, true) : document.importNode(module.settings.removedFileTemplate.content, true);
     element.querySelector('input').value = status === 'added' ? file.url : file.file.meta.databaseId;
     element.querySelector('input').dataset.id = file.file.id;
@@ -216,7 +225,7 @@ window.pos.modules.upload = function(settings){
 
   // purpose:		perloads already uploaded files to the module
   // arguments: url to remote file (string)
-//              database id of the file (int)
+  //            database id of the file (int)
   // ------------------------------------------------------------------------
   module.preloadFile = async (url, databaseId) => {
     pos.modules.debug(module.settings.debug, module.settings.id, 'Preloading a file', url);
@@ -247,7 +256,35 @@ window.pos.modules.upload = function(settings){
 
     // set the uppy ids for hidden inputs corresponding to preloaded file
     document.querySelector(`[value="${url}"]`).dataset.id = fileId;
-  }
+  };
+
+
+  // purpose:		gets image dimensions
+  // arguments: file object (file data)
+  // ------------------------------------------------------------------------
+  module.getImageDimenstions = file => {
+    return new Promise((resolve) => {
+      const fr = new FileReader;
+      const dimensions = {
+        width: false,
+        height: false
+      };
+
+      fr.onload = function() {
+        const img = new Image;
+        img.onload = function() {
+          dimensions.width = img.width;
+          dimensions.height = img.height;
+          resolve(dimensions);
+        };
+        img.src = fr.result;
+      };
+
+      fr.readAsDataURL(file);
+
+      pos.modules.debug(module.settings.debug, module.settings.id, `Read image dimenstions`, { file, dimensions });
+    });
+  };
 
 
   module.init();
