@@ -42,13 +42,17 @@
 
   <div class="pos-upload-dashboard"></div>
 
-  <template class="pos-upload-file-input">
-    <input type="hidden" name="{{ name }}[]">
+  <template class="pos-upload-added-file-input">
+    <input type="hidden" name="{{ name }}[added][]" data-id="">
+  </template>
+
+  <template class="pos-upload-removed-file-input">
+    <input type="hidden" name="{{ name }}[removed][]" data-id="">
   </template>
 
   {% for file in files %}
     {% if file.file.url %}
-      <input type="hidden" name="{{ name }}[]" value="{{ file.file.url }}">
+      <input type="hidden" name="{{ name }}[current][]" value="{{ file.file.url }}" data-database-id="{{ file.id }}">
     {% endif %}
   {% endfor %}
   

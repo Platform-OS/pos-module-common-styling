@@ -28,7 +28,9 @@ window.pos.modules.upload = function(settings){
   // wildcards image/* or exact mime types image/jpeg or file extensions .jpg, example: ['image/*', '.jpg', '.jpeg', '.png', '.gif'] (array)
   module.settings.allowedFileTypes = settings.allowedFileTypes;
   // template to add to DOM for each added file
-  module.settings.fileTemplate = module.settings.container.querySelector('.pos-upload-file-input');
+  module.settings.addedFileTemplate = module.settings.container.querySelector('.pos-upload-added-file-input');
+  // template to add to DOM for each removed file
+  module.settings.removedFileTemplate = module.settings.container.querySelector('.pos-upload-removed-file-input');
   // if you want the photo editor (bool)
   module.settings.imageEditorEnabled = settings.imageEditorEnabled || false;
   // aspect ration for cropping the image (float)
@@ -56,15 +58,20 @@ window.pos.modules.upload = function(settings){
     module.startUppy();
 
     module.settings.container.querySelectorAll('input[type="hidden"]').forEach(async input => {
-      await module.preloadFile(input.value);
+      await module.preloadFile(input.value, input.dataset.databaseId);
     });
 
     module.settings.container.addEventListener('pos-upload-file-uploaded', event => {
-      module.addInput(event.detail);
+      module.addInput('added', event.detail);
     });
 
     module.settings.container.addEventListener('pos-upload-file-removed', event => {
+      // remove the input holding the information about preloaded file
       module.removeInput(event.detail);
+      // if this was a preloaded file, add the information that it was removed
+      if(event.detail.file.meta.databaseId){
+        module.addInput('removed', event.detail);
+      }
     });
 
     // set the option to auto proceed after the preloaded files were loaded
@@ -183,15 +190,17 @@ window.pos.modules.upload = function(settings){
 
 
   // purpose:		puts an hidden input on the page with the URL to the uploaded file as value
-  // arguments: uploaded file data: id and url (object)
+  // arguments: if the file was 'added' or 'removed' (string)
+  //            uploaded file data: id and url (object)
   // ------------------------------------------------------------------------
-  module.addInput = (file) => {
-    const element = document.importNode(module.settings.fileTemplate.content, true);
-    element.querySelector('input').value = file.url;
+  module.addInput = (status, file) => {
+    console.log(file);
+    const element = status === 'added' ? document.importNode(module.settings.addedFileTemplate.content, true) : document.importNode(module.settings.removedFileTemplate.content, true);
+    element.querySelector('input').value = status === 'added' ? file.url : file.file.meta.databaseId;
     element.querySelector('input').dataset.id = file.file.id;
     module.settings.container.appendChild(element);
 
-    pos.modules.debug(module.settings.debug, module.settings.id, 'Added a hidden input with the uploaded file as an URL', document.querySelector(`[data-id="${file.file.id}"]`));
+    pos.modules.debug(module.settings.debug, module.settings.id, `Added a hidden input with the ${status === 'added' ? 'added' : 'removed'} file ${status === 'added' ? 'url' : 'id'} as a value`, document.querySelector(`[data-id="${file.file.id}"]`));
   };
 
 
@@ -206,9 +215,10 @@ window.pos.modules.upload = function(settings){
 
 
   // purpose:		perloads already uploaded files to the module
-  // arguments: url to remote file
+  // arguments: url to remote file (string)
+//              database id of the file (int)
   // ------------------------------------------------------------------------
-  module.preloadFile = async (url) => {
+  module.preloadFile = async (url, databaseId) => {
     pos.modules.debug(module.settings.debug, module.settings.id, 'Preloading a file', url);
 
     // fetch file from url
@@ -220,7 +230,10 @@ window.pos.modules.upload = function(settings){
       type: blob.type,
       data: blob,
       isRemote: true,
-      remote: url
+      remote: url,
+      meta: {
+        databaseId: databaseId
+      }
     });
 
     module.settings.uppy.setFileState(fileId, {
