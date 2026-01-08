@@ -40,7 +40,7 @@ window.pos.modules.upload = function(settings){
   // height of the dashboard (string)
   module.settings.height = settings.height || '400px';
   // debug mode enabled (bool)
-  module.settings.debug = settings.debug || true;
+  module.settings.debug = settings.debug || false;
 
   // uppy instance for this upload (object)
   module.settings.uppy = null;
