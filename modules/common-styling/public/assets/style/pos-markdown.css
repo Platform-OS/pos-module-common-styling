@@ -1,0 +1,22 @@
+/*
+  rich text editor using ProseMirror
+
+  container
+  text window
+*/
+
+
+/* container
+============================================================================ */
+.pos-rte {
+    border: 1px solid var(--pos-color-frame);
+
+    background-color: var(--pos-color-content-background);
+}
+
+
+/* text window
+============================================================================ */
+.ProseMirror-example-setup-style {
+    padding: var(--pos-padding-cell);
+}
