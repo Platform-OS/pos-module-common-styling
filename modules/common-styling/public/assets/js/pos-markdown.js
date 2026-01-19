@@ -55,7 +55,9 @@ window.pos.modules.markdown = function(settings){
       uploadImage: true,
       sideBySideFullscreen: false,
       status: false,
-      imageUploadFunction: module.uploadImage
+      imageUploadFunction: module.uploadImage,
+      previewImagesInEditor: true,
+      previewClass: ['pos-prose', 'editor-preview']
     });
   };
 

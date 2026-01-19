@@ -17,11 +17,18 @@
 
 <textarea
   id="{{ id }}"
-  class="pos-markdown"
+  class="pos-markdown pos-forms-text"
+  rows="2"
   name="{{ name }}"
 
   data-upload-url="{{ presigned_upload.upload_url }}"
   {% for field in presigned_upload.upload_url_payload %}
       data-request-{{ field[0] }}="{{ field[1] }}"
   {% endfor %}
-></textarea>
+>
+
+  # Hello
+
+  This is a **preview** text.
+
+</textarea>

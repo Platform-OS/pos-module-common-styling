@@ -8,15 +8,7 @@
 
 /* container
 ============================================================================ */
-.pos-rte {
+.pos-markdown {
+    width: 100%;
     border: 1px solid var(--pos-color-frame);
-
-    background-color: var(--pos-color-content-background);
-}
-
-
-/* text window
-============================================================================ */
-.ProseMirror-example-setup-style {
-    padding: var(--pos-padding-cell);
 }
