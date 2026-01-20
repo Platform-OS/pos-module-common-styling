@@ -153,7 +153,8 @@
         document.querySelectorAll('.pos-markdown').forEach((element, index) => {
           window.pos.modules.active[element.id || `pos-markdown-${index}`] = new pos.modules.markdown({
             container: element,
-            id: element.id || `pos-markdown-${index}`
+            id: element.id || `pos-markdown-${index}`,
+            content: element.value
           });
         });
       });
