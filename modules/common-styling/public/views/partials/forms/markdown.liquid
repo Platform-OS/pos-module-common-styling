@@ -27,8 +27,4 @@
   {% for field in presigned_upload.upload_url_payload %}
       data-request-{{ field[0] }}="{{ field[1] }}"
   {% endfor %}
->
-
-{{ value }}
-
-</textarea>
+>{{ value }}</textarea>
