@@ -332,10 +332,18 @@
 
 
   <h3 class="pos-heading-4 styleguide-heading-4">Markdown editor</h3>
-  {% liquid
-    graphql presign = 'uploads/presign', table: 'uploads', property: 'upload'
-  %}
-  {% render 'modules/common-styling/forms/markdown', id: 'styleguide-markdown-editor', name: 'styleguide-markdown-editor', presigned_upload: presign.property_upload_presigned_url %}
+  {% render 'modules/common-styling/forms/markdown', id: 'styleguide-markdown-editor', name: 'styleguide-markdown-editor' %}
+
+{% capture code %}{% raw %}
+{% render 'modules/common-styling/forms/markdown',
+  id: 'styleguide-markdown-editor',
+  name: 'styleguide-markdown-editor',
+  presigned_upload: presigned_upload
+%}
+{% endraw %}{% endcapture %}
+    <div class="styleguide-code">
+      <pre><code>{{ code | lstrip | rstrip }}</code></pre>
+    </div>
 
 
   <h3 class="pos-heading-4 styleguide-heading-4">Password input</h3>
