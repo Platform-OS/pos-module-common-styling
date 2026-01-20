@@ -1,0 +1,14 @@
+/*
+  rich text editor using ProseMirror
+
+  container
+  text window
+*/
+
+
+/* container
+============================================================================ */
+.pos-markdown {
+    width: 100%;
+    border: 1px solid var(--pos-color-frame);
+}

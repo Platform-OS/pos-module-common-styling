@@ -232,4 +232,8 @@
     margin-block: .5em;
   }
 
+  .pos-prose strong {
+    font-weight: bold;
+  }
+
 }
