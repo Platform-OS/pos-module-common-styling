@@ -45,7 +45,7 @@ window.pos.modules.markdown = function(settings){
     pos.modules.debug(module.settings.debug, module.settings.id, 'Starting EasyMDE');
 
     pos.modules.active[module.settings.id] = new EasyMDE({
-      element: document.querySelector('.pos-markdown'),
+      element: module.settings.container,
       renderingConfig: {
         codeSyntaxHighlighting: true
       },
