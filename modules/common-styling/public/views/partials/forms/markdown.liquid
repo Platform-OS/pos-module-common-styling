@@ -16,15 +16,18 @@
   assign value = value | default: ''
 %}
 
+<div class="pos-markdown">
 
-<textarea
-  id="{{ id }}"
-  class="pos-markdown pos-forms-text"
-  rows="2"
-  name="{{ name }}"
+  <textarea
+    id="{{ id }}"
+    class="pos-forms-text"
+    rows="2"
+    name="{{ name }}"
 
-  data-upload-url="{{ presigned_upload.upload_url }}"
-  {% for field in presigned_upload.upload_url_payload %}
-      data-request-{{ field[0] }}="{{ field[1] }}"
-  {% endfor %}
->{{ value }}</textarea>
+    data-upload-url="{{ presigned_upload.upload_url }}"
+    {% for field in presigned_upload.upload_url_payload %}
+        data-request-{{ field[0] }}="{{ field[1] }}"
+    {% endfor %}
+  >{{ value }}</textarea>
+
+</div>
