@@ -151,7 +151,7 @@
     /* markdown editor */
     if(document.querySelector('.pos-markdown')){
       import('{{ 'modules/common-styling/js/pos-markdown.js' | asset_url }}').then(module => {
-        document.querySelectorAll('.pos-markdown textarea').forEach((element, index) => {
+        document.querySelectorAll('.pos-markdown').forEach((element, index) => {
           window.pos.modules.active[element.id || `pos-markdown-${index}`] = new pos.modules.markdown({
             container: element,
             id: element.id || `pos-markdown-${index}`,

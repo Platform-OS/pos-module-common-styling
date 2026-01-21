@@ -18,12 +18,14 @@ window.pos.modules.markdown = function(settings){
   module.settings = {};
   // uploader container (dom node)
   module.settings.container = settings.container;
-  // unique id for the module
+  // textarea for the content (dom node)
+  module.settings.textarea = settings.textarea || module.settings.container.querySelector('textarea');
+  // unique id for the module (string)
   module.settings.id = module.settings.container.id || 'pos-markdown';
   // debug mode enabled (bool)
   module.settings.debug = settings.debug || true;
 
-  // easymde instance
+  // easymde instance (object)
   module.settings.easyMde = null;
 
 
@@ -42,10 +44,10 @@ window.pos.modules.markdown = function(settings){
   // purpose:		starts EasyMDE instance
   // ------------------------------------------------------------------------
   module.startEasyMde = () => {
-    pos.modules.debug(module.settings.debug, module.settings.id, 'Starting EasyMDE');
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Starting EasyMDE', module.settings.textarea);
 
-    pos.modules.active[module.settings.id] = new EasyMDE({
-      element: module.settings.container,
+    module.settings.easyMde = new EasyMDE({
+      element: module.settings.textarea,
       renderingConfig: {
         codeSyntaxHighlighting: true
       },
@@ -59,13 +61,15 @@ window.pos.modules.markdown = function(settings){
       previewImagesInEditor: true,
       previewClass: ['pos-prose', 'editor-preview']
     });
+
+    pos.modules.debug(module.settings.debug, module.settings.id, 'EasyMDE instance created', module.settings.easyMde);
   };
 
 
   // purpose:		uploads images in the editor
   // ------------------------------------------------------------------------
   module.uploadImage = async (file, onSuccess, onError) => {
-    pos.modules.debug(module.settings.debug, module.settings.id, 'Uploading image');
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Uploading image', module.settings.container);
 
     const fields = new FormData();
 
@@ -89,6 +93,10 @@ window.pos.modules.markdown = function(settings){
         const fileUrl = xmlDoc.getElementsByTagName('Location')[0].textContent;
 
         pos.modules.debug(module.settings.debug, module.settings.id, 'Image uploaded', fileUrl);
+        // dispatch custom event
+        document.dispatchEvent(new CustomEvent('pos-markdown-image-uploaded', { bubbles: true, detail: { target: module.settings.container, file: { url: fileUrl } } }));
+        pos.modules.debug(module.settings.debug, 'event', 'pos-markdown-image-uploaded', { target: module.settings.container, file: { url: fileUrl } });
+
 
         onSuccess(fileUrl);
       } else {
@@ -99,6 +107,33 @@ window.pos.modules.markdown = function(settings){
     });
   };
 
+  // purpose:   focuses the text editor
+  // ------------------------------------------------------------------------
+  module.focus = () => {
+    module.settings.easyMde.codemirror.focus();
+    module.settings.easyMde.codemirror.setCursor(module.settings.easyMde.codemirror.lineCount(), 0);
+
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Markdown editor focused', module.settings.container);
+  };
+
+
+  // purpose:   cleans the content
+  // ------------------------------------------------------------------------
+  module.reset = () => {
+    module.settings.easyMde.value('');
+
+    pos.modules.debug(module.settings.debug, module.settings.id, 'Cleaned the content of markdown editor', module.settings.container);
+    // dispatch custom event
+    document.dispatchEvent(new CustomEvent('pos-markdown-reset', { bubbles: true, detail: { target: module.settings.container, id: module.settings.id } }));
+    pos.modules.debug(module.settings.debug, 'event', 'pos-markdown-reset', { target: module.settings.container, id: module.settings.id });
+  };
+
+
+  // gets the markdown content of the editor
+  // ------------------------------------------------------------------------
+  module.value = () => {
+    return module.settings.easyMde.value();
+  };
 
 
   module.init();

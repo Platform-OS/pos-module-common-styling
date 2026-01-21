@@ -36,4 +36,18 @@
     border-end-end-radius: var(--pos-radius-input) !important;
   }
 
+  .EasyMDEContainer .editor-preview-side {
+    border-color: var(--pos-color-input-frame) !important;
+  }
+
+  .EasyMDEContainer .editor-preview {
+    padding: var(--pos-padding-card);
+    background-color: var(--pos-color-highlight-background) !important;
+  }
+
+  /* tailwind interferes with the .table button */
+  .EasyMDEContainer .editor-toolbar button {
+    width: auto;
+  }
+
 }
