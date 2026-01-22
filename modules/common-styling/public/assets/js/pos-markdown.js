@@ -23,7 +23,7 @@ window.pos.modules.markdown = function(settings){
   // unique id for the module (string)
   module.settings.id = module.settings.container.id || 'pos-markdown';
   // debug mode enabled (bool)
-  module.settings.debug = settings.debug || true;
+  module.settings.debug = typeof settings.debug === 'boolean' ? settings.debug : false;
 
   // easymde instance (object)
   module.settings.easyMde = null;
@@ -117,15 +117,28 @@ window.pos.modules.markdown = function(settings){
   };
 
 
-  // purpose:   cleans the content
+  // purpose:   resets editor state
   // ------------------------------------------------------------------------
   module.reset = () => {
+
+    // clean value
     module.settings.easyMde.value('');
+
+    // hide preview
+    if(module.settings.easyMde.isPreviewActive()) {
+      module.settings.easyMde.togglePreview();
+    }
+
+    // hide side-by-side preview
+    if(module.settings.easyMde.isSideBySideActive()) {
+      module.settings.easyMde.toggleSideBySide();
+    }
 
     pos.modules.debug(module.settings.debug, module.settings.id, 'Cleaned the content of markdown editor', module.settings.container);
     // dispatch custom event
     document.dispatchEvent(new CustomEvent('pos-markdown-reset', { bubbles: true, detail: { target: module.settings.container, id: module.settings.id } }));
     pos.modules.debug(module.settings.debug, 'event', 'pos-markdown-reset', { target: module.settings.container, id: module.settings.id });
+  
   };
 
 

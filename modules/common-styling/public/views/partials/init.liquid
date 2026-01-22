@@ -161,5 +161,17 @@
       });
     }
 
+    /* code highlighting */
+    if(document.querySelector('pre code')){
+      import('{{ 'modules/common-styling/js/pos-code.js' | asset_url }}').then(module => {
+        document.querySelectorAll('pre code').forEach((element, index) => {
+          pos.modules.active[`pos-code-${index}`] = new pos.modules.code({
+            container: element,
+            id: `pos-code-${index}`
+          });
+        });
+      });
+    }
+
   });
 </script>
