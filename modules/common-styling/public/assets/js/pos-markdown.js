@@ -66,6 +66,7 @@ window.pos.modules.markdown = function(settings){
   };
 
 
+
   // purpose:		uploads images in the editor
   // ------------------------------------------------------------------------
   module.uploadImage = async (file, onSuccess, onError) => {
@@ -73,7 +74,7 @@ window.pos.modules.markdown = function(settings){
 
     const fields = new FormData();
 
-    for(let attribute of module.settings.container.attributes){
+    for(let attribute of module.settings.textarea.attributes){
       if(attribute.name.startsWith('data-request-')){
         fields.append(attribute.name.replace('data-request-', ''), attribute.value)
       }
@@ -81,7 +82,7 @@ window.pos.modules.markdown = function(settings){
     fields.append('Content-Type', file.type);
     fields.append('file', file);
 
-    fetch(module.settings.container.dataset.uploadUrl, {
+    fetch(module.settings.textarea.dataset.uploadUrl, {
       method: 'POST',
       body: fields
     }).then(async response => {
@@ -94,7 +95,7 @@ window.pos.modules.markdown = function(settings){
 
         pos.modules.debug(module.settings.debug, module.settings.id, 'Image uploaded', fileUrl);
         // dispatch custom event
-        document.dispatchEvent(new CustomEvent('pos-markdown-image-uploaded', { bubbles: true, detail: { target: module.settings.container, file: { url: fileUrl } } }));
+        module.settings.container.dispatchEvent(new CustomEvent('pos-markdown-image-uploaded', { bubbles: true, detail: { target: module.settings.container, file: { url: fileUrl } } }));
         pos.modules.debug(module.settings.debug, 'event', 'pos-markdown-image-uploaded', { target: module.settings.container, file: { url: fileUrl } });
 
 
@@ -136,16 +137,41 @@ window.pos.modules.markdown = function(settings){
 
     pos.modules.debug(module.settings.debug, module.settings.id, 'Cleaned the content of markdown editor', module.settings.container);
     // dispatch custom event
-    document.dispatchEvent(new CustomEvent('pos-markdown-reset', { bubbles: true, detail: { target: module.settings.container, id: module.settings.id } }));
+    module.settings.container.dispatchEvent(new CustomEvent('pos-markdown-reset', { bubbles: true, detail: { target: module.settings.container, id: module.settings.id } }));
     pos.modules.debug(module.settings.debug, 'event', 'pos-markdown-reset', { target: module.settings.container, id: module.settings.id });
   
   };
 
 
-  // gets the markdown content of the editor
+  // purpose:   gets/sets the markdown content of the editor
+  // arguments: new value to set to the editr (string)
+  // returns:   current editor value
   // ------------------------------------------------------------------------
-  module.value = () => {
+  module.value = (value) => {
+    if(value){
+      module.settings.easyMde.value(value);
+
+      pos.modules.debug(module.settings.debug, module.settings.id, 'Changed editor content', value);
+      // dispatch custom event
+      module.settings.container.dispatchEvent(new CustomEvent('pos-markdown-changed', { bubbles: true, detail: { target: module.settings.container, id: module.settings.id, value: value } }));
+      pos.modules.debug(module.settings.debug, 'event', 'pos-markdown-changed', { target: module.settings.container, id: module.settings.id, value: value });
+    }
+
+    module.updateTextarea();
+
     return module.settings.easyMde.value();
+  };
+
+
+  // purpose:   updates the textarea with the markdown content
+  // ------------------------------------------------------------------------
+  module.updateTextarea = () => {
+    module.settings.easyMde.codemirror.save();
+
+    // dispatch custom event
+    module.settings.container.dispatchEvent(new CustomEvent('pos-markdown-textarea-updated', { bubbles: true, detail: { target: module.settings.container, id: module.settings.id, textarea: module.settings.textarea, value: module.settings.textarea.value } }));
+    pos.modules.debug(module.settings.debug, 'event', 'pos-markdown-textarea-updated', { target: module.settings.container, id: module.settings.id, textarea: module.settings.textarea, value: module.settings.textarea.value });
+
   };
 
 
