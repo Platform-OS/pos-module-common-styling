@@ -11,7 +11,7 @@
 
 
 
-export function load(userSettings = {}){
+window.pos.modules.load = function(settings = {}){
 
   // cache 'this' value not to be overwritten later
   const module = this;
@@ -20,24 +20,24 @@ export function load(userSettings = {}){
   // ------------------------------------------------------------------------
   module.settings = {};
   // module id (string)
-  module.settings.id = userSettings?.id || `load-${userSettings.target}`;
+  module.settings.id = settings?.id || `load-${settings.target}`;
   // element that triggers the loading (dom node)
-  module.settings.trigger = userSettings?.trigger || null;
+  module.settings.trigger = settings?.trigger || null;
   // url of the page to load (string)
-  module.settings.endpoint = userSettings.endpoint;
+  module.settings.endpoint = settings.endpoint;
   // selector for the container to load the content into (string)
-  module.settings.target = userSettings.target;
+  module.settings.target = settings.target;
   // do you want to replace or append the content (string)
-  module.settings.method = userSettings.method || 'replace';
+  module.settings.method = settings.method || 'replace';
   // trigger to run the loading process (string)
-  module.settings.triggerType = userSettings.triggerType || 'click';
+  module.settings.triggerType = settings.triggerType || 'click';
   // if you want to enable debug mode that logs to console (bool)
-  module.settings.debug = userSettings.debug || false;
+  module.settings.debug = settings.debug || false;
 
 
   // purpose:		initializes the module
   // ------------------------------------------------------------------------
-  module.init = async function(){
+  module.init = function(){
     module.settings.trigger.addEventListener(module.settings.triggerType, module.load);
     module.settings.trigger.addEventListener('focus', module.load);
   };

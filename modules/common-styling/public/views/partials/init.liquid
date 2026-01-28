@@ -112,11 +112,9 @@
     //            triggerType (string) - `click` or `hover` to trigger the loading process
     // ------------------------------------------------------------------------
     import('{{ 'modules/common-styling/js/pos-load.js' | asset_url }}').then(module => {
-      window.pos.modules.load = module.load;
-
       const loads = document.querySelectorAll('[data-load-content]');
-      loads.forEach(async load => {
-        await pos.modules.load({
+      loads.forEach(load => {
+        pos.modules.active['load-' + load.getAttribute('data-load-target')] = new pos.modules.load({
           endpoint: load.getAttribute('data-load-content'),
           target: load.getAttribute('data-load-target'),
           method: load.getAttribute('data-load-method'),
